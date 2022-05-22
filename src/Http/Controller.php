@@ -2,9 +2,15 @@
 
 namespace App\Http;
 
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Controller
 {
@@ -76,8 +82,20 @@ class Controller
         return $request->getAttribute('__route__')->getCallable();
     }
 
-    public function view()
+    /**
+     * @param $template
+     * @param array $args
+     * @return string
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function view($template, array $args = []): string
     {
-        return $this->getContainer()->get('twig');
+        /** @var Environment $view */
+        $view = $this->getContainer()->get('twig');
+        return $view->render($template, $args);
     }
 }

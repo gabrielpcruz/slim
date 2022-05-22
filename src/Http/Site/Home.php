@@ -12,12 +12,17 @@ class Home extends Controller
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function index(Request $request, Response $response): Response
     {
         $response->getBody()->write("Dentro do contoller, Método get");
 
-        return $this->view();
+        return $this->view('index');
     }
 
     /**

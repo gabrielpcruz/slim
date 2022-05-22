@@ -1,5 +1,6 @@
 <?php
 
+use Adbar\Dot;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
@@ -9,7 +10,7 @@ use Twig\Loader\FilesystemLoader;
 return [
 
     'settings' => function () {
-        return require __DIR__ . '/settings.php';
+        return new Dot(require __DIR__ . '/settings.php');
     },
 
     App::class => function (ContainerInterface $container) {
@@ -26,13 +27,13 @@ return [
     'twig' => function (ContainerInterface $container) {
         $settings = $container->get('settings');
 
-        var_dump($settings);
-        $cache = '';
+        $template_path = $settings->get('template.templates_path');
+        $cache = $settings->get('template.cache_path');
 
-        $loader = new FilesystemLoader('$tempates');
+        $loader = new FilesystemLoader($template_path);
 
         return new Environment($loader, [
             'cache' => $cache
         ]);
-    }
+    },
 ];

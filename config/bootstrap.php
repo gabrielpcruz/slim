@@ -1,11 +1,8 @@
 <?php
 
-use App\Factory\ContainerFactory;
-use Slim\App;
+use App\App;
 
 // Settings
 require __DIR__ . '/../vendor/autoload.php';
 
-$container = (new ContainerFactory())->createInstance();
-
-return $container->get(App::class);
+return App::getInstace();
