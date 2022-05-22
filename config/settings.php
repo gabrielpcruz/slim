@@ -19,4 +19,9 @@ $settings['tests'] = $settings['root'] . '/tests';
 $settings['public'] = $settings['root'] . '/public';
 
 
+$settings['template'] = [
+    'templates_path' => $settings['root'] . '/resources/views',
+    'cache_path' => $settings['root'] . '/storage/cache/views'
+];
+
 return $settings;

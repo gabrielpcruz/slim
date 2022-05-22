@@ -16,7 +16,13 @@ final class ContainerFactory
     {
         $containerBuilder = new ContainerBuilder();
 
-        $containerBuilder->addDefinitions(__DIR__ . '/../../config/container.php');
+        // Container's definitions
+        $containers = require __DIR__ . '/../../config/container.php';
+
+
+        $definitions = array_merge($containers, []);
+
+        $containerBuilder->addDefinitions($definitions);
 
         return $containerBuilder->build();
     }

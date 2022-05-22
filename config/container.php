@@ -3,6 +3,8 @@
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 return [
 
@@ -19,5 +21,18 @@ return [
         $app->addRoutingMiddleware();
 
         return $app;
+    },
+
+    'twig' => function (ContainerInterface $container) {
+        $settings = $container->get('settings');
+
+        var_dump($settings);
+        $cache = '';
+
+        $loader = new FilesystemLoader('$tempates');
+
+        return new Environment($loader, [
+            'cache' => $cache
+        ]);
     }
 ];

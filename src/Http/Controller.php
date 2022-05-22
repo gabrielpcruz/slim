@@ -75,4 +75,9 @@ class Controller
     {
         return $request->getAttribute('__route__')->getCallable();
     }
+
+    public function view()
+    {
+        return $this->getContainer()->get('twig');
+    }
 }

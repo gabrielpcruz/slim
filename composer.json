@@ -12,7 +12,8 @@
   "require": {
     "slim/slim": "4.*",
     "guzzlehttp/psr7": "^2",
-    "php-di/php-di": "*"
+    "php-di/php-di": "*",
+    "twig/twig": "^3.0"
   },
   "autoload": {
     "psr-4": {

@@ -17,7 +17,7 @@ class Home extends Controller
     {
         $response->getBody()->write("Dentro do contoller, Método get");
 
-        return $response;
+        return $this->view();
     }
 
     /**
