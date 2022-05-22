@@ -13,5 +13,10 @@
     "slim/slim": "4.*",
     "guzzlehttp/psr7": "^2",
     "php-di/php-di": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
   }
 }

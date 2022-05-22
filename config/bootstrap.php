@@ -1,28 +1,14 @@
 <?php
 
-use DI\ContainerBuilder;
-use DI\Container;
-use Psr\Container\ContainerInterface;
+use App\Factory\ContainerFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
 use Slim\App;
 
 // Settings
 require __DIR__ . '/../vendor/autoload.php';
 
-$settings = [
-    'settings' => function () {
-        return require __DIR__ . '/settings.php';
-    },
-    App::class => function (ContainerInterface $container) {
-        return AppFactory::createFromContainer($container);
-    }
-];
-
-$containerBuild = new ContainerBuilder(Container::class);
-$containerBuild->addDefinitions($settings);
-$container = $containerBuild->build();
+$container = (new ContainerFactory())->createInstance();
 
 $app = $container->get(App::class);
 
