@@ -1,8 +1,8 @@
 <?php
 
-use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
+use Psr\Container\ContainerInterface;
 
 return [
 
