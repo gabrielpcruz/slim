@@ -11,6 +11,11 @@ return [
     },
 
     App::class => function (ContainerInterface $container) {
-        return AppFactory::createFromContainer($container);
+        $app = AppFactory::createFromContainer($container);
+
+        // Adding routes of application
+        (require __DIR__ . '/routes.php')($app);
+
+        return $app;
     }
 ];
