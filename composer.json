@@ -1,0 +1,16 @@
+{
+  "name": "gabrielpcruz/slim",
+  "description": "Projeto pra eu entender de uma vez por todas como montar um projeto com slim framework do zero",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Gabriel Cruz",
+      "email": "gabrielcruz.mail@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "4.*",
+    "guzzlehttp/psr7": "^2"
+  }
+}
