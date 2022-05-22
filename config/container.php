@@ -16,6 +16,8 @@ return [
         // Adding routes of application
         (require __DIR__ . '/routes.php')($app);
 
+        $app->addRoutingMiddleware();
+
         return $app;
     }
 ];

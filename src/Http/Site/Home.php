@@ -15,7 +15,7 @@ class Home extends Controller
      */
     public function index(Request $request, Response $response): Response
     {
-        $response->getBody()->write("Dentro do contoller, Método index");
+        $response->getBody()->write("Dentro do contoller, Método get");
 
         return $response;
     }
@@ -27,7 +27,19 @@ class Home extends Controller
      */
     public function arroz(Request $request, Response $response): Response
     {
-        $response->getBody()->write("Dentro do contoller");
+        $response->getBody()->write("Dentro do contoller, Método POST");
+
+        return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
+    public function terra(Request $request, Response $response): Response
+    {
+        $response->getBody()->write("/arroz GET 2");
 
         return $response;
     }
