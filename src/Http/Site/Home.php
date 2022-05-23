@@ -2,50 +2,29 @@
 
 namespace App\Http\Site;
 
-use App\Http\Controller;
+use App\Http\ControllerSite;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
-class Home extends Controller
+class Home extends ControllerSite
 {
     /**
      * @param Request $request
      * @param Response $response
      * @return Response
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function index(Request $request, Response $response): Response
     {
-        $response->getBody()->write("Dentro do contoller, Método get");
-
-        return $this->view('index');
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @return Response
-     */
-    public function arroz(Request $request, Response $response): Response
-    {
-        $response->getBody()->write("Dentro do contoller, Método POST");
-
-        return $response;
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @return Response
-     */
-    public function terra(Request $request, Response $response): Response
-    {
-        $response->getBody()->write("/arroz GET 2");
-
-        return $response;
+        return $this->view($response, '@site/home/index');
     }
 }

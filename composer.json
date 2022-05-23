@@ -13,8 +13,8 @@
     "slim/slim": "4.*",
     "guzzlehttp/psr7": "^2",
     "php-di/php-di": "*",
-    "twig/twig": "^3.0",
-    "adbario/php-dot-notation": "^3.1"
+    "adbario/php-dot-notation": "^3.1",
+    "slim/twig-view": "^3.3"
   },
   "autoload": {
     "psr-4": {

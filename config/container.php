@@ -4,8 +4,10 @@ use Adbar\Dot;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
-use Twig\Environment;
+use Slim\Views\Twig;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+
 
 return [
 
@@ -24,16 +26,24 @@ return [
         return $app;
     },
 
-    'twig' => function (ContainerInterface $container) {
+    Twig::class => function (ContainerInterface $container) {
         $settings = $container->get('settings');
 
-        $template_path = $settings->get('template.templates_path');
-        $cache = $settings->get('template.cache_path');
+        $rootPath = $settings->get('view.path');
+        $templates = $settings->get('view.templates');
+        $settings = $settings->get('view.settings');
 
-        $loader = new FilesystemLoader($template_path);
 
-        return new Environment($loader, [
-            'cache' => $cache
-        ]);
+        $loader = new FilesystemLoader([], $rootPath);
+
+        foreach ($templates as $namespace => $template) {
+            $loader->addPath($template, $namespace);
+        }
+
+        $twig = new Twig($loader, $settings);
+
+        $twig->addExtension(new DebugExtension());
+
+        return $twig;
     },
 ];
