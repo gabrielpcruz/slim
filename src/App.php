@@ -49,7 +49,11 @@ class App
     {
         $app = self::getInstace();
 
-        $app->getContainer()->get(SlashTrace::class);
+        $settings = $app->getContainer()->get('settings');
+
+        if ($settings->get('error.slashtrace')) {
+            $app->getContainer()->get(SlashTrace::class);
+        }
 
         return $app;
     }

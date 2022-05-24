@@ -19,12 +19,9 @@ class ControllerSite extends Controller
 
     /**
      * @param Twig $twig
-     * @param Request $request
-     * @param Response $response
      */
     public function __construct(Twig $twig)
     {
-        throw new Exception("sa");
         $this->twig = $twig;
     }
 

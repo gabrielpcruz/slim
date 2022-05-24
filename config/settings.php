@@ -1,14 +1,6 @@
 <?php
 
-//// Configure defaults for the whole application.
-//
-//// Error reporting
-//error_reporting(1);
-//ini_set('display_errors', '1');
-//ini_set('display_startup_errors', '1');
-//
-//// Timezone
-//date_default_timezone_set('America/Sao_Paulo');
+// Configure defaults for the whole application.
 
 // Settings
 $settings = [];
@@ -19,6 +11,7 @@ $settings['tests'] = $settings['root'] . '/tests';
 $settings['public'] = $settings['root'] . '/public';
 
 $settings['error'] = [
+    'slashtrace' => 1, // Exibir erros com uma interface gráfica
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,

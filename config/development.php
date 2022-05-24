@@ -19,6 +19,7 @@ $settings['tests'] = $settings['root'] . '/tests';
 $settings['public'] = $settings['root'] . '/public';
 
 $settings['error'] = [
+    'slashtrace' => 1,
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,
