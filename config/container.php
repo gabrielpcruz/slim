@@ -1,12 +1,15 @@
 <?php
 
 use Adbar\Dot;
+use App\Factory\SlachTraceFactory;
+use SlashTrace\SlashTrace;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
 use Slim\Views\Twig;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use function DI\factory;
 
 
 return [
@@ -56,4 +59,9 @@ return [
 
         return $twig;
     },
+
+    SlashTrace::class => factory([
+        SlachTraceFactory::class,
+        'create',
+    ]),
 ];

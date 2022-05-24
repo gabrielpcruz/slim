@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -21,9 +22,9 @@ class ControllerSite extends Controller
      * @param Request $request
      * @param Response $response
      */
-    public function __construct(Twig $twig, Request $request, Response $response)
+    public function __construct(Twig $twig)
     {
-        parent::__construct($request, $response);
+        throw new Exception("sa");
         $this->twig = $twig;
     }
 

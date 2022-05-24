@@ -2,11 +2,12 @@
 
 use App\App;
 
-// Settings
 require __DIR__ . '/../vendor/autoload.php';
 
 try {
-    $container = App::getContainer();
+    $app = App::bootstrap();
+
+    $container = $app->getContainer();
 
     // Configure defaults for the whole application.
     $settings = $container->get('settings');
@@ -18,9 +19,7 @@ try {
     // Timezone
     date_default_timezone_set($settings->get('timezone'));
 
-    return App::getInstace();
-} catch (Error|Exception $error) {
-    echo "error";
+    return $app;
+} catch (Throwable $error) {
 
-    throw $error;
 }

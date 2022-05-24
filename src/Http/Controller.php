@@ -7,10 +7,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 abstract class Controller
 {
-    public function __construct(Request $request, Response $response)
-    {
-        var_dump(1);
-    }
 
     /**
      * @param array $data

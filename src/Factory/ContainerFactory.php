@@ -12,7 +12,7 @@ final class ContainerFactory
      * @return Container
      * @throws Exception
      */
-    public function createInstance(): Container
+    public function create(): Container
     {
         $containerBuilder = new ContainerBuilder();
 
