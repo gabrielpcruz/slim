@@ -2,10 +2,8 @@
 
 namespace App\Http;
 
-use App\App;
-use DI\DependencyException;
-use DI\NotFoundException;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -14,25 +12,36 @@ use Twig\Error\SyntaxError;
 class ControllerSite extends Controller
 {
     /**
-     * @param ResponseInterface $response
+     * @var Twig
+     */
+    private Twig $twig;
+
+    /**
+     * @param Twig $twig
+     * @param Request $request
+     * @param Response $response
+     */
+    public function __construct(Twig $twig, Request $request, Response $response)
+    {
+        parent::__construct($request, $response);
+        $this->twig = $twig;
+    }
+
+    /**
+     * @param Response $response
      * @param $template
      * @param array $args
-     * @return ResponseInterface
-     * @throws DependencyException
+     * @return Response
      * @throws LoaderError
-     * @throws NotFoundException
      * @throws RuntimeError
      * @throws SyntaxError
      */
     public function view(
-        ResponseInterface $response,
-                          $template,
-        array             $args = []
-    ): ResponseInterface
+        Response $response,
+                 $template,
+        array    $args = []
+    ): Response
     {
-        /** @var Twig $view */
-        $view = App::getContainer()->get(Twig::class);
-
-        return $view->render($response, $template . ".twig", $args);
+        return $this->twig->render($response, $template . ".twig", $args);
     }
 }

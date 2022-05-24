@@ -24,7 +24,7 @@ $settings['error'] = [
     'display_startup_errors' => 1,
 ];
 
-$settings['timezone'] = 'America/Sao_Paulo';
+$settings['timezone'] = 'America/Los_Angeles';
 
 $settings['view'] = [
     'path' => $settings['root'] . '/resources/views',

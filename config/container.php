@@ -12,7 +12,17 @@ use Twig\Loader\FilesystemLoader;
 return [
 
     'settings' => function () {
-        return new Dot(require __DIR__ . '/settings.php');
+        $settings = require __DIR__ . '/settings.php';
+
+        $enviroment = require __DIR__ . '/development.php';
+
+        if (false) {
+            $enviroment = require __DIR__ . '/production.php';
+        }
+
+        $settings = array_merge($settings, $enviroment);
+
+        return new Dot($settings);
     },
 
     App::class => function (ContainerInterface $container) {
