@@ -2,21 +2,28 @@
 
 namespace App\Http;
 
+use Psr\Http\Message\ResponseInterface;
+
 abstract class Controller
 {
-
     /**
+     * @param ResponseInterface $response
      * @param array $data
      * @param int $status
      * @return ResponseInterface
      */
     public function responseJSON(
-        array $data,
-        int   $status = 200
+        ResponseInterface $response,
+        array             $data,
+        int               $status = 200
     ): ResponseInterface
     {
         $json = json_encode($data, JSON_PRETTY_PRINT);
 
-//        $this->
+        $response->getBody()->write($json);
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus($status);
     }
 }

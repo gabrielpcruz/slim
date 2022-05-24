@@ -15,7 +15,8 @@ class Home extends ControllerApi
      */
     public function index(Request $request, Response $response): Response
     {
-        $response->getBody()->write('arroz');
-        return $response->withStatus(200);
+        return $this->responseJSON($response, [
+            'message' => 'response message'
+        ]);
     }
 }
