@@ -16,7 +16,8 @@
     "adbario/php-dot-notation": "^3.1",
     "slim/twig-view": "^3.3",
     "ext-json": "*",
-    "slashtrace/slashtrace": "^1.1"
+    "slashtrace/slashtrace": "^1.1",
+    "fig/http-message-util": "^1.1"
   },
   "autoload": {
     "psr-4": {

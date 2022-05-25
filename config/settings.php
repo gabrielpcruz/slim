@@ -11,7 +11,7 @@ $settings['tests'] = $settings['root'] . '/tests';
 $settings['public'] = $settings['root'] . '/public';
 
 $settings['error'] = [
-    'slashtrace' => 1, // Exibir erros com uma interface gráfica
+    'slashtrace' => false, // Exibir erros com uma interface gráfica
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,
@@ -27,6 +27,7 @@ $settings['view'] = [
         "console" => $settings['root'] . '/resources/views/console',
         "site" => $settings['root'] . '/resources/views/site',
         "email" => $settings['root'] . '/resources/views/email',
+        "layout" => $settings['root'] . '/resources/views/layout',
     ],
 
     'settings' => [

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Factory\ContainerFactory;
+use App\Handler\DefaultErrorHandler;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -11,6 +12,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use SlashTrace\SlashTrace;
 use Slim\App as SlimApp;
 use Exception;
+use Slim\Handlers\ErrorHandler;
 
 class App
 {
@@ -54,6 +56,9 @@ class App
         if ($settings->get('error.slashtrace')) {
             $app->getContainer()->get(SlashTrace::class);
         }
+
+        $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+        $errorMiddleware->setDefaultErrorHandler(DefaultErrorHandler::class);
 
         return $app;
     }
