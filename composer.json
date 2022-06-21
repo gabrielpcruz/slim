@@ -15,9 +15,9 @@
     "php-di/php-di": "*",
     "adbario/php-dot-notation": "^3.1",
     "slim/twig-view": "^3.3",
-    "ext-json": "*",
     "slashtrace/slashtrace": "^1.1",
-    "fig/http-message-util": "^1.1"
+    "fig/http-message-util": "^1.1",
+    "illuminate/database": "^8.83"
   },
   "autoload": {
     "psr-4": {

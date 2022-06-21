@@ -4,6 +4,7 @@ namespace App;
 
 use App\Factory\ContainerFactory;
 use App\Handler\DefaultErrorHandler;
+use App\Provider\ProviderInterface;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -51,11 +52,7 @@ class App
     {
         $app = self::getInstace();
 
-        $settings = $app->getContainer()->get('settings');
-
-        if ($settings->get('error.slashtrace')) {
-            $app->getContainer()->get(SlashTrace::class);
-        }
+        self::provide();
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
         $errorMiddleware->setDefaultErrorHandler(DefaultErrorHandler::class);
@@ -75,5 +72,23 @@ class App
         }
 
         return self::$container;
+    }
+
+    /**
+     * @return void
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    private static function provide()
+    {
+        $container = self::getContainer();
+
+        $providers = (require_once $container->get('settings')->get('file.providers'));
+
+        /** @var ProviderInterface $provider */
+        foreach ($providers as $provider) {
+            $provider = new $provider();
+            $provider->provid($container);
+        }
     }
 }

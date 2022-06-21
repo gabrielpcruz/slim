@@ -21,5 +21,5 @@ try {
 
     return $app;
 } catch (Throwable $error) {
-
+    var_dump($app);
 }

@@ -7,11 +7,20 @@ $settings = [];
 
 // Path settings
 $settings['root'] = dirname(__DIR__);
-$settings['tests'] = $settings['root'] . '/tests';
-$settings['public'] = $settings['root'] . '/public';
+
+$settings['path'] = [
+    'tests' => $settings['root'] . '/tests',
+    'public' => $settings['root'] . '/public',
+    'config' => $settings['root'] . '/config',
+    'storage' => $settings['root'] . '/storage',
+];
+
+$settings['file'] = [
+    'providers' => $settings['path']['config'] . '/providers.php',
+];
 
 $settings['error'] = [
-    'slashtrace' => false, // Exibir erros com uma interface gráfica
+    'slashtrace' => 1, // Exibir erros com uma interface gráfica
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,
@@ -35,6 +44,19 @@ $settings['view'] = [
         'debug' => true,
         'auto_reload' => true,
     ],
+];
+
+$settings['database'] = [
+    'sqlite' => [
+        'driver' => 'sqlite',
+        'host' => 'localhost',
+        'database' => $settings['path']['storage'] . '/database/db.sqlite',
+        'username' => 'root',
+        'password' => 'root',
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix' => '',
+    ]
 ];
 
 return $settings;
