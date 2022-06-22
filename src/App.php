@@ -12,7 +12,6 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\App as SlimApp;
 use Exception;
-use Symfony\Component\Console\Application;
 
 class App
 {
@@ -37,7 +36,7 @@ class App
     /**
      * @return string
      */
-    public static function getType(): string
+    private static function getType(): string
     {
         return php_sapi_name() == 'cli' ? 'console' : 'http';
     }
@@ -69,10 +68,6 @@ class App
         $app = self::getInstace();
 
         self::provide();
-
-        if (self::isConsole()) {
-            self::runCommands();
-        }
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
         $errorMiddleware->setDefaultErrorHandler(DefaultErrorHandler::class);
@@ -110,25 +105,5 @@ class App
             $provider = new $provider();
             $provider->provid($container);
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    private static function runCommands()
-    {
-        $commands = (require_once self::getContainer()->get('settings')->get('file.commands'));
-
-        $console = new Application();
-
-        if (empty($commands)) {
-            exit(0);
-        }
-
-        foreach ($commands as $commandClass) {
-            $console->add(self::$container->get($commandClass));
-        }
-
-        exit($console->run());
     }
 }
