@@ -1,6 +1,8 @@
 <?php
 
 use App\App;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -20,6 +22,10 @@ try {
     date_default_timezone_set($settings->get('timezone'));
 
     return $app;
-} catch (Throwable $error) {
-
+} catch (
+Exception|
+NotFoundExceptionInterface|
+ContainerExceptionInterface $exception
+) {
+    var_dump($exception);
 }
