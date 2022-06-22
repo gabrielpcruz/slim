@@ -19,9 +19,11 @@ class IlluminateDatabaseProvider implements ProviderInterface
     {
         $manager = new Manager();
 
-        $database = $container->get('settings')->get('database.sqlite');
+        $conections = (require_once $container->get('settings')->get('file.database'));
 
-        $manager->addConnection($database);
+        foreach ($conections as $name => $conection) {
+            $manager->addConnection($conection, $name);
+        }
 
         $manager->setAsGlobal();
 

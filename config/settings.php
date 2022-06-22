@@ -13,11 +13,13 @@ $settings['path'] = [
     'public' => $settings['root'] . '/public',
     'config' => $settings['root'] . '/config',
     'storage' => $settings['root'] . '/storage',
+    'migration' => $settings['root'] . '/src/Console/Migration',
 ];
 
 $settings['file'] = [
     'providers' => $settings['path']['config'] . '/providers.php',
     'commands' => $settings['path']['config'] . '/commands.php',
+    'database' => $settings['path']['config'] . '/database.php',
 ];
 
 $settings['error'] = [
@@ -45,19 +47,6 @@ $settings['view'] = [
         'debug' => true,
         'auto_reload' => true,
     ],
-];
-
-$settings['database'] = [
-    'sqlite' => [
-        'driver' => 'sqlite',
-        'host' => 'localhost',
-        'database' => $settings['path']['storage'] . '/database/db.sqlite',
-        'username' => 'root',
-        'password' => 'root',
-        'charset' => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix' => '',
-    ]
 ];
 
 return $settings;
