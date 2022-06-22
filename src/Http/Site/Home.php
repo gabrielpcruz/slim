@@ -9,8 +9,6 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-use Illuminate\Database\Capsule\Manager as DB;
-
 class Home extends ControllerSite
 {
     /**
@@ -23,8 +21,12 @@ class Home extends ControllerSite
      */
     public function index(Request $request, Response $response): Response
     {
-        $result = DB::table('rice')->select()->get();
-
-        return $this->responseJSON($response, $result->toArray());
+        return $this->view(
+            $response,
+            '@site/home/index',
+            [
+                'data' => date('H:i')
+            ]
+        );
     }
 }
