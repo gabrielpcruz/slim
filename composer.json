@@ -18,7 +18,8 @@
     "slashtrace/slashtrace": "^1.1",
     "fig/http-message-util": "^1.1",
     "illuminate/database": "^8.83",
-    "symfony/console": "^5.4"
+    "symfony/console": "^5.4",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

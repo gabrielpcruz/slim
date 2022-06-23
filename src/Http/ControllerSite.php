@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
@@ -16,10 +17,12 @@ class ControllerSite extends Controller
     private Twig $twig;
 
     /**
+     * @param ContainerInterface $container
      * @param Twig $twig
      */
-    public function __construct(Twig $twig)
+    public function __construct(ContainerInterface $container, Twig $twig)
     {
+        parent::__construct($container);
         $this->twig = $twig;
     }
 

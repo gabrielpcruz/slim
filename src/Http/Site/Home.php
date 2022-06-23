@@ -3,11 +3,12 @@
 namespace App\Http\Site;
 
 use App\Http\ControllerSite;
+use App\Repository\Example\RiceRespository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
+use ReflectionException;
 
 class Home extends ControllerSite
 {
@@ -15,18 +16,17 @@ class Home extends ControllerSite
      * @param Request $request
      * @param Response $response
      * @return Response
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function index(Request $request, Response $response): Response
     {
-        return $this->view(
+        $repository = $this->getRepositoryManager()->get(RiceRespository::class);
+
+        return $this->responseJSON(
             $response,
-            '@site/home/index',
-            [
-                'data' => date('H:i')
-            ]
+            $repository->all()->toArray()
         );
     }
 }
