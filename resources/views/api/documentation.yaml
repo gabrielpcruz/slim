@@ -10,17 +10,32 @@ servers:
   - url: http://localhost/v1
 
 tags:
-  - name: Home
+  - name: home
     description: List all registers from table demo called rice
     externalDocs:
       description: Find out more
-      url: http://swagger.io
+      url: http://localhost/v1/home
 paths:
   /home:
-    get:
+    post:
       tags:
-        - Home
-      summary: Returns informations about the rice table.
+        - home
+      summary: Add rice on table.
+      description: A description here
+      operationId: listRice
+      requestBody:
+        description: Add a rice in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RicePost'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RicePost'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RicePost'
+        required: true
       responses:
         '200': # status code
           description: A JSON array with rices informations
@@ -29,10 +44,30 @@ paths:
               schema:
                 type: array
                 items:
+                  $ref: '#/components/schemas/RicePost'
+    get:
+      tags:
+        - home
+      summary: Returns informations about the rice table. sad
+      description: A description here
+      operationId: listRice
+      responses:
+        '200': # status code
+          description: A JSON array with rices informations sad
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
                   $ref: '#/components/schemas/Rice'
-
 components:
   schemas:
+    RicePost:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'rice_name_62b261cd17be0'
     Rice:
       type: object
       properties:
