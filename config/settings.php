@@ -35,6 +35,7 @@ $settings['view'] = [
     'path' => $settings['root'] . '/resources/views',
 
     'templates' => [
+        "api" => $settings['root'] . '/resources/views/api',
         "error" => $settings['root'] . '/resources/views/error',
         "console" => $settings['root'] . '/resources/views/console',
         "site" => $settings['root'] . '/resources/views/site',

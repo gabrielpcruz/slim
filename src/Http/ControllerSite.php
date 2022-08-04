@@ -14,7 +14,7 @@ class ControllerSite extends Controller
     /**
      * @var Twig
      */
-    private Twig $twig;
+    protected Twig $twig;
 
     /**
      * @param ContainerInterface $container
