@@ -8,7 +8,7 @@ use Psr\Container\NotFoundExceptionInterface;
 $commands = [];
 
 try {
-    $migrationPath = App::getInstace()->getContainer()->get('settings')->get('path.migration');
+    $migrationPath = App::settings()->get('path.migration');
 
     $migrationCommands = [];
 

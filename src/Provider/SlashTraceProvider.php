@@ -2,9 +2,8 @@
 
 namespace App\Provider;
 
-use Psr\Container\ContainerExceptionInterface;
+use Adbar\Dot;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use SlashTrace\EventHandler\DebugHandler;
 use SlashTrace\SlashTrace;
 
@@ -12,13 +11,12 @@ class SlashTraceProvider implements ProviderInterface
 {
     /**
      * @param ContainerInterface $container
+     * @param Dot $settings
      * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
-    public function provide(ContainerInterface $container)
+    public function provide(ContainerInterface $container, Dot $settings)
     {
-        if ($container->get('settings')->get('error.slashtrace')) {
+        if ($settings->get('error.slashtrace')) {
             $slashtrace = new SlashTrace();
 
             $slashtrace->addHandler(new DebugHandler());

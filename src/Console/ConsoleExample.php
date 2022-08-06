@@ -19,8 +19,8 @@ class ConsoleExample extends Console
      */
     protected function configure()
     {
-        $this->setName('app:example');
-        $this->setDescription('Example command console');
+        $this->setName('console:show-example');
+        $this->setDescription('Shows example of command console output.');
     }
 
     /**
@@ -80,7 +80,7 @@ class ConsoleExample extends Console
         $output->writeln('Now, let\'s see an example of command using repository...');
         $output->writeln('');
 
-        sleep(2);
+        sleep(5);
 
         /** @var Repository $repository */
         $repository = $this->container->get(RepositoryManager::class)->get(RiceRespository::class);

@@ -17,9 +17,9 @@ $settings['path'] = [
 ];
 
 $settings['file'] = [
-    'providers' => $settings['path']['config'] . '/providers.php',
-    'commands' => $settings['path']['config'] . '/commands.php',
-    'database' => $settings['path']['config'] . '/database.php',
+        'providers' => $settings['path']['config'] . '/provider/providers.php',
+        'commands' => $settings['path']['config'] . '/command/commands.php',
+        'database' => $settings['path']['config'] . '/database/database.php',
 ];
 
 $settings['error'] = [

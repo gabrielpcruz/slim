@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Adbar\Dot;
 use App\Factory\ContainerFactory;
 use App\Handler\DefaultErrorHandler;
 use App\Provider\ProviderInterface;
@@ -56,6 +57,18 @@ class App
     }
 
     /**
+     * @return mixed
+     * @throws ContainerExceptionInterface
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public static function settings(): Dot
+    {
+        return self::getInstace()->getContainer()->get('settings');
+    }
+
+    /**
      * @return SlimApp
      * @throws DependencyException
      * @throws NotFoundException
@@ -67,7 +80,11 @@ class App
     {
         $app = self::getInstace();
 
-        self::provide();
+        $container = $app->getContainer();
+        $settings = $container->get('settings');
+
+        self::defineConstants($settings);
+        self::provide($container, $settings);
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
         $errorMiddleware->setDefaultErrorHandler(DefaultErrorHandler::class);
@@ -90,20 +107,29 @@ class App
     }
 
     /**
+     * @param Container $container
+     * @param Dot $settings
      * @return void
      * @throws DependencyException
      * @throws NotFoundException
      */
-    private static function provide()
+    private static function provide(Container $container, Dot $settings)
     {
-        $container = self::getContainer();
-
-        $providers = (require_once $container->get('settings')->get('file.providers'));
+        $providers = (require_once $settings->get('file.providers'));
 
         /** @var ProviderInterface $provider */
         foreach ($providers as $provider) {
             $provider = new $provider();
-            $provider->provid($container);
+            $provider->provide($container, $settings);
         }
+    }
+
+    /**
+     * @param Dot $settings
+     * @return void
+     */
+    private static function defineConstants(Dot $settings)
+    {
+        define('STORAGE_PATH', $settings->get('path.storage'));
     }
 }

@@ -2,31 +2,28 @@
 
 namespace App\Provider;
 
+use Adbar\Dot;
 use Illuminate\Database\Capsule\Manager;
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 class IlluminateDatabaseProvider implements ProviderInterface
 {
     /**
      * @param ContainerInterface $container
+     * @param Dot $settings
      * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
-    public function provide(ContainerInterface $container)
+    public function provide(ContainerInterface $container, Dot $settings)
     {
         $manager = new Manager();
 
-        $conections = (require_once $container->get('settings')->get('file.database'));
+        $conections = (require_once $settings->get('file.database'));
 
         foreach ($conections as $name => $conection) {
             $manager->addConnection($conection, $name);
         }
 
         $manager->setAsGlobal();
-
         $manager->bootEloquent();
     }
 }

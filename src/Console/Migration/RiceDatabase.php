@@ -28,7 +28,7 @@ class RiceDatabase extends Console
      */
     protected function configure()
     {
-        $this->setName('app:rice-database');
+        $this->setName('migration:create-database');
         $this->setDescription('Create de demo database');
     }
 
