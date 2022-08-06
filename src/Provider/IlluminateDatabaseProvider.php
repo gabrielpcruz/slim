@@ -15,7 +15,7 @@ class IlluminateDatabaseProvider implements ProviderInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function provid(ContainerInterface $container)
+    public function provide(ContainerInterface $container)
     {
         $manager = new Manager();
 

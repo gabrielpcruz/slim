@@ -16,7 +16,7 @@ class SlashTraceProvider implements ProviderInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function provid(ContainerInterface $container)
+    public function provide(ContainerInterface $container)
     {
         if ($container->get('settings')->get('error.slashtrace')) {
             $slashtrace = new SlashTrace();

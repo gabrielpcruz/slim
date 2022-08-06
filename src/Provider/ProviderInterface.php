@@ -6,5 +6,5 @@ use Psr\Container\ContainerInterface;
 
 interface ProviderInterface
 {
-    public function provid(ContainerInterface $container);
+    public function provide(ContainerInterface $container);
 }
