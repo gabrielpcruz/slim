@@ -29,20 +29,7 @@
             supportedSubmitMethods: ["get"],
             presets: [
                 SwaggerUIBundle.presets.apis,
-            ],
-            plugins: [
-                function () {
-                    return {
-                        statePlugins: {
-                            spec: {
-                                wrapSelectors: {
-                                    allowTryItOutFor: () => () => true
-                                }
-                            }
-                        }
-                    }
-                }
-            ],
+            ]
         })
     })
 </script>
