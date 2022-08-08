@@ -3,7 +3,7 @@
 use App\App;
 
 if (!function_exists('turnNameSpacePathIntoArray')) {
-    function turnNameSpacePathIntoArray($nameSpacePath, $namespace, $excludeItems = [], $excludePaths = []): array
+    function turnNameSpacePathIntoArray($nameSpacePath, $namespace, $excludeFiles = [], $excludePaths = []): array
     {
         $items = [];
 
@@ -14,7 +14,10 @@ if (!function_exists('turnNameSpacePathIntoArray')) {
         }
 
         foreach (scandir($nameSpacePath) as $class) {
-            if (!in_array($class, $pathsToExclude) && (!empty($excludeItems) && !in_array($class, $excludeItems))) {
+            $isExcludePath = in_array($class, $pathsToExclude);
+            $isExcludeFile = in_array($class, $excludeFiles);
+
+            if (!$isExcludePath && !$isExcludeFile) {
                 $items[] = $namespace . str_replace('.php', '', $class);
             }
         }
