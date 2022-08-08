@@ -13,6 +13,7 @@ $settings['path'] = [
     'public' => $settings['root'] . '/public',
     'config' => $settings['root'] . '/config',
     'storage' => $settings['root'] . '/storage',
+    'database' => $settings['root'] . '/config/database',
     'migration' => $settings['root'] . '/src/Console/Migration',
 ];
 

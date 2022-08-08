@@ -2,26 +2,20 @@
 
 namespace App\Console\Migration;
 
-use App\Console\Console;
 use DateTime;
-use Illuminate\Database\Connection;
-use Illuminate\Database\Capsule\Manager;
-use Illuminate\Database\Schema\Builder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RiceDatabase extends Console
+class RiceDatabase extends ConsoleMigration
 {
     /**
-     * @var Builder
+     * @return string
      */
-    private Builder $schemaBuilder;
-
-    /**
-     * @var Connection
-     */
-    private Connection $connection;
+    protected function getConnectionName(): string
+    {
+        return 'sqlite';
+    }
 
     /**
      * @return void
@@ -40,9 +34,6 @@ class RiceDatabase extends Console
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('<info>Starting migration</info>');
-
-        $this->connection = Manager::connection('default');
-        $this->schemaBuilder = $this->connection->getSchemaBuilder();
 
         $output->writeln('<comment>Creating tables...</comment>');
         $this->createTables();
