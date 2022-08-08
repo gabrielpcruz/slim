@@ -12,25 +12,22 @@ try {
         "Console.php"
     ];
 
+    $excludePaths = [
+        'Migration'
+    ];
+
+    // Migration
+    $migrationNamespace = "App\\Console\\Migration\\";
     $migrationPath = App::settings()->get('path.migration');
 
-    $migrationCommands = [];
+    $migrationCommands = turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
 
-    foreach (scandir($migrationPath) as $class) {
-        if (!in_array($class, ['.', '..']) && !in_array($class, $excludeClasses)) {
-            $migrationCommands[] = "App\\Console\\Migration\\" . str_replace('.php', '', $class);
-        }
-    }
-
+    // Console
+    $consoleCommands = [];
+    $consoleNamespace = "App\\Console\\";
     $consolePath = App::settings()->get('path.console');
 
-    $consoleCommands = [];
-
-    foreach (scandir($consolePath) as $class) {
-        if (!in_array($class, ['.', '..', 'Migration']) && !in_array($class, $excludeClasses)) {
-            $consoleCommands[] = "App\\Console\\" . str_replace('.php', '', $class);
-        }
-    }
+    $consoleCommands = turnNameSpacePathIntoArray($consolePath, $consoleNamespace, $excludeClasses, $excludePaths);
 
     $commands = array_merge($commands, $migrationCommands);
     $commands = array_merge($commands, $consoleCommands);
@@ -40,7 +37,7 @@ Exception|
 NotFoundExceptionInterface|
 ContainerExceptionInterface $exception
 ) {
-
+    $commands = [];
 }
 
 

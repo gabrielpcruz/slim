@@ -14,6 +14,7 @@ $settings['path'] = [
     'config' => $settings['root'] . '/config',
     'storage' => $settings['root'] . '/storage',
     'database' => $settings['root'] . '/config/database',
+    'console' => $settings['root'] . '/src/Console',
     'migration' => $settings['root'] . '/src/Console/Migration',
 ];
 
@@ -24,7 +25,7 @@ $settings['file'] = [
 ];
 
 $settings['error'] = [
-    'slashtrace' => 1, // Exibir erros com uma interface gráfica
+    'slashtrace' => 1, // Exibir erros na tela
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,
