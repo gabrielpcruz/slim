@@ -1,16 +1,16 @@
 {
-  "name": "gabrielpcruz/slim",
-  "description": "Projeto pra eu entender de uma vez por todas como montar um projeto com slim framework do zero",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Gabriel Cruz",
-      "email": "gabrielcruz.mail@gmail.com"
-    }
-  ],
-  "require": {
-      "slim/slim": "^4.10",
+    "name": "gabrielpcruz/slim",
+    "description": "Skeleton slim framework 4 application (http + cli)",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Gabriel Cruz",
+            "email": "gabrielcruz.mail@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.10",
       "guzzlehttp/psr7": "^2.4",
       "php-di/php-di": "^6.4",
       "adbario/php-dot-notation": "^3.1",
@@ -25,10 +25,10 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+        "App\\": "app/"
     },
     "files": [
-      "src/helpers.php"
+        "app/helpers.php"
     ]
   },
   "require-dev": {

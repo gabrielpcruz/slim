@@ -7,7 +7,7 @@
 
 Here you can see an example how console is showed by application.
 
-![Landing Page](.readme/full_console.png)
+![Landing Page](docs/img/full_console.png)
 
-![Landing Page](.readme/console_example_command.png)
+![Landing Page](docs/img/console_example_command.png)
 
