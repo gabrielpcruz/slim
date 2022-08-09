@@ -11,11 +11,25 @@ use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use function DI\autowire;
 use function DI\factory;
+use App\App as Application;
 
 return [
 
     'settings' => function () {
-        $settings = require __DIR__ . '/settings.php';
+        $settings = (require_once __DIR__ . '/settings.php');
+        $enviromentSettings = [];
+
+        if (Application::isDevelopment()) {
+//            $enviromentSettings = require __DIR__ . '/enviroment/development.php';
+        }
+
+        if (Application::isHomologation()) {
+//            $enviromentSettings = require __DIR__ . '/enviroment/homologation.php';
+        }
+
+        if (Application::isProduction()) {
+//            $enviromentSettings = require __DIR__ . '/enviroment/production.php';
+        }
 
         return new Dot($settings);
     },

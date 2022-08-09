@@ -1,7 +1,4 @@
 <?php
-
-// Configure defaults for the whole application.
-
 // Settings
 $settings = [];
 
@@ -19,9 +16,9 @@ $settings['path'] = [
 ];
 
 $settings['file'] = [
-        'providers' => $settings['path']['config'] . '/provider/providers.php',
-        'commands' => $settings['path']['config'] . '/command/commands.php',
-        'database' => $settings['path']['config'] . '/database/database.php',
+    'providers' => $settings['path']['config'] . '/provider/providers.php',
+    'commands' => $settings['path']['config'] . '/command/commands.php',
+    'database' => $settings['path']['config'] . '/database/database.php',
 ];
 
 $settings['error'] = [
@@ -38,11 +35,11 @@ $settings['view'] = [
 
     'templates' => [
         "api" => $settings['root'] . '/resources/views/api',
-        "error" => $settings['root'] . '/resources/views/error',
         "console" => $settings['root'] . '/resources/views/console',
-        "site" => $settings['root'] . '/resources/views/site',
         "email" => $settings['root'] . '/resources/views/email',
+        "error" => $settings['root'] . '/resources/views/error',
         "layout" => $settings['root'] . '/resources/views/layout',
+        "site" => $settings['root'] . '/resources/views/site',
     ],
 
     'settings' => [

@@ -17,6 +17,21 @@ use Exception;
 class App
 {
     /**
+     * @var string
+     */
+    public const DEVELOPMENT = 'DEVELOPMENT';
+
+    /**
+     * @var string
+     */
+    public const PRODUCTION = 'PRODUCTION';
+
+    /**
+     * @var string
+     */
+    public const HOMOLOGATION = 'HOMOLOGATION';
+
+    /**
      * @var SlimApp
      */
     private static SlimApp $app;
@@ -43,6 +58,38 @@ class App
     }
 
     /**
+     * @return array|false|string
+     */
+    public static function getAppEnv(): string
+    {
+        return getenv('APP_ENV') ? strtolower(getenv('APP_ENV')) : self::DEVELOPMENT;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isDevelopment(): bool
+    {
+        return self::getAppEnv() == self::DEVELOPMENT;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isHomologation(): bool
+    {
+        return self::getAppEnv() == self::HOMOLOGATION;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isProduction(): bool
+    {
+        return self::getAppEnv() == self::PRODUCTION;
+    }
+
+    /**
      * @throws DependencyException
      * @throws NotFoundException
      * @throws Exception
@@ -65,7 +112,9 @@ class App
      */
     public static function settings(): Dot
     {
-        return self::getInstace()->getContainer()->get('settings');
+        $settings = 'settings';
+
+        return self::getInstace()->getContainer()->get($settings);
     }
 
     /**
@@ -81,7 +130,7 @@ class App
         $app = self::getInstace();
 
         $container = $app->getContainer();
-        $settings = $container->get('settings');
+        $settings = self::settings();
 
         self::defineConstants($settings);
         self::provide($container, $settings);
@@ -130,6 +179,8 @@ class App
      */
     private static function defineConstants(Dot $settings)
     {
+        define('ROOT_PATH', $settings->get('root'));
         define('STORAGE_PATH', $settings->get('path.storage'));
+        define('PUBLIC_PATH', $settings->get('path.public'));
     }
 }

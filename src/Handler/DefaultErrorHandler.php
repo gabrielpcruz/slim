@@ -58,13 +58,49 @@ class DefaultErrorHandler implements ErrorHandlerInterface
 
         $response = new Response();
 
-        $response->getBody()->write(
-            "message : {$exception->getMessage()} - code : {$exception->getCode()}"
-        );
+        $message = $exception->getMessage();
+        $code = $exception->getCode();
+
+        if ($this->isApi($request)) {
+            return $this->respondeApi($message, $code, $response, $exception);
+        }
 
         return $view->render(
             $response,
-            '@error/404/index.twig'
+            "@error/$code/index.twig",
+            compact('message', 'code')
         );
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return bool
+     */
+    private function isApi(ServerRequestInterface $request): bool
+    {
+        $accept = explode(',', $request->getHeader('Accept')[0]);
+
+        return !in_array('text/html', $accept);
+    }
+
+    /**
+     * @param string $message
+     * @param int $code
+     * @param Response $response
+     * @param Throwable $exception
+     * @return mixed
+     */
+    private function respondeApi(string $message, int $code, Response $response, Throwable $exception)
+    {
+        $json = json_encode([
+            'message' => $message,
+            'code' => $code
+        ], JSON_PRETTY_PRINT);
+
+        $response->getBody()->write($json);
+
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus($exception->getCode());
     }
 }
