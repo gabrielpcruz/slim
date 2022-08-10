@@ -3,6 +3,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style=plastic)](https://github.com/gabrielpcruz/slim/issues)
 ![Build Status](https://github.com/gabrielpcruz/slim/actions/workflows/php.yml/badge.svg)
 
+## Project organization
+
+This is how our project folders are organized
+
+![Landing Page](docs/img/project_organizations_path.png)
+
 ## Console usage
 
 > ##### Here you can see an example how console is shown by application.
