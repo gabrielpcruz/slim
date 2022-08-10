@@ -3,6 +3,11 @@
 [![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style=plastic)](https://github.com/gabrielpcruz/slim/issues)
 ![Build Status](https://github.com/gabrielpcruz/slim/actions/workflows/php.yml/badge.svg)
 
+## SetUP and Runing
+
+You can use my [another repository](https://github.com/gabrielpcruz/application-php)
+to execute this aplication using docker.
+
 ## Project organization
 
 This is how our project folders are organized
