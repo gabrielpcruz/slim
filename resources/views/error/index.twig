@@ -1,0 +1,21 @@
+{% extends '@layout/layout.twig' %}
+
+{% block title %} Error {% endblock %}
+
+{% block content %}
+    <div class="row mt-4">
+        <div class="col">
+            <div class="alert alert-danger">
+                <h2>Error</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="alert alert-danger">Message: {{ message }}</div>
+        </div>
+        <div class="col">
+            <div class="alert alert-danger">Code: {{ code }}</div>
+        </div>
+    </div>
+{% endblock %}

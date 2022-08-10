@@ -9,6 +9,7 @@
 namespace App\Handler;
 
 
+use App\App;
 use GuzzleHttp\Psr7\Response;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -65,9 +66,16 @@ class DefaultErrorHandler implements ErrorHandlerInterface
             return $this->respondeApi($message, $code, $response, $exception);
         }
 
+        $pathTemplate = App::settings()->get('view.templates.error');
+
+
+        $exists = file_exists("$pathTemplate/$code/index.twig");
+
+        $template = $exists ? "@error/$code/index.twig" : "@error/index.twig";
+
         return $view->render(
             $response,
-            "@error/$code/index.twig",
+            $template,
             compact('message', 'code')
         );
     }

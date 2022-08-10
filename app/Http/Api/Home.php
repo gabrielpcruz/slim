@@ -2,8 +2,8 @@
 
 namespace App\Http\Api;
 
+use App\Business\Rice\RiceBusiness;
 use App\Http\ControllerApi;
-use App\Repository\Example\RiceRespository;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -22,11 +22,11 @@ class Home extends ControllerApi
      */
     public function index(Request $request, Response $response): Response
     {
-        $repository = $this->getRepositoryManager()->get(RiceRespository::class);
+        $riceBusiness = new RiceBusiness($this->container);
 
         return $this->responseJSON(
             $response,
-            $repository->all()->toArray()
+            $riceBusiness->all()->toArray()
         );
     }
 }

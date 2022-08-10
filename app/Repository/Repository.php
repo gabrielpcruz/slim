@@ -52,13 +52,13 @@ abstract class Repository
      */
     public function insert(array $item): Builder
     {
-        return $this->newQuery()->create($item);
+        return $this->query()->create($item);
     }
 
     /**
      * @return Builder
      */
-    protected function newQuery(): Builder
+    public function query(): Builder
     {
         return $this->entity->newQuery();
     }
@@ -70,7 +70,7 @@ abstract class Repository
      */
     public function findById($id): ?Entity
     {
-        return $this->newQuery()->find($id);
+        return $this->query()->find($id);
     }
 
     /**
@@ -89,7 +89,7 @@ abstract class Repository
      */
     protected function queryWhere(array $params, array $with = []): Builder
     {
-        $query = $this->newQuery();
+        $query = $this->query();
 
         foreach ($params as $key => $value) {
             $query->where($key, '=', $value);

@@ -16,4 +16,15 @@ class Entity extends Model
     {
         return $this->getAttribute($key);
     }
+
+    /**
+     * Dynamically retrieve attributes on the model.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function __set($key, $value)
+    {
+        return $this->setAttribute($key, $value);
+    }
 }

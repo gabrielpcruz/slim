@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Site\Documentation;
+use App\Http\Site\Home;
 use Slim\App;
 
 use App\Http\Api\Home as HomeApi;
@@ -12,4 +13,5 @@ return function (App $app) {
 
     // Api
     $app->get('/v1/home', [HomeApi::class, 'index']);
+    $app->get('/home', [Home::class, 'index']);
 };
