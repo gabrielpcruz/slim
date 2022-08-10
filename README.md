@@ -5,7 +5,7 @@
 
 ## Console usage
 
-> ##### Here you can see an example how console is showed by application.
+> ##### Here you can see an example how console is shown by application.
 
 You can access all commands from console, typing the following command:
 
@@ -14,6 +14,8 @@ $ php bin/console
 ```
 
 ![Landing Page](docs/img/full_console.png)
+
+> ##### It's perfectly possible using repository classes from console, how we can see in the following example:
 
 ![Landing Page](docs/img/console_example_command.png)
 
