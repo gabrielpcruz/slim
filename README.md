@@ -5,7 +5,7 @@
 
 ## Console usage
 
-Here you can see an example how console is showed by application.
+> Here you can see an example how console is showed by application.
 
 ![Landing Page](docs/img/full_console.png)
 
@@ -13,17 +13,17 @@ Here you can see an example how console is showed by application.
 
 ## Documentation source
 
-Here, we can view an example of documentation page
+> Here, we can view an example of documentation page.
 
 ![Landing Page](docs/img/documentation_print.png)
 
-Feel free for costumize your documentation API, for yours needs.
+> Feel free for costumize your documentation API, for yours needs.
 
 ![Landing Page](docs/img/documentation_print_post_example.png)
 
 ## Businees class suport
 
-You can centralize your business rules on specific classes.
+> You can centralize your business rules on specific classes.
 
 ![Landing Page](docs/img/code_example_business_class_03.png)
 
