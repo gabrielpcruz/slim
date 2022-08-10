@@ -10,7 +10,7 @@ to execute this aplication using docker.
 
 ## Project organization
 
-This is how our project folders are organized
+This is how our project folders are organized.
 
 ![Landing Page](docs/img/project_organizations_path.png)
 
