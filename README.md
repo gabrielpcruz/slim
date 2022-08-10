@@ -35,7 +35,7 @@ $ php bin/console
 
 ![Landing Page](docs/img/documentation_print_post_example.png)
 
-## Businees class suport
+## Business class suport
 
 > ##### You can centralize your business rules on specific classes.
 
