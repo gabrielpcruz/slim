@@ -10,6 +10,7 @@ use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\App as SlimApp;
 use Exception;
@@ -115,6 +116,16 @@ class App
         $settings = 'settings';
 
         return self::getInstace()->getContainer()->get($settings);
+    }
+
+    /**
+     * @return ContainerInterface
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    public static function container(): ContainerInterface
+    {
+        return self::getInstace()->getContainer();
     }
 
     /**

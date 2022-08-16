@@ -2,8 +2,11 @@
 
 namespace App\Business;
 
+use App\App;
 use App\Repository\Repository;
 use App\Repository\RepositoryManager;
+use DI\DependencyException;
+use DI\NotFoundException;
 use DomainException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -16,29 +19,31 @@ abstract class Business
      * @var string
      */
     protected string $repositoryClass = '';
+
     /**
      * @var Repository
      */
     private Repository $respository;
+
     /**
      * @var ContainerInterface
      */
     private ContainerInterface $container;
 
     /**
-     * @param ContainerInterface $container
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws DependencyException
+     * @throws NotFoundException
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct()
     {
-        $this->container = $container;
-
         if (empty($this->repositoryClass)) {
             throw new DomainException("Repository class not defined at attribute '\$this->repositoryClass'");
         }
 
+        $this->container = App::container();
         $this->respository = $this->getRepositoryManager()->get($this->repositoryClass);
     }
 
