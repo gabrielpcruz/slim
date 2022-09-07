@@ -24,7 +24,7 @@ This is how our project folders are organized.
 You can access all commands from console, typing the following command:
 
 ```
-$ php bin/console 
+$ php bin/console.php 
 ```
 
 ![Landing Page](docs/img/full_console.png)
