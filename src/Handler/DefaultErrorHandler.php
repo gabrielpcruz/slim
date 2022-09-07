@@ -62,6 +62,8 @@ class DefaultErrorHandler implements ErrorHandlerInterface
         $message = $exception->getMessage();
         $code = $exception->getCode();
 
+        var_dump($exception);
+
         if ($this->isApi($request)) {
             return $this->respondeApi($message, $code, $response, $exception);
         }
