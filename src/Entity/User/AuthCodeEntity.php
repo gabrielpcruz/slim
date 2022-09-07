@@ -7,14 +7,15 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-namespace OAuth2ServerExamples\Entities;
+namespace App\Entity\User;
 
+use App\Entity\Entity;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\AuthCodeTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
-class AuthCodeEntity implements AuthCodeEntityInterface
+class AuthCodeEntity extends Entity implements AuthCodeEntityInterface
 {
     use EntityTrait, TokenEntityTrait, AuthCodeTrait;
 }

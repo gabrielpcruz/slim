@@ -7,15 +7,21 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-namespace OAuth2ServerExamples\Entities;
+namespace App\Entity\User;
 
+use App\Entity\Entity;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\Traits\ClientTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 
-class ClientEntity implements ClientEntityInterface
+class ClientEntity extends Entity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
+
+    /**
+     * @var string
+     */
+    protected $table = 'oauth2_client';
 
     public function setName($name)
     {

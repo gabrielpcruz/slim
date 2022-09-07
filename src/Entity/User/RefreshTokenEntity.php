@@ -7,13 +7,14 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-namespace OAuth2ServerExamples\Entities;
+namespace App\Entity\User;
 
+use App\Entity\Entity;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 
-class RefreshTokenEntity implements RefreshTokenEntityInterface
+class RefreshTokenEntity extends Entity implements RefreshTokenEntityInterface
 {
     use RefreshTokenTrait, EntityTrait;
 }

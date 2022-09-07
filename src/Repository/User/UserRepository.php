@@ -9,14 +9,28 @@
 
 namespace App\Repository\User;
 
+use App\Entity\User\UserEntity;
+use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use OAuth2ServerExamples\Entities\UserEntity;
 
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends Repository implements UserRepositoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @return string
+     */
+    public function getEntityClass(): string
+    {
+        return UserEntity::class;
+    }
+
+    /**
+     * @param $username
+     * @param $password
+     * @param $grantType
+     * @param ClientEntityInterface $clientEntity
+     * @return false|UserEntityInterface|mixed|null
      */
     public function getUserEntityByUserCredentials(
         $username,
@@ -25,10 +39,38 @@ class UserRepository implements UserRepositoryInterface
         ClientEntityInterface $clientEntity
     )
     {
-        if ($username === 'alex' && $password === 'whisky') {
-            return new UserEntity();
+        $queryBuilder = $this->query();
+
+        $queryBuilder->where('username', '=', $username);
+        $user = $queryBuilder->get()->first();
+
+        if (!password_verify($password, $user->password)) {
+            return false;
         }
 
-        return;
+        if ($user->client_id != $clientEntity->id) {
+            return false;
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return null|false|mixed|UserEntityInterface
+     */
+    public function getUserEntityByCredentials(array $data)
+    {
+        $queryBuilder = $this->query();
+
+        $queryBuilder->where('username', '=', $data['username']);
+        $user = $queryBuilder->get()->first();
+
+        if (!password_verify($data['password'], $user->password)) {
+            return false;
+        }
+
+        return $user;
     }
 }

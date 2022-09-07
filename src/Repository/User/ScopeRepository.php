@@ -9,14 +9,24 @@
 
 namespace App\Repository\User;
 
+use App\Entity\User\ScopeEntity;
+use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-use OAuth2ServerExamples\Entities\ScopeEntity;
 
-class ScopeRepository implements ScopeRepositoryInterface
+class ScopeRepository extends Repository implements ScopeRepositoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @return string
+     */
+    public function getEntityClass(): string
+    {
+        return ScopeEntity::class;
+    }
+
+    /**
+     * @param $scopeIdentifier
+     * @return ScopeEntity|void
      */
     public function getScopeEntityByIdentifier($scopeIdentifier)
     {

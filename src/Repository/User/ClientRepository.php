@@ -9,10 +9,11 @@
 
 namespace App\Repository\User;
 
+use App\Entity\User\ClientEntity;
+use App\Repository\Repository;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
-use OAuth2ServerExamples\Entities\ClientEntity;
 
-class ClientRepository implements ClientRepositoryInterface
+class ClientRepository extends Repository implements ClientRepositoryInterface
 {
     const CLIENT_NAME = 'My Awesome App';
     const REDIRECT_URI = 'http://foo/bar';
@@ -29,35 +30,26 @@ class ClientRepository implements ClientRepositoryInterface
         $client->setRedirectUri(self::REDIRECT_URI);
         $client->setConfidential();
 
+        /** @var ClientEntity $client */
+        $client = $this->findOneBy(['identifier' => $clientIdentifier]);
+        $client->setIdentifier($client->id);
+
         return $client;
     }
 
     /**
-     * {@inheritdoc}
+     * @param $clientIdentifier
+     * @param $clientSecret
+     * @param $grantType
+     * @return bool
      */
-    public function validateClient($clientIdentifier, $clientSecret, $grantType)
+    public function validateClient($clientIdentifier, $clientSecret, $grantType): bool
     {
-        $clients = [
-            'myawesomeapp' => [
-                'secret' => \password_hash('abc123', PASSWORD_BCRYPT),
-                'name' => self::CLIENT_NAME,
-                'redirect_uri' => self::REDIRECT_URI,
-                'is_confidential' => true,
-            ],
-        ];
-
-        // Check if client is registered
-        if (\array_key_exists($clientIdentifier, $clients) === false) {
-            return false;
-        }
-
-        if (
-            $clients[$clientIdentifier]['is_confidential'] === true
-            && \password_verify($clientSecret, $clients[$clientIdentifier]['secret']) === false
-        ) {
-            return false;
-        }
-
         return true;
+    }
+
+    public function getEntityClass(): string
+    {
+        return ClientEntity::class;
     }
 }

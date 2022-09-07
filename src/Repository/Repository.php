@@ -74,6 +74,17 @@ abstract class Repository
     }
 
     /**
+     * @param array $params
+     * @param array $with
+     *
+     * @return null|Entity
+     */
+    public function findOneBy(array $params, array $with = []): ?object
+    {
+        return $this->queryWhere($params, $with)->limit(1)->get()->first();
+    }
+
+    /**
      * @return Collection|object[]
      */
     public function all()

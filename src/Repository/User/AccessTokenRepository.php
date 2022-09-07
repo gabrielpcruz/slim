@@ -9,13 +9,22 @@
 
 namespace App\Repository\User;
 
+use App\Entity\User\AccessTokenEntity;
+use App\Repository\Repository;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
-use OAuth2ServerExamples\Entities\AccessTokenEntity;
 
-class AccessTokenRepository implements AccessTokenRepositoryInterface
+class AccessTokenRepository extends Repository implements AccessTokenRepositoryInterface
 {
+    /**
+     * @return string
+     */
+    public function getEntityClass(): string
+    {
+        return AccessTokenEntity::class;
+    }
+
     /**
      * {@inheritdoc}
      */

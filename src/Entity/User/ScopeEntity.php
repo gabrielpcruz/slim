@@ -7,13 +7,14 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-namespace OAuth2ServerExamples\Entities;
+namespace App\Entity\User;
 
+use App\Entity\Entity;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\ScopeTrait;
 
-class ScopeEntity implements ScopeEntityInterface
+class ScopeEntity extends Entity implements ScopeEntityInterface
 {
     use EntityTrait, ScopeTrait;
 }

@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\App;
+use App\Repository\RepositoryManager;
 use DateInterval;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -29,16 +30,23 @@ class AuthorizationServerFactory implements FactoryInterface
      * @throws NotFoundException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     * @throws \ReflectionException
      */
     public function create(ContainerInterface $container): AuthorizationServer
     {
         $oauth2PrivateKey = App::settings()->get('file.oauth_private');
 
-        $clientRepository = new ClientRepository();
-        $scopeRepository = new ScopeRepository();
-        $tokenRepository = new AccessTokenRepository();
-        $userRepository = new UserRepository();
-        $refreshTokenRepository = new RefreshTokenRepository();
+        /** @var RepositoryManager $repositoryManager */
+        $repositoryManager = App::container()->get(RepositoryManager::class);
+
+        /** @var ClientRepository $clientRepository */
+        $clientRepository = $repositoryManager->get(ClientRepository::class);
+
+        /** @var ScopeRepository $scopeRepository */
+        $scopeRepository = $repositoryManager->get(ScopeRepository::class);
+
+        /** @var AccessTokenRepository $tokenRepository */
+        $tokenRepository = $repositoryManager->get(AccessTokenRepository::class);
 
         $server = new AuthorizationServer(
             $clientRepository,
@@ -47,6 +55,12 @@ class AuthorizationServerFactory implements FactoryInterface
             $oauth2PrivateKey,
             self::ENCRYPTION_KEY
         );
+
+        /** @var UserRepository $userRepository */
+        $userRepository = $repositoryManager->get(UserRepository::class);
+
+        /** @var RefreshTokenRepository $refreshTokenRepository */
+        $refreshTokenRepository = $repositoryManager->get(RefreshTokenRepository::class);
 
         $grant = new PasswordGrant(
             $userRepository,
