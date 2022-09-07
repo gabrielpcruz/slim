@@ -1,7 +1,10 @@
 # Skeleton slim framework 4 application (http + cli)
 
-[![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style=plastic)](https://github.com/gabrielpcruz/slim/issues)
 ![Build Status](https://github.com/gabrielpcruz/slim/actions/workflows/php.yml/badge.svg)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gabrielpcruz/slim)
+![GitHub top language](https://img.shields.io/github/languages/top/gabrielpcruz/slim)
+![GitHub all releases](https://img.shields.io/github/downloads/gabrielpcruz/slim/total)
+[![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style)](https://github.com/gabrielpcruz/slim/issues)
 
 ## SetUP and Runing
 
