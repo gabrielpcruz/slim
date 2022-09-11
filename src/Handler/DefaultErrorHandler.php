@@ -1,13 +1,6 @@
 <?php
 
-/**
- * Slim Framework (https://slimframework.com)
- *
- * @license https://github.com/slimphp/Slim/blob/4.x/LICENSE.md (MIT License)
- */
-
 namespace App\Handler;
-
 
 use App\App;
 use GuzzleHttp\Psr7\Response;
@@ -22,7 +15,6 @@ use Throwable;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-
 
 /**
  * Default Slim application error handler
@@ -63,11 +55,10 @@ class DefaultErrorHandler implements ErrorHandlerInterface
         $code = $exception->getCode();
 
         if ($this->isApi($request)) {
-            return $this->respondeApi($message, $code, $response, $exception);
+            return $this->respondeApi($message, $code, $response);
         }
 
         $pathTemplate = App::settings()->get('view.templates.error');
-
 
         $exists = file_exists("$pathTemplate/$code/index.twig");
 
@@ -95,20 +86,21 @@ class DefaultErrorHandler implements ErrorHandlerInterface
      * @param string $message
      * @param int $code
      * @param Response $response
-     * @param Throwable $exception
      * @return mixed
      */
-    private function respondeApi(string $message, int $code, Response $response, Throwable $exception)
+    private function respondeApi(string $message, int $code, Response $response)
     {
+        $responseCode = $code < 300 ? 500 : $code;
+
         $json = json_encode([
             'message' => $message,
-            'code' => $code
+            'code' => $responseCode
         ], JSON_PRETTY_PRINT);
 
         $response->getBody()->write($json);
 
         return $response
             ->withHeader('Content-Type', 'application/json')
-            ->withStatus($exception->getCode());
+            ->withStatus($responseCode);
     }
 }

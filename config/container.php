@@ -1,8 +1,10 @@
 <?php
 
 use Adbar\Dot;
+use App\Factory\AuthorizationServerFactory;
 use App\Repository\RepositoryManager;
 use Illuminate\Database\Capsule\Manager;
+use League\OAuth2\Server\AuthorizationServer;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
@@ -71,4 +73,10 @@ return [
     Illuminate\Database\ConnectionInterface::class => function (ContainerInterface $container) {
         return Manager::connection('default');
     },
+
+    // OAuth
+    AuthorizationServer::class => factory([
+        AuthorizationServerFactory::class,
+        'create',
+    ]),
 ];

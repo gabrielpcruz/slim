@@ -9,6 +9,7 @@ $settings['path'] = [
     'tests' => $settings['root'] . '/tests',
     'public' => $settings['root'] . '/public',
     'config' => $settings['root'] . '/config',
+    'data' => $settings['root'] . '/data',
     'storage' => $settings['root'] . '/storage',
     'database' => $settings['root'] . '/config/database',
     'console' => $settings['root'] . '/src/Console',
@@ -19,6 +20,8 @@ $settings['file'] = [
     'providers' => $settings['path']['config'] . '/provider/providers.php',
     'commands' => $settings['path']['config'] . '/command/commands.php',
     'database' => $settings['path']['config'] . '/database/database.php',
+    'oauth_private' => $settings['path']['data'] . '/keys/oauth/private.key',
+    'oauth_public' => $settings['path']['data'] . '/keys/oauth/public.key',
 ];
 
 $settings['error'] = [
