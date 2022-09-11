@@ -1,4 +1,4 @@
-# Skeleton slim framework 4 application (http + cli)
+# Skeleton slim framework 4 application (http + cli + oauth2)
 
 ![Build Status](https://github.com/gabrielpcruz/slim/actions/workflows/php.yml/badge.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gabrielpcruz/slim)
