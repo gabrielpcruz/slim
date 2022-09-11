@@ -4,7 +4,6 @@ namespace App\Http\Api\Auth;
 
 use App\Http\ControllerApi;
 use App\Service\AccessTokenService;
-use DI\Annotation\Inject;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\AuthorizationServer;
@@ -30,6 +29,7 @@ class Token extends ControllerApi
      */
     public function index(Request $request, Response $response): Response
     {
+        /** @var AuthorizationServer $authorizationServer */
         $authorizationServer = $this->container->get(AuthorizationServer::class);
         $accessTokenService = $this->container->get(AccessTokenService::class);
 

@@ -3,10 +3,9 @@
 use App\Http\Api\Auth\Token;
 use App\Http\Site\Documentation;
 use App\Http\Site\Home;
-use League\OAuth2\Server\AuthorizationServer;
-use League\OAuth2\Server\Middleware\AuthorizationServerMiddleware;
+use App\Middleware\Authentication;
+
 use Slim\App;
-use App\App as A;
 
 use App\Http\Api\Home as HomeApi;
 
@@ -16,7 +15,7 @@ return function (App $app) {
     $app->get('/docs', [Documentation::class, 'index']);
 
     // Api
-    $app->get('/v1/home', [HomeApi::class, 'index']);
+    $app->get('/v1/home', [HomeApi::class, 'index'])->add(Authentication::class);
 
     $app->get('/home', [Home::class, 'index']);
 

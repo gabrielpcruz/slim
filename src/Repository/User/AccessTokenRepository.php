@@ -26,7 +26,8 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
     }
 
     /**
-     * {@inheritdoc}
+     * @param AccessTokenEntityInterface $accessTokenEntity
+     * @return void
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
@@ -34,7 +35,8 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
     }
 
     /**
-     * {@inheritdoc}
+     * @param $tokenId
+     * @return void
      */
     public function revokeAccessToken($tokenId)
     {
@@ -42,23 +44,29 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
     }
 
     /**
-     * {@inheritdoc}
+     * @param $tokenId
+     * @return bool
      */
-    public function isAccessTokenRevoked($tokenId)
+    public function isAccessTokenRevoked($tokenId): bool
     {
         return false; // Access token hasn't been revoked
     }
 
     /**
-     * {@inheritdoc}
+     * @param ClientEntityInterface $clientEntity
+     * @param array $scopes
+     * @param $userIdentifier
+     * @return AccessTokenEntity
      */
     public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null)
     {
         $accessToken = new AccessTokenEntity();
         $accessToken->setClient($clientEntity);
+
         foreach ($scopes as $scope) {
             $accessToken->addScope($scope);
         }
+
         $accessToken->setUserIdentifier($userIdentifier);
 
         return $accessToken;
