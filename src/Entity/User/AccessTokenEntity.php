@@ -18,4 +18,9 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 class AccessTokenEntity extends Entity implements AccessTokenEntityInterface
 {
     use AccessTokenTrait, TokenEntityTrait, EntityTrait;
+
+    /**
+     * @var string
+     */
+    protected $table = 'oauth2_access_token';
 }

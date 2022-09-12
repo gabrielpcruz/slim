@@ -17,4 +17,9 @@ use League\OAuth2\Server\Entities\Traits\ScopeTrait;
 class ScopeEntity extends Entity implements ScopeEntityInterface
 {
     use EntityTrait, ScopeTrait;
+
+    /**
+     * @var string
+     */
+    protected $table = 'oauth2_scope';
 }

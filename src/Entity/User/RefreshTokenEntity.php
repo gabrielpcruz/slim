@@ -17,4 +17,9 @@ use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 class RefreshTokenEntity extends Entity implements RefreshTokenEntityInterface
 {
     use RefreshTokenTrait, EntityTrait;
+
+    /**
+     * @var string
+     */
+    protected $table = 'oauth2_refresh_token';
 }

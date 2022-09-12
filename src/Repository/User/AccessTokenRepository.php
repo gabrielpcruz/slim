@@ -31,7 +31,15 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
-        // Some logic here to save the access token to a database
+        $accessTokenEntity->access_token = $accessTokenEntity->getIdentifier();
+        $accessTokenEntity->expiry_date_time = $accessTokenEntity->getExpiryDateTime();
+
+        if ($accessTokenEntity->getUserIdentifier()) {
+            $accessTokenEntity->user_id = $accessTokenEntity->getUserIdentifier();
+        }
+
+        $accessTokenEntity->oauth2_client_id = $accessTokenEntity->getClient()->getIdentifier();
+        $this->save($accessTokenEntity);
     }
 
     /**
