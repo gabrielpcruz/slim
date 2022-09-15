@@ -14,7 +14,7 @@ class RiceDatabase extends ConsoleMigration
      */
     protected function getConnectionName(): string
     {
-        return 'sqlite';
+        return 'default';
     }
 
     /**

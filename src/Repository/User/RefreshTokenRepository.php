@@ -12,10 +12,13 @@ namespace App\Repository\User;
 use App\Entity\User\RefreshTokenEntity;
 use App\Repository\Repository;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
+use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 
 class RefreshTokenRepository extends Repository implements RefreshTokenRepositoryInterface
 {
+    use RefreshTokenTrait;
+
     /**
      * @return string
      */
@@ -30,7 +33,7 @@ class RefreshTokenRepository extends Repository implements RefreshTokenRepositor
      */
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
-        // Some logic to persist the refresh token in a database
+
     }
 
     /**
@@ -48,13 +51,17 @@ class RefreshTokenRepository extends Repository implements RefreshTokenRepositor
      */
     public function isRefreshTokenRevoked($tokenId): bool
     {
-        return false; // The refresh token has not been revoked
+        $token = $this->findOneBy([
+            'access_token' => $tokenId,
+        ]);
+
+        return !$token || ($token->isExpired());
     }
 
     /**
      * @return RefreshTokenEntity
      */
-    public function getNewRefreshToken()
+    public function getNewRefreshToken(): RefreshTokenEntity
     {
         return new RefreshTokenEntity();
     }

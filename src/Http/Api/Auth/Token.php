@@ -49,6 +49,14 @@ class Token extends ControllerApi
 
         $request = $request->withParsedBody($payload);
 
-        return $authorizationServer->respondToAccessTokenRequest($request, $response);
+        try {
+            return $authorizationServer->respondToAccessTokenRequest($request, $response);
+        } catch (OAuthServerException $exception) {
+            return $exception->generateHttpResponse($response);
+        } catch (\Exception $exception) {
+            $response->getBody()->write($exception->getMessage());
+
+            return $response->withStatus(500);
+        }
     }
 }

@@ -22,4 +22,12 @@ class UserEntity extends Entity implements UserEntityInterface
     {
         return $this->belongsTo(ClientEntity::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function token(): BelongsTo
+    {
+        return $this->belongsTo(AccessTokenEntity::class);
+    }
 }
