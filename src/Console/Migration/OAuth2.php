@@ -2,7 +2,7 @@
 
 namespace App\Console\Migration;
 
-use EnumProfile;
+use App\Enum\EnumProfile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -211,13 +211,13 @@ class OAuth2 extends ConsoleMigration
         $date = new \DateTime();
 
         $this->connection->table('profile')->insert([
-            'name' => 'Administrator',
+            'name' => EnumProfile::ADMINISTRATOR,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
 
         $this->connection->table('profile')->insert([
-            'name' => 'User',
+            'name' => EnumProfile::USER,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
