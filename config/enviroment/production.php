@@ -3,7 +3,6 @@
 // Settings
 $productionSettings = [];
 
-
 $productionSettings['error'] = [
     'slashtrace' => 0,
     'error_reporting' => 0,
@@ -11,10 +10,9 @@ $productionSettings['error'] = [
     'display_startup_errors' => 0,
 ];
 
-
 $productionSettings['view'] = [
     'settings' => [
-        'cache' => $productionSettings['root'] . '/storage/cache/views',
+        'cache' => ROOT_PATH . '/storage/cache/views',
         'debug' => false,
         'auto_reload' => true,
     ],

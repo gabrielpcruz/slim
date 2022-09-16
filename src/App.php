@@ -190,7 +190,6 @@ class App
      */
     private static function defineConstants(Dot $settings)
     {
-        define('ROOT_PATH', $settings->get('root'));
         define('STORAGE_PATH', $settings->get('path.storage'));
         define('PUBLIC_PATH', $settings->get('path.public'));
     }

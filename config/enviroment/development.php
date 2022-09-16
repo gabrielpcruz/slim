@@ -4,7 +4,7 @@
 $developmentSettings = [];
 
 $developmentSettings['error'] = [
-    'slashtrace' => 0,
+    'slashtrace' => 1,
     'error_reporting' => 0,
     'display_errors' => 0,
     'display_startup_errors' => 0,
@@ -12,7 +12,7 @@ $developmentSettings['error'] = [
 
 $developmentSettings['view'] = [
     'settings' => [
-        'cache' => $developmentSettings['root'] . '/storage/cache/views',
+        'cache' => ROOT_PATH . '/storage/cache/views',
         'debug' => false,
         'auto_reload' => true,
     ],

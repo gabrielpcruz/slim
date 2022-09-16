@@ -7,6 +7,8 @@ use Psr\Container\NotFoundExceptionInterface;
 require __DIR__ . '/../vendor/autoload.php';
 
 try {
+    define('ROOT_PATH', dirname(__DIR__));
+
     $app = App::bootstrap();
 
     $settings = App::settings();

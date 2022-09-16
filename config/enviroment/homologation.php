@@ -10,10 +10,9 @@ $homologationSettings['error'] = [
     'display_startup_errors' => 0,
 ];
 
-
 $homologationSettings['view'] = [
     'settings' => [
-        'cache' => $homologationSettings['root'] . '/storage/cache/views',
+        'cache' => ROOT_PATH . '/storage/cache/views',
         'debug' => false,
         'auto_reload' => true,
     ],

@@ -48,8 +48,6 @@ class UserRepository extends Repository implements UserRepositoryInterface
             return false;
         }
 
-        var_dump($user);
-
         if ($user->client_id != $clientEntity->id) {
             return false;
         }
