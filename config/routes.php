@@ -3,9 +3,8 @@
 use App\Http\Api\Auth\Token;
 use App\Http\Site\Documentation;
 use App\Http\Site\Home;
-use App\Middleware\Admin;
 use App\Middleware\Authentication;
-
+use App\Middleware\ProfileAccess\Admin;
 use Slim\App;
 
 use App\Http\Api\Home as HomeApi;
@@ -28,5 +27,4 @@ return function (App $app) {
     $app->get('/home', [Home::class, 'index']);
 
     $app->post('/token', [Token::class, 'index']);
-
 };

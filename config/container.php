@@ -3,8 +3,11 @@
 use Adbar\Dot;
 use App\Factory\AuthorizationServerFactory;
 use App\Repository\RepositoryManager;
+use App\Repository\User\AccessTokenRepository;
 use Illuminate\Database\Capsule\Manager;
 use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
+use League\OAuth2\Server\CryptKey;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
@@ -79,4 +82,19 @@ return [
         AuthorizationServerFactory::class,
         'create',
     ]),
+
+    BearerTokenValidator::class => function (ContainerInterface $container) {
+        $oauth2PublicKey = $container->get('settings')->get('file.oauth_public');
+
+        /** @var RepositoryManager $repositoryManager */
+        $repositoryManager = $container->get(RepositoryManager::class);
+
+        /** @var AccessTokenRepository $accessTokenRepository */
+        $accessTokenRepository = $repositoryManager->get(AccessTokenRepository::class);
+
+        $beareValidator = new BearerTokenValidator($accessTokenRepository);
+        $beareValidator->setPublicKey(new CryptKey($oauth2PublicKey));
+
+        return $beareValidator;
+    }
 ];

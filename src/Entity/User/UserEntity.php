@@ -26,6 +26,14 @@ class UserEntity extends Entity implements UserEntityInterface
     /**
      * @return BelongsTo
      */
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(ProfileEntity::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function token(): BelongsTo
     {
         return $this->belongsTo(AccessTokenEntity::class);

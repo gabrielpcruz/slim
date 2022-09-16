@@ -2,6 +2,7 @@
 
 namespace App\Console\Migration;
 
+use EnumProfile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -215,6 +216,12 @@ class OAuth2 extends ConsoleMigration
             'updated_at' => $date,
         ]);
 
+        $this->connection->table('profile')->insert([
+            'name' => 'User',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+
         $this->connection->table('oauth2_client')->insert([
             //  Define your secret pattern
             'identifier' => 'Mxv85bGRnZMpKtIfN82k5jFtUlYUPh6omYB7xVid',
@@ -225,9 +232,27 @@ class OAuth2 extends ConsoleMigration
             'updated_at' => $date,
         ]);
 
+        $this->connection->table('oauth2_client')->insert([
+            //  Define your secret pattern
+            'identifier' => 'Mxv85bGRnZMpKtIfN82k5jFtUlYUPh6omYB7xJud',
+            //            'identifier' => Crypto::getToken(40),
+            'secret' => 'GH3pN8AWZNEfoxa304LtReaFi8FloK2eFUPC7EXgjBxbbgFFxCBqANNihAbl',
+            //            'secret' => Crypto::getToken(60),
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+
         $this->connection->table('client')->insert([
-            'name' => 'Administration',
+            'name' => EnumProfile::ADMINISTRATOR,
             'oauth2_client_id' => 1,
+            'status' => 1,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+
+        $this->connection->table('client')->insert([
+            'name' => EnumProfile::USER,
+            'oauth2_client_id' => 2,
             'status' => 1,
             'created_at' => $date,
             'updated_at' => $date,
@@ -238,6 +263,16 @@ class OAuth2 extends ConsoleMigration
             'client_id' => 1,
             'username' => 'admin',
             'password' => password_hash('admin', PASSWORD_DEFAULT, ['cost' => 14]),
+            'status' => 1,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+
+        $this->connection->table('user')->insert([
+            'profile_id' => 2,
+            'client_id' => 2,
+            'username' => 'user',
+            'password' => password_hash('user', PASSWORD_DEFAULT, ['cost' => 14]),
             'status' => 1,
             'created_at' => $date,
             'updated_at' => $date,

@@ -39,8 +39,8 @@ class Token extends ControllerApi
 
         $payload = [];
         $payload['grant_type'] = $data['grant_type'];
-        $payload['client_id'] = $client->first()->identifier;
-        $payload['client_secret'] = $client->first()->secret;
+        $payload['client_id'] = $client->identifier;
+        $payload['client_secret'] = $client->secret;
 
         if ($data['grant_type'] === 'password') {
             $payload['username'] = $data['username'];
