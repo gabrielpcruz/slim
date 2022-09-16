@@ -25,16 +25,18 @@ return [
         $enviromentSettings = [];
 
         if (Application::isDevelopment()) {
-//            $enviromentSettings = require __DIR__ . '/enviroment/development.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/development.php';
         }
 
         if (Application::isHomologation()) {
-//            $enviromentSettings = require __DIR__ . '/enviroment/homologation.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/homologation.php';
         }
 
         if (Application::isProduction()) {
-//            $enviromentSettings = require __DIR__ . '/enviroment/production.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/production.php';
         }
+
+        $settings = array_replace_recursive($settings, $enviromentSettings);
 
         return new Dot($settings);
     },

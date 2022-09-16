@@ -63,7 +63,7 @@ class App
      */
     public static function getAppEnv(): string
     {
-        return getenv('APP_ENV') ? strtolower(getenv('APP_ENV')) : self::DEVELOPMENT;
+        return getenv('APP_ENV') ? strtoupper(getenv('APP_ENV')) : self::DEVELOPMENT;
     }
 
     /**

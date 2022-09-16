@@ -24,6 +24,8 @@ class Home extends ControllerSite
     {
         $riceBusiness = new RiceBusiness();
 
+        var_dump((new \DateTime())->format('d/m/Y H:i:s'));
+
         $rices = $riceBusiness->all()->toArray();
 
         return $this->view(

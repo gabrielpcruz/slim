@@ -1,6 +1,23 @@
 <?php
 
 // Settings
-$settings = [];
+$productionSettings = [];
 
-return $settings;
+
+$productionSettings['error'] = [
+    'slashtrace' => 0,
+    'error_reporting' => 0,
+    'display_errors' => 0,
+    'display_startup_errors' => 0,
+];
+
+
+$productionSettings['view'] = [
+    'settings' => [
+        'cache' => $productionSettings['root'] . '/storage/cache/views',
+        'debug' => false,
+        'auto_reload' => true,
+    ],
+];
+
+return $productionSettings;
