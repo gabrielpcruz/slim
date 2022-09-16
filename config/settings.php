@@ -37,12 +37,12 @@ $settings['view'] = [
     'path' => ROOT_PATH . '/resources/views',
 
     'templates' => [
-        "api" => ROOT_PATH . '/resources/views/api',
-        "console" => ROOT_PATH . '/resources/views/console',
-        "email" => ROOT_PATH . '/resources/views/email',
-        "error" => ROOT_PATH . '/resources/views/error',
-        "layout" => ROOT_PATH . '/resources/views/layout',
-        "site" => ROOT_PATH . '/resources/views/site',
+        'api' => ROOT_PATH . '/resources/views/api',
+        'console' => ROOT_PATH . '/resources/views/console',
+        'email' => ROOT_PATH . '/resources/views/email',
+        'error' => ROOT_PATH . '/resources/views/error',
+        'layout' => ROOT_PATH . '/resources/views/layout',
+        'site' => ROOT_PATH . '/resources/views/site',
     ],
 
     'settings' => [
