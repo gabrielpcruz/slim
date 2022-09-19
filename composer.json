@@ -28,7 +28,8 @@
         "post-install-cmd": [
             "php bin/console.php file:create-file",
             "php bin/console.php migration:create-database",
-            "php bin/console.php oauth:create-tables"
+            "php bin/console.php oauth2:create-tables",
+            "php bin/console.php oauth2:create-keys"
         ]
     },
     "autoload": {
