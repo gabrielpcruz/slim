@@ -3,7 +3,7 @@
 ![Build Status](https://github.com/gabrielpcruz/slim/actions/workflows/php.yml/badge.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gabrielpcruz/slim)
 ![GitHub top language](https://img.shields.io/github/languages/top/gabrielpcruz/slim)
-![GitHub all releases](https://img.shields.io/github/downloads/gabrielpcruz/slim/total)
+![GitHub all downloads](https://poser.pugx.org/gabrielpcruz/slim/d/total.svg)
 [![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style)](https://github.com/gabrielpcruz/slim/issues)
 
 ## SetUP and Runing
