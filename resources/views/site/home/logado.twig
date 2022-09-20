@@ -1,0 +1,30 @@
+{% extends '@layout/layout.twig' %}
+
+{% block title %} Slim 4 template {% endblock %}
+
+{% block content %}
+    <div class="row mt-5">
+        <h2>Rice list</h2>
+    </div>
+
+    <div class="row mt-5">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Creation date</th>
+                <th>Update date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rice in rices %}
+                <tr>
+                    <td>{{ rice.name }}</td>
+                    <td>{{ rice.created_at|date("d/m/Y H:i:s") }}</td>
+                    <td>{{ rice.updated_at|date("d/m/Y H:i:s") }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
