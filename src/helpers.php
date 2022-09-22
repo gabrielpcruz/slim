@@ -1,8 +1,10 @@
 <?php
 
 use App\App;
+use App\Service\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -65,5 +67,29 @@ if (!function_exists('command')) {
         $application->run($input, $output);
 
         return $output->fetch();
+    }
+}
+
+if (!function_exists('redirect')) {
+    /**
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws Exception
+     */
+    function redirect($route): ResponseInterface
+    {
+        $response = App::getInstace()->getResponseFactory()->createResponse();
+
+        return $response->withHeader('Location', $route);
+    }
+}
+
+if (!function_exists('guest')) {
+    /**
+     * @return bool
+     */
+    function guest(): bool
+    {
+        return Session::isLoggedIn();
     }
 }

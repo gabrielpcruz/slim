@@ -4,6 +4,7 @@ use App\Http\Api\Auth\Token;
 use App\Http\Site\Documentation;
 use App\Http\Site\Home;
 
+use App\Http\Site\Login;
 use App\Middleware\Authentication\AuthenticationApi;
 use App\Middleware\Authentication\AuthenticationSite;
 use App\Middleware\ProfileAccess\Administrator;
@@ -19,6 +20,11 @@ return function (App $app) {
     $app->get('/home', [Home::class, 'index']);
 
     $app->get('/logado', [Home::class, 'index'])->add(AuthenticationSite::class);
+
+    $app->get('/login', [Login::class, 'index']);
+    $app->post('/login', [Login::class, 'login']);
+    $app->get('/logout', [Login::class, 'logout']);
+
 
     $app->get('/docs', [Documentation::class, 'index']);
 
