@@ -1,7 +1,6 @@
 <?php
 
 use App\App;
-use App\Service\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Http\Message\ResponseInterface;
