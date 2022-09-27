@@ -51,8 +51,9 @@
 </main>
 
 <footer>
-    slim | &copy;{{ "now" |date('Y') }}
-
+    {% if guard() %}
+        slim | &copy;{{ "now" |date('Y') }}
+    {% endif %}
 </footer>
 
 {% block scripts %}
