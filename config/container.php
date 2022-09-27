@@ -8,6 +8,7 @@ use App\Repository\User\AccessTokenRepository;
 use App\View\AssetsTwigExtension;
 use App\View\GuardTwigExtension;
 use App\View\GuestTwigExtension;
+use App\View\VersionTwigExtension;
 use Illuminate\Database\Capsule\Manager;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
@@ -75,6 +76,7 @@ return [
         $twig->addExtension(new AssetsTwigExtension());
         $twig->addExtension(new GuestTwigExtension());
         $twig->addExtension(new GuardTwigExtension());
+        $twig->addExtension(new VersionTwigExtension());
 
         return $twig;
     },

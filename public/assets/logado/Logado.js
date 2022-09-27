@@ -1,7 +1,6 @@
 let Logado = (() => {
 
     let logado = () => {
-        console.log("arroz")
     };
 
     return {
