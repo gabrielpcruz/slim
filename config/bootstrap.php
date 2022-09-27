@@ -1,6 +1,7 @@
 <?php
 
 use App\App;
+use App\Service\Session;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -8,6 +9,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 try {
     define('ROOT_PATH', dirname(__DIR__));
+
+    Session::start();
 
     $app = App::bootstrap();
 

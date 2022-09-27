@@ -1,0 +1,26 @@
+{% extends '@layout/layout.twig' %}
+
+{% block title %} Login | Slim 4 template {% endblock %}
+
+{% block content %}
+    <div class="row mt-5">
+        <h2>Login</h2>
+    </div>
+
+    <form action="/login" method="post" class="mt-5">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password">
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+
+{% endblock %}

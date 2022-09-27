@@ -32,4 +32,25 @@ class Home extends ControllerSite
             compact('rices')
         );
     }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function logado(Request $request, Response $response): Response
+    {
+        $riceBusiness = new RiceBusiness();
+
+        $rices = $riceBusiness->all()->toArray();
+
+        return $this->view(
+            $response,
+            "@site/home/logado",
+            compact('rices')
+        );
+    }
 }

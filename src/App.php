@@ -20,6 +20,11 @@ class App
     /**
      * @var string
      */
+    public const VERSION = '1.0.0';
+
+    /**
+     * @var string
+     */
     public const DEVELOPMENT = 'DEVELOPMENT';
 
     /**
@@ -88,6 +93,18 @@ class App
     public static function isProduction(): bool
     {
         return self::getAppEnv() == self::PRODUCTION;
+    }
+
+    /**
+     * @return string
+     */
+    public static function version(): string
+    {
+        if (self::isProduction()) {
+            return App::VERSION;
+        }
+
+        return uniqid();
     }
 
     /**
