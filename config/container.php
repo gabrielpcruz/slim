@@ -2,9 +2,12 @@
 
 use Adbar\Dot;
 use App\Factory\AuthorizationServerFactory;
-use App\Provider\AssetsTwigExtension;
+
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
+use App\View\AssetsTwigExtension;
+use App\View\GuardTwigExtension;
+use App\View\GuestTwigExtension;
 use Illuminate\Database\Capsule\Manager;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
@@ -60,7 +63,6 @@ return [
         $templates = $settings->get('view.templates');
         $viewSettings = $settings->get('view.settings');
 
-
         $loader = new FilesystemLoader([], $rootPath);
 
         foreach ($templates as $namespace => $template) {
@@ -71,6 +73,8 @@ return [
 
         $twig->addExtension(new DebugExtension());
         $twig->addExtension(new AssetsTwigExtension());
+        $twig->addExtension(new GuestTwigExtension());
+        $twig->addExtension(new GuardTwigExtension());
 
         return $twig;
     },

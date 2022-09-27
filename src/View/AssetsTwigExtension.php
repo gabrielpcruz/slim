@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Provider;
+namespace App\View;
 
 use App\App;
 use DI\DependencyException;
@@ -17,7 +17,7 @@ class AssetsTwigExtension extends AbstractExtension
      */
     public function getName(): string
     {
-        return 'asset';
+        return 'assets';
     }
 
     /**
@@ -26,7 +26,7 @@ class AssetsTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('asset', [$this, 'assets']),
+            new TwigFunction('assets', [$this, 'assets']),
         ];
     }
 

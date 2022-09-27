@@ -7,6 +7,11 @@ use App\Entity\User\UserEntity;
 class Session
 {
     /**
+     * @var int
+     */
+    private static int $SESSION_TIME = 1800;
+
+    /**
      * @return void
      */
     public static function start()
@@ -17,10 +22,27 @@ class Session
     }
 
     /**
+     * @return void
+     */
+    private static function sessionTimeMonitor()
+    {
+        if (
+            isset($_SESSION['last_activity']) &&
+            (time() - $_SESSION['last_activity'] > self::$SESSION_TIME)
+        ) {
+            self::logout();
+        }
+
+        $_SESSION['last_activity'] = time();
+    }
+
+    /**
      * @return bool
      */
     public static function isLoggedIn(): bool
     {
+        self::sessionTimeMonitor();
+
         if (is_null($_SESSION)) {
             return false;
         }
@@ -45,6 +67,8 @@ class Session
     public static function logout(): bool
     {
         session_unset();
+        session_destroy();
+
         return true;
     }
 }
