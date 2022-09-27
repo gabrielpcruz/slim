@@ -83,13 +83,3 @@ if (!function_exists('redirect')) {
         return $response->withHeader('Location', $route);
     }
 }
-
-if (!function_exists('guest')) {
-    /**
-     * @return bool
-     */
-    function guest(): bool
-    {
-        return Session::isLoggedIn();
-    }
-}
