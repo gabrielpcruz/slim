@@ -8,6 +8,7 @@ $settings['root'] = ROOT_PATH;
 $settings['path'] = [
     'tests' => ROOT_PATH . '/tests',
     'public' => ROOT_PATH . '/public',
+    'assets' => 'assets/',
     'config' => ROOT_PATH . '/config',
     'data' => ROOT_PATH . '/data',
     'storage' => ROOT_PATH . '/storage',
@@ -50,6 +51,22 @@ $settings['view'] = [
         'debug' => true,
         'auto_reload' => true,
     ],
+
+    'assets' => [
+        // Public assets cache directory
+        'path' => ROOT_PATH . '/public/assets',
+
+        // Public url base path
+        'url_base_path' => ROOT_PATH . '/public/assets',
+
+        // Internal cache directory for the assets
+        'cache_path' => ROOT_PATH . '/storage/cache/views',
+
+        'cache_name' => 'assets-cache',
+
+        //  Should be set to 1 (enabled) in production
+        'minify' => 1,
+    ]
 ];
 
 return $settings;

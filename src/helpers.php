@@ -84,6 +84,17 @@ if (!function_exists('redirect')) {
     }
 }
 
+if (!function_exists('assets')) {
+    /**
+     * @param $url
+     * @return bool
+     */
+    function assets($url): bool
+    {
+        var_dump($url);
+    }
+}
+
 if (!function_exists('guest')) {
     /**
      * @return bool

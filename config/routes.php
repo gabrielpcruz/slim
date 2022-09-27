@@ -19,7 +19,7 @@ return function (App $app) {
 
     $app->get('/home', [Home::class, 'index']);
 
-    $app->get('/logado', [Home::class, 'index'])->add(AuthenticationSite::class);
+    $app->get('/logado', [Home::class, 'logado'])->add(AuthenticationSite::class);
 
     $app->get('/login', [Login::class, 'index']);
     $app->post('/login', [Login::class, 'login']);

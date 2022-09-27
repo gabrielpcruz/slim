@@ -28,3 +28,8 @@
         </table>
     </div>
 {% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('logado/Logado.js') }}"></script>
+{% endblock %}
