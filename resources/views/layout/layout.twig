@@ -40,9 +40,14 @@
 
 <br>
 
-<main class="container">
+<main class="container mt-5">
     {% block content %}{% endblock %}
 </main>
+
+<footer>
+    slim | &copy;{{ "now" |date('Y') }}
+
+</footer>
 
 {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

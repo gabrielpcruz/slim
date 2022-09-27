@@ -15,6 +15,7 @@ $settings['path'] = [
     'database' => ROOT_PATH . '/config/database',
     'console' => ROOT_PATH . '/src/Console',
     'migration' => ROOT_PATH . '/src/Console/Migration',
+    'slim' => ROOT_PATH . '/src/Console/Slim',
 ];
 
 $settings['file'] = [

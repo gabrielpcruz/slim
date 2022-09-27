@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Slim;
 
-use App\Entity\Entity;
-use App\Repository\Example\RiceRespository;
-use App\Repository\Repository;
-use App\Repository\RepositoryManager;
+use App\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
