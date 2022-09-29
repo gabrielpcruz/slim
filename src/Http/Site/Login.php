@@ -56,7 +56,7 @@ class Login extends ControllerSite
         if ($user) {
             Session::user($user);
 
-            $this->flash()->addMessage(FlashMessage::SUCCESS, MessageSuccessSystem::MSS0001);
+            $this->flash()->addMedssage(FlashMessage::SUCCESS, MessageSuccessSystem::MSS0001);
         }
 
         return redirect('/logado');

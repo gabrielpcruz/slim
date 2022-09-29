@@ -52,7 +52,8 @@ class DefaultErrorHandler implements ErrorHandlerInterface
         $response = new Response();
 
         $message = $exception->getMessage();
-        $code = $exception->getCode();
+        $code = $exception->getCode() ? $exception->getCode() : 500;
+
 
         if ($this->isApi($request)) {
             return $this->respondeApi($message, $code, $response);
@@ -63,6 +64,8 @@ class DefaultErrorHandler implements ErrorHandlerInterface
         $exists = file_exists("$pathTemplate/$code/index.twig");
 
         $template = $exists ? "@error/$code/index.twig" : "@error/index.twig";
+
+        $response = $response->withStatus($code);
 
         return $view->render(
             $response,
