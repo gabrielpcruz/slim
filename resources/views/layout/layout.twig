@@ -67,6 +67,26 @@
         </div>
     {% endif %}
 
+    {% if flash('warning') %}
+        <div class="row">
+            <ul class="alert alert-warning list-unstyled">
+                {% for message in flash('warning') %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if flash('info') %}
+        <div class="row">
+            <ul class="alert alert-info list-unstyled">
+                {% for message in flash('info') %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     {% block content %}{% endblock %}
 </main>
 
