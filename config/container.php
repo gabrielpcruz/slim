@@ -6,6 +6,7 @@ use App\Factory\AuthorizationServerFactory;
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\View\AssetsTwigExtension;
+use App\View\FlashMessageTwigExtension;
 use App\View\GuardTwigExtension;
 use App\View\GuestTwigExtension;
 use App\View\VersionTwigExtension;
@@ -16,6 +17,7 @@ use League\OAuth2\Server\CryptKey;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -77,6 +79,7 @@ return [
         $twig->addExtension(new GuestTwigExtension());
         $twig->addExtension(new GuardTwigExtension());
         $twig->addExtension(new VersionTwigExtension());
+        $twig->addExtension(new FlashMessageTwigExtension());
 
         return $twig;
     },

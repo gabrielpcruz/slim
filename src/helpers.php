@@ -3,7 +3,10 @@
 use App\App;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Flash\Messages;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -80,5 +83,19 @@ if (!function_exists('redirect')) {
         $response = App::getInstace()->getResponseFactory()->createResponse();
 
         return $response->withHeader('Location', $route);
+    }
+}
+
+if (!function_exists('flash')) {
+    /**
+     * @return Messages
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    function flash(): Messages
+    {
+        return App::flash();
     }
 }

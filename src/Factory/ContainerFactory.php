@@ -5,6 +5,7 @@ namespace App\Factory;
 use DI\ContainerBuilder;
 use DI\Container;
 use Exception;
+use Slim\Flash\Messages;
 
 final class ContainerFactory
 {
@@ -17,6 +18,12 @@ final class ContainerFactory
         $containerBuilder = new ContainerBuilder();
 
         $containerBuilder->addDefinitions(__DIR__ . '/../../config/container.php');
+
+        $containerBuilder->addDefinitions([
+            'flash' => function () {
+                return new Messages($_SESSION);
+            }
+        ]);
 
         return $containerBuilder->build();
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http;
 
+use App\App;
 use App\Repository\RepositoryManager;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Slim\Flash\Messages;
 
 abstract class Controller
 {
@@ -30,5 +32,15 @@ abstract class Controller
     protected function getRepositoryManager(): RepositoryManager
     {
         return $this->container->get(RepositoryManager::class);
+    }
+
+    /**
+     * @return Messages
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function flash(): Messages
+    {
+        return App::flash();
     }
 }

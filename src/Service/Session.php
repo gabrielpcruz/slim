@@ -54,7 +54,7 @@ class Session
      * @param UserEntity $user
      * @return bool
      */
-    public static function sessionStart(UserEntity $user): bool
+    public static function user(UserEntity $user): bool
     {
         $_SESSION['user'] = $user;
 

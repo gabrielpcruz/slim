@@ -47,6 +47,26 @@
 <br>
 
 <main class="container mt-5">
+    {% if flash('error') %}
+        <div class="row">
+            <ul class="alert alert-danger list-unstyled">
+                {% for message in flash('error') %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if flash('success') %}
+        <div class="row">
+            <ul class="alert alert-success list-unstyled">
+                {% for message in flash('success') %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     {% block content %}{% endblock %}
 </main>
 

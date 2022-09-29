@@ -14,6 +14,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\App as SlimApp;
 use Exception;
+use Slim\Flash\Messages;
 
 class App
 {
@@ -46,6 +47,11 @@ class App
      * @var Container
      */
     private static Container $container;
+
+    /**
+     * @var Messages
+     */
+    private static Messages $flash;
 
     /**
      * @return bool
@@ -143,6 +149,22 @@ class App
     public static function container(): ContainerInterface
     {
         return self::getInstace()->getContainer();
+    }
+
+    /**
+     * @return Messages
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    public static function flash(): Messages
+    {
+        $flash = 'flash';
+
+        if (!isset(self::$flash)) {
+            self::$flash = self::getContainer()->get($flash);
+        }
+
+        return self::$flash;
     }
 
     /**

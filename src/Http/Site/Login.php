@@ -2,8 +2,9 @@
 
 namespace App\Http\Site;
 
-use App\Business\Rice\RiceBusiness;
+use App\Enum\FlashMessage;
 use App\Http\ControllerSite;
+use App\Message\Success\System\MessageSuccessSystem;
 use App\Repository\User\UserRepository;
 use App\Service\Session;
 use DI\DependencyException;
@@ -13,9 +14,20 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use ReflectionException;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Login extends ControllerSite
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function index(Request $request, Response $response): Response
     {
         return $this->view(
@@ -42,7 +54,9 @@ class Login extends ControllerSite
         $user = $userRepository->getUserEntityByCredentials($data);
 
         if ($user) {
-            Session::sessionStart($user);
+            Session::user($user);
+
+            $this->flash()->addMessage(FlashMessage::SUCCESS, MessageSuccessSystem::MSS0001);
         }
 
         return redirect('/logado');
