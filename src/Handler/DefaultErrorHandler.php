@@ -52,7 +52,7 @@ class DefaultErrorHandler implements ErrorHandlerInterface
         $response = new Response();
 
         $message = $exception->getMessage();
-        $code = $exception->getCode() ? $exception->getCode() : 500;
+        $code = $exception->getCode() ? intval($exception->getCode()) : 500;
 
 
         if ($this->isApi($request)) {
