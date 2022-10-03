@@ -3,7 +3,7 @@
 return [
     'driver' => 'sqlite',
     'host' => 'localhost',
-    'database' => ':memory:',
+    'database' => STORAGE_PATH . '/database/db.sqlite',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
