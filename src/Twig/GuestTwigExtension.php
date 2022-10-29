@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View;
+namespace App\Twig;
 
-use App\App;
 use App\Service\Session;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class VersionTwigExtension extends AbstractExtension
+class GuestTwigExtension extends AbstractExtension
 {
     /**
      * @return string
      */
     public function getName(): string
     {
-        return 'version';
+        return 'guest';
     }
 
     /**
@@ -23,15 +22,15 @@ class VersionTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('version', [$this, 'version']),
+            new TwigFunction('guest', [$this, 'guest']),
         ];
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function version(): string
+    public function guest(): bool
     {
-        return App::version();
+        return false == Session::isLoggedIn();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View;
+namespace App\Twig;
 
 use App\Service\Session;
 use Twig\Extension\AbstractExtension;
