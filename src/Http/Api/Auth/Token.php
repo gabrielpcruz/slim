@@ -2,7 +2,7 @@
 
 namespace App\Http\Api\Auth;
 
-use App\Http\ControllerApi;
+use App\Http\ApiController;
 use App\Service\AccessTokenService;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use ReflectionException;
 
-class Token extends ControllerApi
+class Token extends ApiController
 {
     /**
      * @param Request $request

@@ -3,7 +3,7 @@
 namespace App\Http\Site;
 
 use App\App;
-use App\Http\ControllerSite;
+use App\Http\SiteController;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
@@ -15,7 +15,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Documentation extends ControllerSite
+class Documentation extends SiteController
 {
     /**
      * @param Request $request

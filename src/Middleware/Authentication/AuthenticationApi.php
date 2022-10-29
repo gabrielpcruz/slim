@@ -2,10 +2,15 @@
 
 namespace App\Middleware\Authentication;
 
+use App\App;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
+use DI\DependencyException;
+use DI\NotFoundException;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionException;
 use Slim\Exception\HttpUnauthorizedException;
@@ -15,8 +20,12 @@ class AuthenticationApi extends Authentication
     /**
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
-     * @throws ReflectionException
      * @throws OAuthServerException
+     * @throws ReflectionException
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function authenticate(ServerRequestInterface $request): ServerRequestInterface
     {

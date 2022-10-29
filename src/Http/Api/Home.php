@@ -3,11 +3,11 @@
 namespace App\Http\Api;
 
 use App\Business\Rice\RiceBusiness;
-use App\Http\ControllerApi;
+use App\Http\ApiController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class Home extends ControllerApi
+class Home extends ApiController
 {
     /**
      * @param Request $request

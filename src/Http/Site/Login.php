@@ -3,7 +3,7 @@
 namespace App\Http\Site;
 
 use App\Enum\FlashMessage;
-use App\Http\ControllerSite;
+use App\Http\SiteController;
 use App\Message\Success\System\MessageSuccessSystem;
 use App\Repository\User\UserRepository;
 use App\Service\Session;
@@ -18,7 +18,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Login extends ControllerSite
+class Login extends SiteController
 {
     /**
      * @param Request $request

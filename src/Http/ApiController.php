@@ -4,7 +4,7 @@ namespace App\Http;
 
 use Psr\Http\Message\ResponseInterface;
 
-class ControllerApi extends Controller
+class ApiController extends Controller
 {
     /**
      * @param ResponseInterface $response

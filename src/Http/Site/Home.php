@@ -3,14 +3,14 @@
 namespace App\Http\Site;
 
 use App\Business\Rice\RiceBusiness;
-use App\Http\ControllerSite;
+use App\Http\SiteController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Home extends ControllerSite
+class Home extends SiteController
 {
     /**
      * @param Request $request
