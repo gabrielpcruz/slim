@@ -33,6 +33,8 @@ class AccessTokenService
                 return $this->getTokenByClientCredentials($data);
             case 'password':
                 return $this->getTokenByUserPassword($data);
+            case 'refresh_token':
+                return $this->getTokenByClientIdentifier($data);
         }
     }
 
@@ -71,5 +73,23 @@ class AccessTokenService
         );
 
         return $user->client()->first();
+    }
+
+    /**
+     * @param $data
+     *
+     * @return mixed
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    private function getTokenByClientIdentifier($data)
+    {
+        $repositoryManager = App::container()->get(RepositoryManager::class);
+
+        return $repositoryManager->get(ClientRepository::class)->getClientEntityByCredentials(
+            $data
+        );
     }
 }

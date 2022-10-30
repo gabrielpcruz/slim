@@ -16,6 +16,7 @@ use DateTimeImmutable;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use ReflectionException;
 
 class AccessTokenRepository extends Repository implements AccessTokenRepositoryInterface
 {
@@ -47,6 +48,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
     /**
      * @param $tokenId
      * @return void
+     * @throws ReflectionException
      */
     public function revokeAccessToken($tokenId)
     {
@@ -55,6 +57,13 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
                 'access_token' => $tokenId,
             ]);
 
+            $refreshTokenRepository = $this->getRepositoryManager()->get(RefreshTokenRepository::class);
+
+            $refreshToken = $refreshTokenRepository->findOneBy([
+                'oauth2_access_token_id' => $token->getAttribute('id')
+            ]);
+
+            $refreshToken->delete();
             $token->delete();
         }
     }

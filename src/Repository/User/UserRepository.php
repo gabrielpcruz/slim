@@ -79,6 +79,25 @@ class UserRepository extends Repository implements UserRepositoryInterface
      *
      * @return null|false|mixed|UserEntityInterface
      */
+    public function getUserEntityByClientIdentifier(array $data)
+    {
+        $queryBuilder = $this->query();
+
+        $queryBuilder->where('username', '=', $data['username']);
+        $user = $queryBuilder->get()->first();
+
+        if (!password_verify($data['password'], $user->password)) {
+            return false;
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return null|false|mixed|UserEntityInterface
+     */
     public function getUserByToken(array $data)
     {
         $queryBuilder = $this->query();

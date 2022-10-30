@@ -42,5 +42,5 @@ return function (App $app) {
         $api->get('/v1/rice', [HomeApi::class, 'index']);
     });
 
-    $app->post('/token', [Token::class, 'index']);
+    $app->post('/token', [Token::class, 'create']);
 };

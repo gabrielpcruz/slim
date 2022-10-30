@@ -27,7 +27,7 @@ class Token extends ApiController
      * @throws ReflectionException
      * @throws OAuthServerException
      */
-    public function index(Request $request, Response $response): Response
+    public function create(Request $request, Response $response): Response
     {
         /** @var AuthorizationServer $authorizationServer */
         $authorizationServer = $this->container->get(AuthorizationServer::class);
@@ -45,6 +45,10 @@ class Token extends ApiController
         if ($data['grant_type'] === 'password') {
             $payload['username'] = $data['username'];
             $payload['password'] = $data['password'];
+        }
+
+        if ($data['grant_type'] === 'refresh_token') {
+            $payload['refresh_token'] = $data['refresh_token'];
         }
 
         $request = $request->withParsedBody($payload);

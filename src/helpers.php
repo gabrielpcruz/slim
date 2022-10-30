@@ -99,3 +99,26 @@ if (!function_exists('flash')) {
         return App::flash();
     }
 }
+
+if (!function_exists('datePeriod')) {
+    /**
+     * @param int $days
+     * @param int $hours
+     * @param int $minutes
+     * @return DateInterval
+     * @throws Exception
+     */
+    function datePeriod(int $days = 0, int $hours = 0, int $minutes = 0): DateInterval
+    {
+        $expressionPeriod = 'P0Y%sDT%sH%sM';
+
+        $expressionPeriod = sprintf(
+            $expressionPeriod,
+            $days,
+            $hours,
+            $minutes,
+        );
+
+        return new DateInterval($expressionPeriod);
+    }
+}

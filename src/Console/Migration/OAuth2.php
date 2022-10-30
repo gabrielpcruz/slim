@@ -194,7 +194,7 @@ class OAuth2 extends ConsoleMigration
                 $table->integer('oauth2_access_token_id')->unsigned();
                 $table->foreign('oauth2_access_token_id')->references('id')->on('oauth2_access_token');
 
-                $table->integer('expire_time')->nullable();
+                $table->dateTime('expire_time')->nullable();
                 $table->string('refresh_token', 255);
                 $table->dateTime('created_at');
                 $table->dateTime('updated_at');

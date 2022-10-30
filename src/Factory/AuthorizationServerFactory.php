@@ -16,6 +16,7 @@ use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\RefreshTokenRepository;
 use App\Repository\User\ScopeRepository;
 use App\Repository\User\UserRepository;
+use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -80,28 +81,23 @@ class AuthorizationServerFactory implements FactoryInterface
         /** @var RefreshTokenRepository $refreshTokenRepository */
         $refreshTokenRepository = $repositoryManager->get(RefreshTokenRepository::class);
 
-        $grant = new PasswordGrant(
+        $refreshTokenExpiryTime = datePeriod(0, 1);
+
+        $passwordGrant = new PasswordGrant(
             $userRepository,
             $refreshTokenRepository
         );
 
-        $refreshTokenTTL = $this->getExpiresTokenInterval();
-
-        $grant->setRefreshTokenTTL($refreshTokenTTL); // refresh tokens will expire after 1 month
+        $passwordGrant->setRefreshTokenTTL($refreshTokenExpiryTime);
 
         // Enable the password grant on the server
         $server->enableGrantType(
-            $grant,
-            $refreshTokenTTL // access tokens will expire after X time
+            $passwordGrant,
+            $this->getExpiresTokenInterval()
         );
 
-        $clientCredentialsGrant = new ClientCredentialsGrant();
-        $clientCredentialsGrant->setRefreshTokenTTL($refreshTokenTTL);
-
-        $server->enableGrantType(
-            $clientCredentialsGrant,
-            $refreshTokenTTL // access tokens will expire after X time
-        );
+        $refreshTokenGrant = new RefreshTokenGrant($refreshTokenRepository);
+        $server->enableGrantType($refreshTokenGrant, $refreshTokenExpiryTime);
 
         return $server;
     }

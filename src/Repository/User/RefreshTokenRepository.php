@@ -11,6 +11,7 @@ namespace App\Repository\User;
 
 use App\Entity\User\RefreshTokenEntity;
 use App\Repository\Repository;
+use DateInterval;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
@@ -30,10 +31,16 @@ class RefreshTokenRepository extends Repository implements RefreshTokenRepositor
     /**
      * @param RefreshTokenEntityInterface $refreshTokenEntity
      * @return void
+     * @throws \Exception
      */
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
+        $refreshTokenEntity->oauth2_access_token_id = $refreshTokenEntity->getAccessToken()->id;
+        $refreshTokenEntity->refresh_token = $refreshTokenEntity->getIdentifier();
+        $refreshTokenEntity->expire_time = $refreshTokenEntity->getExpiryDateTime()->add(datePeriod(0, 1));
 
+
+        $this->save($refreshTokenEntity);
     }
 
     /**
@@ -52,7 +59,7 @@ class RefreshTokenRepository extends Repository implements RefreshTokenRepositor
     public function isRefreshTokenRevoked($tokenId): bool
     {
         $token = $this->findOneBy([
-            'access_token' => $tokenId,
+            'refresh_token' => $tokenId,
         ]);
 
         return !$token || ($token->isExpired());
