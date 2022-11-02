@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'driver' => 'mysql',
-    'host' => '192.168.101.11:9905',
-    'database' => 'arroz',
+    'driver' => 'sqlite',
+    'host' => 'localhost',
+    'database' => STORAGE_PATH . '/database/db.sqlite',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
