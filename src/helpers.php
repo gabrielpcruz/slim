@@ -122,3 +122,19 @@ if (!function_exists('datePeriod')) {
         return new DateInterval($expressionPeriod);
     }
 }
+
+if (!function_exists('str_rand')) {
+    /**
+     * @param int $length
+     * @return string
+     * @throws Exception
+     *
+     * @link https://www.php.net/manual/en/function.random-bytes.php
+     */
+    function str_rand(int $length = 64): string
+    {
+        $length = ($length < 4) ? 4 : $length;
+
+        return bin2hex(random_bytes(($length - ($length % 2)) / 2));
+    }
+}

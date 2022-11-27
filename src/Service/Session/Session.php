@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Session;
 
 use App\Entity\User\UserEntity;
 
@@ -70,5 +70,13 @@ class Session
         session_destroy();
 
         return true;
+    }
+
+    /**
+     * @return UserEntity|null
+     */
+    public static function getUser(): ?UserEntity
+    {
+        return Session::isLoggedIn() ? $_SESSION['user'] : null;
     }
 }

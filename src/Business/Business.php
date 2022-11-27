@@ -3,6 +3,7 @@
 namespace App\Business;
 
 use App\App;
+use App\Entity\Entity;
 use App\Repository\Repository;
 use App\Repository\RepositoryManager;
 use DI\DependencyException;
@@ -12,6 +13,8 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Illuminate\Database\Eloquent\Collection;
 
 abstract class Business
 {
@@ -64,4 +67,16 @@ abstract class Business
     {
         return $this->respository;
     }
+
+    /**
+     * @param Request $request
+     * @return Collection
+     */
+    abstract public function all(Request $request): Collection;
+
+    /**
+     * @param Entity $entity
+     * @return void
+     */
+    abstract public function save(Entity $entity): void;
 }
