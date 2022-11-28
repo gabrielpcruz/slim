@@ -15,7 +15,7 @@ use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app) {
     // Docs
-    $app->redirect('/', '/docs');
+    $app->redirect('/', '/login');
 
     $app->get('/home', [Home::class, 'index']);
 
