@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Console\Migration;
+namespace App\Console\Slim;
 
+use App\Console\Migration\ConsoleMigration;
 use App\Enum\EnumProfile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

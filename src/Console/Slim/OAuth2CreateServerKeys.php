@@ -40,22 +40,30 @@ class OAuth2CreateServerKeys extends Console
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getHelper('question');
+        /**
+         * This is an example how to get answer from the cli user.
+         */
 
-        $bundles = ['yes', 'Yes', 'no', 'No'];
+        /**
+         * $helper = $this->getHelper('question');
+         *
+         * $bundles = ['yes', 'Yes', 'no', 'No'];
+         *
+         * $question = new Question(
+         * "Do you want generate the key's to Oauth2?(Yes/No)" . PHP_EOL,
+         * 'No'
+         * );
+         *
+         * $question->setAutocompleterValues($bundles);
+         *
+         * $generate = $helper->ask($input, $output, $question);
+         *
+         * if (strtolower($generate) === 'yes') {
+         * $this->generateKeys();
+         * }
+         **/
 
-        $question = new Question(
-            "Do you want generate the key's to Oauth2?(Yes/No)" . PHP_EOL,
-            'No'
-        );
-
-        $question->setAutocompleterValues($bundles);
-
-        $generate = $helper->ask($input, $output, $question);
-
-        if (strtolower($generate) === 'yes') {
-            $this->generateKeys();
-        }
+        $this->generateKeys();
 
         return Command::SUCCESS;
     }
