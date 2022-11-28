@@ -26,10 +26,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php bin/console.php file:create-file",
-            "php bin/console.php migration:create-database",
-            "php bin/console.php oauth2:create-tables",
-            "php bin/console.php oauth2:create-keys"
+            "php bin/console.php slim:create-database-file",
+            "php bin/console.php slim:migration-create-demo",
+            "php bin/console.php slim:oauth2-create-tables",
+            "php bin/console.php slim:oauth2-create-keys"
         ]
     },
     "autoload": {

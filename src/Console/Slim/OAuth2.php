@@ -22,7 +22,7 @@ class OAuth2 extends ConsoleMigration
      */
     protected function configure()
     {
-        $this->setName('oauth2:create-tables');
+        $this->setName('slim:oauth2-create-tables');
         $this->setDescription('Create the tables from oauth');
     }
 
