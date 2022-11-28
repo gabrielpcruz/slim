@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use stdClass;
 
 class ApiController extends Controller
 {
@@ -25,5 +27,14 @@ class ApiController extends Controller
         return $response
             ->withHeader('Content-Type', 'application/json')
             ->withStatus($status);
+    }
+
+    /**
+     * @param Request $request
+     * @return stdClass
+     */
+    protected function getJsonBody(Request $request): stdClass
+    {
+        return json_decode($request->getBody()->getContents());
     }
 }

@@ -4,7 +4,7 @@ namespace App\Middleware\Authentication;
 
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
-use App\Service\Session;
+use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

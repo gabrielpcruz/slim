@@ -22,7 +22,7 @@ class RiceDatabase extends ConsoleMigration
      */
     protected function configure()
     {
-        $this->setName('migration:create-database');
+        $this->setName('migration:create-demo');
         $this->setDescription('Create de demo database');
     }
 

@@ -16,7 +16,7 @@ class ClearCacheView extends Console
      */
     protected function configure()
     {
-        $this->setName('cache:view-clear');
+        $this->setName('slim:view-clear');
         $this->setDescription('Clear the view cache.');
     }
 
