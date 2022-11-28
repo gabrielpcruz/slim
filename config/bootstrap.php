@@ -1,7 +1,7 @@
 <?php
 
 use App\App;
-use App\Service\Session;
+use App\Service\Session\Session;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
