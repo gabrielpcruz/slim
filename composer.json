@@ -1,8 +1,13 @@
 {
     "name": "gabrielpcruz/slim",
+    "type": "project",
     "description": "Skeleton slim framework 4 application (http + cli + oauth2)",
-    "minimum-stability": "stable",
-    "license": "proprietary",
+    "keywords": [
+        "microframework",
+        "framework",
+        "slim"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Gabriel Cruz",
@@ -27,10 +32,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php bin/console.php slim:create-database-file",
-            "php bin/console.php slim:migration-create-demo",
-            "php bin/console.php slim:oauth2-create-tables",
-            "php bin/console.php slim:oauth2-create-keys"
+            "php bin/console slim:create-database-file",
+            "php bin/console slim:migration-create-demo",
+            "php bin/console slim:oauth2-create-tables",
+            "php bin/console slim:oauth2-create-keys"
         ]
     },
     "autoload": {
@@ -44,5 +49,10 @@
     "require-dev": {
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.0.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
     }
 }
