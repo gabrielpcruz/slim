@@ -6,7 +6,7 @@ use App\Enum\FlashMessage;
 use App\Http\SiteController;
 use App\Message\Success\System\MessageSuccessSystem;
 use App\Repository\User\UserRepository;
-use App\Service\Session;
+use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

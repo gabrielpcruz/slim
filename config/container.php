@@ -5,6 +5,8 @@ use App\Factory\AuthorizationServerFactory;
 
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
+use App\Service\Mail\Mailer;
+use App\Service\Mail\MailerPHPMailer;
 use App\Twig\AssetsTwigExtension;
 use App\Twig\FlashMessageTwigExtension;
 use App\Twig\GuardTwigExtension;
@@ -108,5 +110,9 @@ return [
         $beareValidator->setPublicKey(new CryptKey($oauth2PublicKey));
 
         return $beareValidator;
+    },
+
+    Mailer::class => function (ContainerInterface $container) {
+        return new MailerPHPMailer();
     }
 ];

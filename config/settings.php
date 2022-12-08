@@ -1,5 +1,7 @@
 <?php
 // Settings
+use PHPMailer\PHPMailer\SMTP;
+
 $settings = [];
 
 // Path settings
@@ -24,6 +26,30 @@ $settings['file'] = [
     'database' => $settings['path']['config'] . '/database/database.php',
     'oauth_private' => $settings['path']['data'] . '/keys/oauth/private.key',
     'oauth_public' => $settings['path']['data'] . '/keys/oauth/public.key',
+];
+
+$settings['mailer'] = [
+
+    //PHPMailer settings
+    'phpmailer' => [
+
+        //Configs
+        'smtp_host' => 'smtp.example.com',
+        'smtp_debug' => SMTP::DEBUG_OFF,
+
+        'smtp_port' => 999,
+        'smtp_options' => [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ],
+
+        // Auth
+        'username' => 'youremail@gmail.com',
+        'password' => 'yourpasswordemail',
+    ]
 ];
 
 $settings['error'] = [
