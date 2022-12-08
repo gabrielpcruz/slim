@@ -22,8 +22,8 @@
         "symfony/yaml": "^5.4",
         "league/oauth2-server": "^8.3",
         "slim/flash": "^0.4.0",
-        "ext-json": "*",
-        "phpmailer/phpmailer": "^6.7"
+        "phpmailer/phpmailer": "^6.7",
+        "ext-json": "*"
     },
     "scripts": {
         "post-install-cmd": [
