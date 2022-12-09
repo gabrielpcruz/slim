@@ -20,7 +20,7 @@ class App
     /**
      * @var string
      */
-    public const VERSION = '1.0.0';
+    public const VERSION = '1.3.0';
 
     /**
      * @var string
