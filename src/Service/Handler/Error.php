@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Handler;
+namespace App\Service\Handler;
 
 use App\App;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Slim\Views\Twig;
 use Throwable;
@@ -22,7 +22,7 @@ use Twig\Error\SyntaxError;
  * It outputs the error message and diagnostic information in one of the following formats:
  * JSON, XML, Plain Text or HTML based on the Accept header.
  */
-class DefaultErrorHandler implements ErrorHandlerInterface
+class Error implements ErrorHandlerInterface
 {
     private ContainerInterface $container;
 
@@ -39,11 +39,11 @@ class DefaultErrorHandler implements ErrorHandlerInterface
      * @throws LoaderError
      */
     public function __invoke(
-        ServerRequestInterface $request,
-        Throwable              $exception,
-        bool                   $displayErrorDetails,
-        bool                   $logErrors,
-        bool                   $logErrorDetails
+        Request   $request,
+        Throwable $exception,
+        bool      $displayErrorDetails,
+        bool      $logErrors,
+        bool      $logErrorDetails
     ): ResponseInterface
     {
         /** @var Twig $view */
@@ -75,10 +75,10 @@ class DefaultErrorHandler implements ErrorHandlerInterface
     }
 
     /**
-     * @param ServerRequestInterface $request
+     * @param Request $request
      * @return bool
      */
-    private function isApi(ServerRequestInterface $request): bool
+    private function isApi(Request $request): bool
     {
         $accept = explode(',', $request->getHeader('Accept')[0]);
 
@@ -89,9 +89,9 @@ class DefaultErrorHandler implements ErrorHandlerInterface
      * @param string $message
      * @param int $code
      * @param Response $response
-     * @return mixed
+     * @return ResponseInterface
      */
-    private function respondeApi(string $message, int $code, Response $response)
+    private function respondeApi(string $message, int $code, Response $response): ResponseInterface
     {
         $responseCode = $code < 300 ? 500 : $code;
 

@@ -3,17 +3,16 @@
 namespace App;
 
 use Adbar\Dot;
-use App\ContainerBuilder;
-use App\Handler\DefaultErrorHandler;
 use App\Provider\ProviderInterface;
+use App\Service\Handler\Error;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\App as SlimApp;
-use Exception;
 use Slim\Flash\Messages;
 
 class App
@@ -186,7 +185,7 @@ class App
         self::provide($container, $settings);
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-        $errorMiddleware->setDefaultErrorHandler(DefaultErrorHandler::class);
+        $errorMiddleware->setDefaultErrorHandler(Error::class);
 
         return $app;
     }
