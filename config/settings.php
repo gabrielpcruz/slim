@@ -36,8 +36,9 @@ $settings['mailer'] = [
         //Configs
         'smtp_host' => 'smtp.example.com',
         'smtp_debug' => SMTP::DEBUG_OFF,
+        'smtp_exceptions' => false,
 
-        'smtp_port' => 999,
+        'smtp_port' => 465,
         'smtp_options' => [
             'ssl' => [
                 'verify_peer' => false,

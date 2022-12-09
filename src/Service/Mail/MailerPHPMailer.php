@@ -27,7 +27,7 @@ class MailerPHPMailer implements Mailer
     {
         $mailSettings = (object)App::settings()->get('mailer.phpmailer');
 
-        $this->mailer = new PHPMailer();
+        $this->mailer = new PHPMailer($mailSettings->smtp_exceptions);
         $this->mailer->isSMTP();
         $this->mailer->SMTPAuth = true;
 
