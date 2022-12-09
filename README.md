@@ -11,27 +11,25 @@
 You can use my [another repository](https://github.com/gabrielpcruz/application-php)
 to execute this aplication using docker.
 
-## Console usage
-
-> ##### Here you can see an example how console is shown by application.
-
-You can access all commands from console, typing the following command:
-
+## Composer creating project
 ```
-$ php bin/console.php 
+$ composer create-project --prefer-dist gabrielpcruz/slim myapp "1.3.*"
 ```
 
-![Landing Page](docs/img/full_console.png)
+## Features
 
-## Documentation source
+This project is based on best practices and industry standards:
 
-> ##### Here, we can view an example of documentation page.
+* HTTP router (Slim)
+* HTTP Server Request Handlers, Middleware (PSR-15)
+* Dependency injection container (PSR-11)
+* Autoloader (PSR-4)
+* Code styles (PSR-12)
+* Unit - and integration tests
+* Console Commands
+* Tested with [Github Actions](https://github.com/odan/slim4-skeleton/actions)
 
-![Landing Page](docs/img/documentation_print.png)
+## Support
 
-## Business class suport
-
-> ##### You can centralize your business rules on specific classes.
-
-![Landing Page](docs/img/code_example_business_class_03.png)
+* [Issues](https://github.com/gabrielpcruz/slim/issues)
 
