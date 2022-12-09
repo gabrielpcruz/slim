@@ -3,7 +3,7 @@
 namespace App\Http\Api\Auth;
 
 use App\Http\ApiController;
-use App\Service\AccessTokenService;
+use App\Service\Token\AccessToken;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\AuthorizationServer;
@@ -21,17 +21,18 @@ class Token extends ApiController
      * @param Response $response
      * @return Response
      * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      * @throws ReflectionException
-     * @throws OAuthServerException
      */
     public function create(Request $request, Response $response): Response
     {
         /** @var AuthorizationServer $authorizationServer */
         $authorizationServer = $this->container->get(AuthorizationServer::class);
-        $accessTokenService = $this->container->get(AccessTokenService::class);
+
+        /** @var AccessToken $accessTokenService */
+        $accessTokenService = $this->container->get(AccessToken::class);
 
         $data = $request->getParsedBody();
 

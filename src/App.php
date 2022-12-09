@@ -209,12 +209,21 @@ class App
      * @param Container $container
      * @param Dot $settings
      * @return void
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     private static function provide(Container $container, Dot $settings)
     {
-        $providers = (require_once $settings->get('file.providers'));
+        $providersPath = self::settings()->get('path.provider');
+        $providersNameSpace = "App\\Provider\\";
+
+        $providers = turnNameSpacePathIntoArray(
+            $providersPath,
+            $providersNameSpace,
+            ['ProviderInterface.php']
+        );
 
         /** @var ProviderInterface $provider */
         foreach ($providers as $provider) {

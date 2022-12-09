@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Token;
 
 use App\App;
 use App\Repository\RepositoryManager;
@@ -12,7 +12,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
 
-class AccessTokenService
+class AccessToken
 {
     /**
      * @param $data
@@ -31,10 +31,10 @@ class AccessTokenService
         switch ($grant_type) {
             case 'client_credentials':
                 return $this->getTokenByClientCredentials($data);
-            case 'password':
-                return $this->getTokenByUserPassword($data);
             case 'refresh_token':
                 return $this->getTokenByClientIdentifier($data);
+            default:
+                return $this->getTokenByUserPassword($data);
         }
     }
 

@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Factory;
+namespace App\Service\Token;
 
 use App\App;
 use App\Repository\RepositoryManager;
-use DateInterval;
-use DI\DependencyException;
-use DI\NotFoundException;
-use Exception;
-use League\OAuth2\Server\AuthorizationServer;
-use League\OAuth2\Server\Grant\ClientCredentialsGrant;
-use League\OAuth2\Server\Grant\PasswordGrant;
-use App\Repository\User\ClientRepository;
 use App\Repository\User\AccessTokenRepository;
+use App\Repository\User\ClientRepository;
 use App\Repository\User\RefreshTokenRepository;
 use App\Repository\User\ScopeRepository;
 use App\Repository\User\UserRepository;
+use DI\DependencyException;
+use DI\NotFoundException;
+use Exception;
+use League\OAuth2\Server\AuthorizationServer as LeagueAuthorizationServer;
+use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
 
-class AuthorizationServerFactory implements FactoryInterface
+class AuthorizationServer
 {
     private string $encryption_key = '89v787Ui4pj5HnUGTV29yXfvNA12BmgUozhBVv1uFMs=';
 
@@ -43,15 +41,15 @@ class AuthorizationServerFactory implements FactoryInterface
 
     /**
      * @param ContainerInterface $container
-     * @return AuthorizationServer
+     * @return LeagueAuthorizationServer
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
      * @throws Exception
      */
-    public function create(ContainerInterface $container): AuthorizationServer
+    public function create(ContainerInterface $container): LeagueAuthorizationServer
     {
         $oauth2PrivateKey = App::settings()->get('file.oauth_private');
 
@@ -67,7 +65,7 @@ class AuthorizationServerFactory implements FactoryInterface
         /** @var AccessTokenRepository $tokenRepository */
         $tokenRepository = $repositoryManager->get(AccessTokenRepository::class);
 
-        $server = new AuthorizationServer(
+        $server = new LeagueAuthorizationServer(
             $clientRepository,
             $tokenRepository,
             $scopeRepository,
@@ -93,30 +91,16 @@ class AuthorizationServerFactory implements FactoryInterface
         // Enable the password grant on the server
         $server->enableGrantType(
             $passwordGrant,
-            $this->getExpiresTokenInterval()
+            datePeriod(
+                ($this->tokenExpiresInDays ?? 0),
+                ($this->tokenExpiresInHours ?? 0),
+                ($this->tokenExpiresInMinutes ?? 0),
+            )
         );
 
         $refreshTokenGrant = new RefreshTokenGrant($refreshTokenRepository);
         $server->enableGrantType($refreshTokenGrant, $refreshTokenExpiryTime);
 
         return $server;
-    }
-
-    /**
-     * @return DateInterval
-     * @throws Exception
-     */
-    private function getExpiresTokenInterval(): DateInterval
-    {
-        $expressionPeriod = 'P0Y%sDT%sH%sM';
-
-        $expressionPeriod = sprintf(
-            $expressionPeriod,
-            ($this->tokenExpiresInDays ?? 0),
-            ($this->tokenExpiresInHours ?? 0),
-            ($this->tokenExpiresInMinutes ?? 0),
-        );
-
-        return new DateInterval($expressionPeriod);
     }
 }

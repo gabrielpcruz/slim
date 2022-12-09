@@ -1,28 +1,27 @@
 <?php
 
-use Slim\App;
 use Adbar\Dot;
-use Slim\Views\Twig;
 use App\App as Application;
-use Slim\Factory\AppFactory;
+use App\Repository\RepositoryManager;
+use App\Repository\User\AccessTokenRepository;
 use App\Service\Mail\Mailer;
+use App\Service\Mail\MailerPHPMailer;
+use App\Service\Token\AuthorizationServer as SlimAuthorizationServer;
+use App\Twig\AssetsTwigExtension;
+use App\Twig\FlashMessageTwigExtension;
 use App\Twig\GuardTwigExtension;
 use App\Twig\GuestTwigExtension;
-use App\Twig\AssetsTwigExtension;
-use Twig\Loader\FilesystemLoader;
-use Twig\Extension\DebugExtension;
 use App\Twig\VersionTwigExtension;
-use League\OAuth2\Server\CryptKey;
-use App\Service\Mail\MailerPHPMailer;
-use App\Repository\RepositoryManager;
-use App\Twig\FlashMessageTwigExtension;
 use Illuminate\Database\Capsule\Manager;
-use App\Factory\AuthorizationServerFactory;
-use App\Repository\User\AccessTokenRepository;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
+use League\OAuth2\Server\CryptKey;
 use Psr\Container\ContainerInterface;
-
+use Slim\App;
+use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Twig\Extension\DebugExtension;
+use Twig\Loader\FilesystemLoader;
 use function DI\autowire;
 use function DI\factory;
 
@@ -95,7 +94,7 @@ return [
 
     // OAuth
     AuthorizationServer::class => factory([
-        AuthorizationServerFactory::class,
+        SlimAuthorizationServer::class,
         'create',
     ]),
 

@@ -18,6 +18,7 @@ $settings['path'] = [
     'console' => ROOT_PATH . '/src/Console',
     'migration' => ROOT_PATH . '/src/Console/Migration',
     'slim' => ROOT_PATH . '/src/Console/Slim',
+    'provider' => ROOT_PATH . '/src/Provider',
 ];
 
 $settings['file'] = [
