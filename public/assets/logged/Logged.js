@@ -1,16 +1,16 @@
-let Logado = (() => {
+let Logged = (() => {
 
-    let logado = () => {
+    let logged = () => {
     };
 
     return {
         init: () => {
-            logado();
+            logged();
         }
     }
 })();
 
 jQuery(function () {
-    Logado.init();
+    Logged.init();
 })
 
