@@ -3,7 +3,6 @@
 namespace App\Twig;
 
 use App\App;
-use App\Service\Session;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
