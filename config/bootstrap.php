@@ -24,10 +24,6 @@ try {
     date_default_timezone_set($settings->get('timezone'));
 
     return $app;
-} catch (
-Exception|
-NotFoundExceptionInterface|
-ContainerExceptionInterface $exception
-) {
-    var_dump($exception);
+} catch (Exception|NotFoundExceptionInterface|ContainerExceptionInterface $exception) {
+    exit($exception);
 }

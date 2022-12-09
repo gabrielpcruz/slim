@@ -3,7 +3,7 @@
 namespace App;
 
 use Adbar\Dot;
-use App\Factory\ContainerFactory;
+use App\ContainerBuilder;
 use App\Handler\DefaultErrorHandler;
 use App\Provider\ProviderInterface;
 use DI\Container;
@@ -199,7 +199,7 @@ class App
     private static function getContainer(): Container
     {
         if (!isset(self::$container)) {
-            self::$container = (new ContainerFactory())->create();
+            self::$container = (new ContainerBuilder())->build();
         }
 
         return self::$container;

@@ -43,7 +43,7 @@
             "App\\": "src/"
         },
         "files": [
-            "src/helpers.php"
+            "resources/helpers/slim.php"
         ]
     },
     "require-dev": {
