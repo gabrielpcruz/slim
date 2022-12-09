@@ -11,7 +11,7 @@ return function (App $app) {
 
     $app->get('/home', [Home::class, 'index']);
 
-    $app->get('/logado', [Home::class, 'logado'])->add(AuthenticationSite::class);
+    $app->get('/logged', [Home::class, 'logged'])->add(AuthenticationSite::class);
 
     $app->get('/login', [Login::class, 'index']);
     $app->post('/login', [Login::class, 'login']);

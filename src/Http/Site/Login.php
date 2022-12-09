@@ -59,7 +59,7 @@ class Login extends SiteController
             $this->flash()->addMessage(FlashMessage::SUCCESS, MessageSuccessSystem::MSS0001);
         }
 
-        return redirect('/logado');
+        return redirect('/logged');
     }
 
     /**

@@ -24,7 +24,7 @@ class Home extends SiteController
     {
         $riceBusiness = new RiceBusiness();
 
-        $rices = $riceBusiness->all()->toArray();
+        $rices = $riceBusiness->all($request)->toArray();
 
         return $this->view(
             $response,
@@ -41,15 +41,15 @@ class Home extends SiteController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function logado(Request $request, Response $response): Response
+    public function logged(Request $request, Response $response): Response
     {
         $riceBusiness = new RiceBusiness();
 
-        $rices = $riceBusiness->all()->toArray();
+        $rices = $riceBusiness->all($request)->toArray();
 
         return $this->view(
             $response,
-            "@site/home/logado",
+            "@site/home/logged",
             compact('rices')
         );
     }
