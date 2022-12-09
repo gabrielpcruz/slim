@@ -1,47 +1,48 @@
 <?php
 
+use Slim\App;
 use Adbar\Dot;
-use App\Factory\AuthorizationServerFactory;
-
-use App\Repository\RepositoryManager;
-use App\Repository\User\AccessTokenRepository;
+use Slim\Views\Twig;
+use App\App as Application;
+use Slim\Factory\AppFactory;
 use App\Service\Mail\Mailer;
-use App\Service\Mail\MailerPHPMailer;
-use App\Twig\AssetsTwigExtension;
-use App\Twig\FlashMessageTwigExtension;
 use App\Twig\GuardTwigExtension;
 use App\Twig\GuestTwigExtension;
+use App\Twig\AssetsTwigExtension;
+use Twig\Loader\FilesystemLoader;
+use Twig\Extension\DebugExtension;
 use App\Twig\VersionTwigExtension;
+use League\OAuth2\Server\CryptKey;
+use App\Service\Mail\MailerPHPMailer;
+use App\Repository\RepositoryManager;
+use App\Twig\FlashMessageTwigExtension;
 use Illuminate\Database\Capsule\Manager;
+use App\Factory\AuthorizationServerFactory;
+use App\Repository\User\AccessTokenRepository;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
-use League\OAuth2\Server\CryptKey;
-use Slim\App;
-use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
-use Slim\Views\Twig;
-use Twig\Extension\DebugExtension;
-use Twig\Loader\FilesystemLoader;
+
 use function DI\autowire;
 use function DI\factory;
-use App\App as Application;
 
 return [
 
     'settings' => function () {
-        $settings = (require_once __DIR__ . '/settings.php');
         $enviromentSettings = [];
 
+        $settings = (require_once __DIR__ . '/enviroment/settings_default.php');
+
         if (Application::isDevelopment()) {
-            $enviromentSettings = require __DIR__ . '/enviroment/development.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/settings_development.php';
         }
 
         if (Application::isHomologation()) {
-            $enviromentSettings = require __DIR__ . '/enviroment/homologation.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/settings_homologation.php';
         }
 
         if (Application::isProduction()) {
-            $enviromentSettings = require __DIR__ . '/enviroment/production.php';
+            $enviromentSettings = require __DIR__ . '/enviroment/settings_production.php';
         }
 
         $settings = array_replace_recursive($settings, $enviromentSettings);
@@ -53,7 +54,8 @@ return [
         $app = AppFactory::createFromContainer($container);
 
         // Adding routes of application
-        (require __DIR__ . '/routes.php')($app);
+        (require __DIR__ . '/routes/web.php')($app);
+        (require __DIR__ . '/routes/api.php')($app);
 
         $app->addRoutingMiddleware();
 

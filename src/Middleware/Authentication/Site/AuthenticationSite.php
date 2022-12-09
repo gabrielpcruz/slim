@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Middleware\Authentication;
+namespace App\Middleware\Authentication\Site;
 
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;

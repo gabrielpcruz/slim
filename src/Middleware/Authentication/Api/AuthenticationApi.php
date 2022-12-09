@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Middleware\Authentication;
+namespace App\Middleware\Authentication\Api;
 
 use App\App;
+use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
 use DI\DependencyException;
@@ -11,12 +12,28 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
 use Slim\Exception\HttpUnauthorizedException;
 
-class AuthenticationApi extends Authentication
+class AuthenticationApi implements MiddlewareInterface
 {
+    /**
+     * @var RepositoryManager
+     */
+    protected RepositoryManager $repositoryManager;
+
+    /**
+     * @param RepositoryManager $repositoryManager
+     */
+    public function __construct(RepositoryManager $repositoryManager)
+    {
+        $this->repositoryManager = $repositoryManager;
+    }
+
     /**
      * @param ServerRequestInterface $request
      * @return ServerRequestInterface
@@ -51,5 +68,23 @@ class AuthenticationApi extends Authentication
         }
 
         return $request->withAttribute('oauth_client_id', $client->id);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param RequestHandlerInterface $handler
+     * @return ResponseInterface
+     * @throws ContainerExceptionInterface
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     * @throws OAuthServerException
+     * @throws ReflectionException
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $request = $this->authenticate($request);
+
+        return $handler->handle($request);
     }
 }
