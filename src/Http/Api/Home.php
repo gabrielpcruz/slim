@@ -20,7 +20,7 @@ class Home extends ApiController
 
         return $this->responseJSON(
             $response,
-            $riceBusiness->all()->toArray()
+            $riceBusiness->all($request)->toArray()
         );
     }
 }
