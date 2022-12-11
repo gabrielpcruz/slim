@@ -16,6 +16,9 @@ use ReflectionException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ *
+ */
 abstract class Business
 {
     /**
@@ -51,7 +54,7 @@ abstract class Business
     }
 
     /**
-     * @return mixed
+     * @return RepositoryManager
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */

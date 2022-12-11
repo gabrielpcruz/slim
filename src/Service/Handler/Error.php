@@ -97,7 +97,7 @@ class Error implements ErrorHandlerInterface
         $json = json_encode([
             'message' => $message,
             'code' => $responseCode
-        ], JSON_PRETTY_PRINT);
+        ], JSON_PRETTY_PRINT) ?? '';
 
         $response->getBody()->write($json);
 

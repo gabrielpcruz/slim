@@ -22,15 +22,12 @@ class AccessToken
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
      */
-    public function getClientByGrant($data)
+    public function getClientByGrant(array $data)
     {
         $grant_type = $data['grant_type'];
 
         switch ($grant_type) {
-            case 'client_credentials':
-                return $this->getTokenByClientCredentials($data);
             case 'refresh_token':
                 return $this->getTokenByClientIdentifier($data);
             default:
@@ -42,29 +39,12 @@ class AccessToken
      * @param $data
      *
      * @return mixed
-     * @throws ReflectionException
-     *
-     */
-    private function getTokenByClientCredentials($data)
-    {
-        return $this->clientService->getRepository()->findBy(
-            [
-                'identifier' => $data['client_id'],
-                'secret' => $data['client_secret'],
-            ]
-        )->first();
-    }
-
-    /**
-     * @param $data
-     *
-     * @return mixed
      * @throws DependencyException
      * @throws NotFoundException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByUserPassword($data)
+    private function getTokenByUserPassword(array $data)
     {
         $repositoryManager = App::container()->get(RepositoryManager::class);
 
@@ -84,11 +64,12 @@ class AccessToken
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByClientIdentifier($data)
+    private function getTokenByClientIdentifier(array $data)
     {
-        $repositoryManager = App::container()->get(RepositoryManager::class);
+        /** @var ClientRepository $clientRepository */
+        $clientRepository = App::container()->get(RepositoryManager::class)->get(ClientRepository::class);
 
-        return $repositoryManager->get(ClientRepository::class)->getClientEntityByCredentials(
+        return $clientRepository->getClientEntityByCredentials(
             $data
         );
     }

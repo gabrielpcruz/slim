@@ -25,17 +25,17 @@ class AuthorizationServer
     private string $encryption_key = '89v787Ui4pj5HnUGTV29yXfvNA12BmgUozhBVv1uFMs=';
 
     /**
-     * @var string|int
+     * @var int
      */
     private int $tokenExpiresInMinutes = 0;
 
     /**
-     * @var string|int
+     * @var int
      */
     private int $tokenExpiresInHours = 1;
 
     /**
-     * @var string|int
+     * @var int
      */
     private int $tokenExpiresInDays = 0;
 
@@ -51,6 +51,7 @@ class AuthorizationServer
      */
     public function create(ContainerInterface $container): LeagueAuthorizationServer
     {
+        /** @var string $oauth2PrivateKey */
         $oauth2PrivateKey = App::settings()->get('file.oauth_private');
 
         /** @var RepositoryManager $repositoryManager */

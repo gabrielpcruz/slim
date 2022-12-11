@@ -32,6 +32,7 @@
     },
     "scripts": {
         "codesniffer" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
+        "phpstan" : "./vendor/bin/phpstan analyse -c phpstan.neon",
         "post-install-cmd": [
             "php bin/console slim:create-database-file",
             "php bin/console slim:migration-create-demo",
@@ -50,6 +51,7 @@
     "require-dev": {
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.0.0",
+        "phpstan/phpstan": "^1.9",
         "squizlabs/php_codesniffer": "3.*"
     },
     "config": {

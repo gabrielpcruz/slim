@@ -83,7 +83,7 @@ class ConsoleExample extends Console
         sleep(5);
 
         /** @var Repository $repository */
-        $repository = $this->container->get(RepositoryManager::class)->get(RiceRespository::class);
+        $repository = $this->getContainer()->get(RepositoryManager::class)->get(RiceRespository::class);
 
         /** @var Entity $item */
         foreach ($repository->all() as $item) {

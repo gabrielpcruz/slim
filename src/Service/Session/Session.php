@@ -43,7 +43,7 @@ class Session
     {
         self::sessionTimeMonitor();
 
-        if (is_null($_SESSION)) {
+        if (empty($_SESSION)) {
             return false;
         }
 
@@ -68,6 +68,8 @@ class Session
     {
         session_unset();
         session_destroy();
+
+        $_SESSION = [];
 
         return true;
     }

@@ -76,8 +76,8 @@ class OAuth2CreateServerKeys extends Console
      */
     private function generateKeys(): void
     {
-        $privateKeyPath = $this->container->get('settings')->get('file.oauth_private');
-        $publicKeyPath = $this->container->get('settings')->get('file.oauth_public');
+        $privateKeyPath = $this->getContainer()->get('settings')->get('file.oauth_private');
+        $publicKeyPath = $this->getContainer()->get('settings')->get('file.oauth_public');
 
         $privateKey = sprintf($this->privateCommand, $privateKeyPath);
 

@@ -29,7 +29,7 @@ class ClearCacheView extends Console
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $cacheView = $this->container->get('settings')->get('view.settings.cache');
+        $cacheView = $this->getContainer()->get('settings')->get('view.settings.cache');
 
         exec("rm -rf $cacheView/*");
 

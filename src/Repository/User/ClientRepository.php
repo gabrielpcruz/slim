@@ -60,6 +60,7 @@ class ClientRepository extends Repository implements ClientRepositoryInterface
         $queryBuilder = $this->query();
 
         $queryBuilder->where('identifier', '=', $data['client_id']);
+
         return $queryBuilder->get()->first();
     }
 

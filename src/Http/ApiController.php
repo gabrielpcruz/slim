@@ -19,7 +19,7 @@ class ApiController extends Controller
         array $data,
         int $status = 200
     ): ResponseInterface {
-        $json = json_encode($data, JSON_PRETTY_PRINT);
+        $json = json_encode($data, JSON_PRETTY_PRINT) ?? '';
 
         $response->getBody()->write($json);
 
@@ -34,6 +34,6 @@ class ApiController extends Controller
      */
     protected function getJsonBody(Request $request): stdClass
     {
-        return json_decode($request->getBody()->getContents());
+        return json_decode($request->getBody()->getContents()) ?? new stdClass();
     }
 }
