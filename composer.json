@@ -31,6 +31,7 @@
         "ext-json": "*"
     },
     "scripts": {
+        "codesniffer" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
         "post-install-cmd": [
             "php bin/console slim:create-database-file",
             "php bin/console slim:migration-create-demo",
