@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -17,5 +18,7 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 class AuthCodeEntity extends Entity implements AuthCodeEntityInterface
 {
-    use EntityTrait, TokenEntityTrait, AuthCodeTrait;
+    use EntityTrait;
+    use TokenEntityTrait;
+    use AuthCodeTrait;
 }

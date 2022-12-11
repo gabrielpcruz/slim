@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -38,26 +39,19 @@ class ScopeRepository extends Repository implements ScopeRepositoryInterface
                 'description' => 'Your email address',
             ],
         ];
-
         if (\array_key_exists($scopeIdentifier, $scopes) === false) {
             return;
         }
 
         $scope = new ScopeEntity();
         $scope->setIdentifier($scopeIdentifier);
-
         return $scope;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function finalizeScopes(
-        array                 $scopes,
-                              $grantType,
-        ClientEntityInterface $clientEntity,
-                              $userIdentifier = null
-    )
+    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null)
     {
         // Example of programatically modifying the final scope of the access token
         if ((int)$userIdentifier === 1) {

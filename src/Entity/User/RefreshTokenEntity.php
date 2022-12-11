@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -17,7 +18,8 @@ use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 
 class RefreshTokenEntity extends Entity implements RefreshTokenEntityInterface
 {
-    use RefreshTokenTrait, EntityTrait;
+    use RefreshTokenTrait;
+    use EntityTrait;
 
     /**
      * @var string

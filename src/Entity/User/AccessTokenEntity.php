@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -19,11 +20,15 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 class AccessTokenEntity extends Entity implements AccessTokenEntityInterface
 {
-    use AccessTokenTrait, TokenEntityTrait, EntityTrait;
+    use AccessTokenTrait;
+    use TokenEntityTrait;
+    use EntityTrait;
 
     /**
      * @var string
      */
+
+
     protected $table = 'oauth2_access_token';
 
     /**
@@ -32,7 +37,6 @@ class AccessTokenEntity extends Entity implements AccessTokenEntityInterface
     public function isExpired(): bool
     {
         $tokenExpiration = DateTime::createFromFormat('Y-m-d H:i:s', $this->expiry_date_time);
-
         return $tokenExpiration->getTimestamp() <= (new DateTime())->getTimestamp();
     }
 

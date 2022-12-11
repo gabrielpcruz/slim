@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -16,11 +17,14 @@ use League\OAuth2\Server\Entities\Traits\EntityTrait;
 
 class ClientEntity extends Entity implements ClientEntityInterface
 {
-    use EntityTrait, ClientTrait;
+    use EntityTrait;
+    use ClientTrait;
 
     /**
      * @var string
      */
+
+
     protected $table = 'oauth2_client';
 
     public function setName($name)

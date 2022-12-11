@@ -87,7 +87,6 @@ class ConsoleExample extends Console
 
         /** @var Entity $item */
         foreach ($repository->all() as $item) {
-
             $layout = "<comment>id: <info>%s</info> - name: <info>%s</info></comment>";
 
             $message = sprintf($layout, $item->id, $item->name);
