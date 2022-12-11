@@ -38,8 +38,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         $password,
         $grantType,
         ClientEntityInterface $clientEntity
-    )
-    {
+    ) {
         $queryBuilder = $this->query();
 
         $queryBuilder->where('username', '=', $username);

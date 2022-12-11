@@ -37,10 +37,9 @@ class SiteController extends Controller
      */
     public function view(
         Response $response,
-                 $template,
-        array    $args = []
-    ): Response
-    {
+        $template,
+        array $args = []
+    ): Response {
         return $this->twig->render($response, $template . ".twig", $args);
     }
 }

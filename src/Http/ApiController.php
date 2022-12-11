@@ -16,10 +16,9 @@ class ApiController extends Controller
      */
     public function responseJSON(
         ResponseInterface $response,
-        array             $data,
-        int               $status = 200
-    ): ResponseInterface
-    {
+        array $data,
+        int $status = 200
+    ): ResponseInterface {
         $json = json_encode($data, JSON_PRETTY_PRINT);
 
         $response->getBody()->write($json);

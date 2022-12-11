@@ -39,13 +39,12 @@ class Error implements ErrorHandlerInterface
      * @throws LoaderError
      */
     public function __invoke(
-        Request   $request,
+        Request $request,
         Throwable $exception,
-        bool      $displayErrorDetails,
-        bool      $logErrors,
-        bool      $logErrorDetails
-    ): ResponseInterface
-    {
+        bool $displayErrorDetails,
+        bool $logErrors,
+        bool $logErrorDetails
+    ): ResponseInterface {
         /** @var Twig $view */
         $view = $this->container->get(Twig::class);
 
