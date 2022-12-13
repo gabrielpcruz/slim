@@ -31,6 +31,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+    
+    - name: Codecov
+      uses: codecov/codecov-action@v3.1.1
 
     -   name: Checking PSR12
         run: composer codesniffer
