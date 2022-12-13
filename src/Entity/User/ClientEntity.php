@@ -23,9 +23,12 @@ class ClientEntity extends Entity implements ClientEntityInterface
     /**
      * @var string
      */
-
-
     protected $table = 'oauth2_client';
+
+    /**
+     * @var int
+     */
+    public int $id;
 
     public function setName($name)
     {

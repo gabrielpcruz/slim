@@ -52,7 +52,7 @@ class RepositoryManager
     /**
      * @param string $repositoryClass
      *
-     * @return object|Repository
+     * @return Repository
      * @throws ReflectionException
      *
      */
@@ -72,6 +72,7 @@ class RepositoryManager
             throw new RuntimeException('The specified class is not an repository!');
         }
 
+        /** @var Repository $repository */
         $repository = new $repositoryClass();
 
         $entityClass = $repository->getEntityClass();

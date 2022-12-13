@@ -12,6 +12,7 @@ namespace App\Entity\User;
 
 use App\Entity\Entity;
 use DateTime;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\AccessTokenTrait;
@@ -27,9 +28,32 @@ class AccessTokenEntity extends Entity implements AccessTokenEntityInterface
     /**
      * @var string
      */
-
-
     protected $table = 'oauth2_access_token';
+
+    /**
+     * @var int
+     */
+    public int $id;
+
+    /**
+     * @var int
+     */
+    public int $user_id;
+
+    /**
+     * @var string
+     */
+    public string $oauth2_client_id;
+
+    /**
+     * @var string
+     */
+    public string $access_token;
+
+    /**
+     * @var DateTimeImmutable
+     */
+    public DateTimeImmutable $expiry_date_time;
 
     /**
      * @return bool

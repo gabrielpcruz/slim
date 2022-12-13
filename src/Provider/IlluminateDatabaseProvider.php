@@ -13,7 +13,7 @@ class IlluminateDatabaseProvider implements ProviderInterface
      * @param Dot $settings
      * @return void
      */
-    public function provide(ContainerInterface $container, Dot $settings)
+    public function provide(ContainerInterface $container, Dot $settings): void
     {
         $manager = new Manager();
 

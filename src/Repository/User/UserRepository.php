@@ -10,6 +10,7 @@
 
 namespace App\Repository\User;
 
+use App\Entity\User\ClientEntity;
 use App\Entity\User\UserEntity;
 use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
@@ -48,6 +49,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
             return false;
         }
 
+        /** @var ClientEntity $clientEntity */
         if ($user->client_id != $clientEntity->id) {
             return false;
         }
@@ -58,7 +60,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
     /**
      * @param array $data
      *
-     * @return null|false|mixed|UserEntityInterface
+     * @return false|UserEntityInterface
      */
     public function getUserEntityByCredentials(array $data)
     {

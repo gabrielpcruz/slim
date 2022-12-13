@@ -3,6 +3,8 @@
 namespace App\Service\Token;
 
 use App\App;
+use App\Entity\User\ClientEntity;
+use App\Entity\User\UserEntity;
 use App\Repository\RepositoryManager;
 use App\Repository\User\ClientRepository;
 use App\Repository\User\UserRepository;
@@ -15,36 +17,36 @@ use ReflectionException;
 class AccessToken
 {
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return ClientEntity|null
      * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    public function getClientByGrant(array $data)
+    public function getClientByGrant(array $data): ?ClientEntity
     {
         $grant_type = $data['grant_type'];
 
         switch ($grant_type) {
             case 'refresh_token':
-                return $this->getTokenByClientIdentifier($data);
+                return $this->getClientByIdentifier($data);
             default:
-                return $this->getTokenByUserPassword($data);
+                return $this->getClientByUserPassword($data);
         }
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return ClientEntity|null
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByUserPassword(array $data)
+    private function getClientByUserPassword(array $data): ?ClientEntity
     {
         $repositoryManager = App::container()->get(RepositoryManager::class);
 
@@ -56,15 +58,15 @@ class AccessToken
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return ClientEntity|null
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByClientIdentifier(array $data)
+    private function getClientByIdentifier(array $data): ?ClientEntity
     {
         /** @var ClientRepository $clientRepository */
         $clientRepository = App::container()->get(RepositoryManager::class)->get(ClientRepository::class);

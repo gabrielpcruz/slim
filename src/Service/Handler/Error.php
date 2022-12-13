@@ -94,12 +94,16 @@ class Error implements ErrorHandlerInterface
     {
         $responseCode = $code < 300 ? 500 : $code;
 
-        $json = json_encode([
+        $encodedJson = json_encode([
             'message' => $message,
             'code' => $responseCode
-        ], JSON_PRETTY_PRINT) ?? '';
+        ], JSON_PRETTY_PRINT);
 
-        $response->getBody()->write($json);
+        if (!is_string($encodedJson)) {
+            $encodedJson = '';
+        }
+
+        $response->getBody()->write($encodedJson);
 
         return $response
             ->withHeader('Content-Type', 'application/json')

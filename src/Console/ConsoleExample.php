@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Entity\Entity;
+use App\Entity\Example\RiceEntity;
 use App\Repository\Example\RiceRespository;
 use App\Repository\Repository;
 use App\Repository\RepositoryManager;
@@ -17,7 +18,7 @@ class ConsoleExample extends Console
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('console:show-example');
         $this->setDescription('Shows example of command console output.');
@@ -85,7 +86,7 @@ class ConsoleExample extends Console
         /** @var Repository $repository */
         $repository = $this->getContainer()->get(RepositoryManager::class)->get(RiceRespository::class);
 
-        /** @var Entity $item */
+        /** @var RiceEntity $item */
         foreach ($repository->all() as $item) {
             $layout = "<comment>id: <info>%s</info> - name: <info>%s</info></comment>";
 

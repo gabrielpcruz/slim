@@ -17,8 +17,8 @@ use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
 class ClientRepository extends Repository implements ClientRepositoryInterface
 {
-    const CLIENT_NAME = 'My Awesome App';
-    const REDIRECT_URI = 'http://foo/bar';
+    public const CLIENT_NAME = 'My Awesome App';
+    public const REDIRECT_URI = 'http://foo/bar';
 
     /**
      * {@inheritdoc}

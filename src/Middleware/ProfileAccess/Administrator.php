@@ -5,6 +5,7 @@ namespace App\Middleware\ProfileAccess;
 use DI\DependencyException;
 use DI\NotFoundException;
 use App\Enum\EnumProfile;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,7 +20,7 @@ class Administrator extends ProfileAccess
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
+     * @throws ReflectionException|OAuthServerException
      */
     public function allowed(ServerRequestInterface $request): bool
     {

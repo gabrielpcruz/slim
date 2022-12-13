@@ -6,6 +6,7 @@ use App\Http\ApiController;
 use App\Service\Token\AccessToken;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Exception;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Container\ContainerExceptionInterface;
@@ -24,7 +25,6 @@ class Token extends ApiController
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
      */
     public function create(Request $request, Response $response): Response
     {
@@ -40,8 +40,7 @@ class Token extends ApiController
 
         $payload = [];
         $payload['grant_type'] = $data['grant_type'];
-        $payload['client_id'] = $client->identifier;
-        $payload['client_secret'] = $client->secret;
+        $payload['client_id'] = $client->getIdentifier();
 
         if ($data['grant_type'] === 'password') {
             $payload['username'] = $data['username'];
@@ -58,7 +57,7 @@ class Token extends ApiController
             return $authorizationServer->respondToAccessTokenRequest($request, $response);
         } catch (OAuthServerException $exception) {
             return $exception->generateHttpResponse($response);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $response->getBody()->write($exception->getMessage());
 
             return $response->withStatus(500);

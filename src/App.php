@@ -69,7 +69,7 @@ class App
     }
 
     /**
-     * @return array|false|string
+     * @return string
      */
     public static function getAppEnv(): string
     {
@@ -127,7 +127,7 @@ class App
     }
 
     /**
-     * @return mixed
+     * @return Dot
      * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
