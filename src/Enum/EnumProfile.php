@@ -25,10 +25,10 @@ class EnumProfile
     public const USER_ID = 2;
 
     /**
-     * @param $profile
+     * @param string $profile
      * @return bool
      */
-    public static function isAdmin($profile): bool
+    public static function isAdmin(string $profile): bool
     {
         return self::ADMINISTRATOR === $profile;
     }

@@ -48,6 +48,14 @@ abstract class Console extends Command
     }
 
     /**
+     * @return ContainerInterface
+     */
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
+    }
+
+    /**
      * @return void
      */
     protected function configure()

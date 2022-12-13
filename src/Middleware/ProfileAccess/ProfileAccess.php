@@ -10,6 +10,7 @@ use App\Repository\User\UserRepository;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -28,12 +29,13 @@ abstract class ProfileAccess implements MiddlewareInterface, ProfileAccessInterf
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws OAuthServerException
      */
     protected function getUser(ServerRequestInterface $request): UserEntity
     {
         $repositoryManager = App::container()->get(RepositoryManager::class);
 
-        /** @var RepositoryManager $repositoryManager */
+        /** @var BearerTokenValidator $bearerValidator */
         $bearerValidator = App::container()->get(BearerTokenValidator::class);
 
         /** @var UserRepository $userRepository */

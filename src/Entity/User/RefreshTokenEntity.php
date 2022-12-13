@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -11,18 +12,36 @@ namespace App\Entity\User;
 
 use App\Entity\Entity;
 use DateTime;
+use DateTimeImmutable;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 
 class RefreshTokenEntity extends Entity implements RefreshTokenEntityInterface
 {
-    use RefreshTokenTrait, EntityTrait;
+    use RefreshTokenTrait;
+
+    use EntityTrait;
 
     /**
      * @var string
      */
     protected $table = 'oauth2_refresh_token';
+
+    /**
+     * @var int
+     */
+    public int $oauth2_access_token_id;
+
+    /**
+     * @var string
+     */
+    public string $refresh_token;
+
+    /**
+     * @var DateTimeImmutable
+     */
+    public DateTimeImmutable $expire_time;
 
     /**
      * @return bool

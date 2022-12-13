@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -16,8 +17,8 @@ use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
 class ClientRepository extends Repository implements ClientRepositoryInterface
 {
-    const CLIENT_NAME = 'My Awesome App';
-    const REDIRECT_URI = 'http://foo/bar';
+    public const CLIENT_NAME = 'My Awesome App';
+    public const REDIRECT_URI = 'http://foo/bar';
 
     /**
      * {@inheritdoc}
@@ -59,6 +60,7 @@ class ClientRepository extends Repository implements ClientRepositoryInterface
         $queryBuilder = $this->query();
 
         $queryBuilder->where('identifier', '=', $data['client_id']);
+
         return $queryBuilder->get()->first();
     }
 

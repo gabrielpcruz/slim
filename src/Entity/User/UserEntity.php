@@ -11,6 +11,11 @@ class UserEntity extends Entity implements UserEntityInterface
     protected $table = 'user';
 
     /**
+     * @var int
+     */
+    public int $id;
+
+    /**
      * @return int
      */
     public function getIdentifier(): int

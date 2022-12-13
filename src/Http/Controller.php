@@ -25,7 +25,7 @@ abstract class Controller
     }
 
     /**
-     * @return mixed
+     * @return RepositoryManager
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -11,8 +12,6 @@ namespace App\Repository\User;
 
 use App\Entity\User\AccessTokenEntity;
 use App\Repository\Repository;
-use DateTime;
-use DateTimeImmutable;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
@@ -34,6 +33,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
+        /** @var AccessTokenEntity $accessTokenEntity */
         $accessTokenEntity->access_token = $accessTokenEntity->getIdentifier();
         $accessTokenEntity->expiry_date_time = $accessTokenEntity->getExpiryDateTime();
 
@@ -74,6 +74,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      */
     public function isAccessTokenRevoked($tokenId): bool
     {
+        /** @var AccessTokenEntity $token */
         $token = $this->findOneBy([
             'access_token' => $tokenId,
         ]);

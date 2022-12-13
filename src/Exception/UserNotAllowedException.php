@@ -12,10 +12,13 @@ class UserNotAllowedException extends SlimException
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
-    {
+    public function __construct(
+        string $message = MessageExceptionSystem::MES0001,
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct(
-            MessageExceptionSystem::MES0001,
+            $message,
             $code,
             $previous
         );

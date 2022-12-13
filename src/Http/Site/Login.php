@@ -2,6 +2,7 @@
 
 namespace App\Http\Site;
 
+use App\Entity\User\UserEntity;
 use App\Enum\FlashMessage;
 use App\Http\SiteController;
 use App\Message\Success\System\MessageSuccessSystem;
@@ -46,11 +47,12 @@ class Login extends SiteController
      */
     public function login(Request $request, Response $response): Response
     {
-        $data = $request->getParsedBody();
+        $data = (array) $request->getParsedBody();
 
         /** @var UserRepository $userRepository */
         $userRepository = $this->getRepositoryManager()->get(UserRepository::class);
 
+        /** @var UserEntity $user */
         $user = $userRepository->getUserEntityByCredentials($data);
 
         if ($user) {

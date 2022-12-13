@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -16,7 +17,8 @@ use League\OAuth2\Server\Entities\Traits\ScopeTrait;
 
 class ScopeEntity extends Entity implements ScopeEntityInterface
 {
-    use EntityTrait, ScopeTrait;
+    use EntityTrait;
+    use ScopeTrait;
 
     /**
      * @var string

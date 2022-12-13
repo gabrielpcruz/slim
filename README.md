@@ -5,7 +5,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/gabrielpcruz/slim)
 ![GitHub all downloads](https://poser.pugx.org/gabrielpcruz/slim/d/total.svg)
 [![GitHub issues](https://img.shields.io/github/issues/gabrielpcruz/slim?style)](https://github.com/gabrielpcruz/slim/issues)
-
+[![codecov](https://codecov.io/gh/gabrielpcruz/slim/branch/master/graph/badge.svg)](https://codecov.io/gh/gabrielpcruz/slim)
 ## Setup and runing
 
 You can use my [another repository](https://github.com/gabrielpcruz/application-php)

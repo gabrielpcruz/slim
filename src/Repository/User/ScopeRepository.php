@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Alex Bilbie <hello@alexbilbie.com>
  * @copyright   Copyright (c) Alex Bilbie
@@ -12,7 +13,10 @@ namespace App\Repository\User;
 use App\Entity\User\ScopeEntity;
 use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+
+use function array_key_exists;
 
 class ScopeRepository extends Repository implements ScopeRepositoryInterface
 {
@@ -25,10 +29,10 @@ class ScopeRepository extends Repository implements ScopeRepositoryInterface
     }
 
     /**
-     * @param $scopeIdentifier
+     * @param $identifier
      * @return ScopeEntity|void
      */
-    public function getScopeEntityByIdentifier($scopeIdentifier)
+    public function getScopeEntityByIdentifier($identifier)
     {
         $scopes = [
             'basic' => [
@@ -38,27 +42,28 @@ class ScopeRepository extends Repository implements ScopeRepositoryInterface
                 'description' => 'Your email address',
             ],
         ];
-
-        if (\array_key_exists($scopeIdentifier, $scopes) === false) {
+        if (array_key_exists($identifier, $scopes) === false) {
             return;
         }
 
         $scope = new ScopeEntity();
-        $scope->setIdentifier($scopeIdentifier);
-
+        $scope->setIdentifier($identifier);
         return $scope;
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $scopes
+     * @param $grantType
+     * @param ClientEntityInterface $clientEntity
+     * @param $userIdentifier
+     * @return array|ScopeEntityInterface[]
      */
     public function finalizeScopes(
-        array                 $scopes,
-                              $grantType,
+        array $scopes,
+        $grantType,
         ClientEntityInterface $clientEntity,
-                              $userIdentifier = null
-    )
-    {
+        $userIdentifier = null
+    ): array {
         // Example of programatically modifying the final scope of the access token
         if ((int)$userIdentifier === 1) {
             $scope = new ScopeEntity();

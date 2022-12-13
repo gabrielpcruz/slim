@@ -14,7 +14,7 @@ class SlashTraceProvider implements ProviderInterface
      * @param Dot $settings
      * @return void
      */
-    public function provide(ContainerInterface $container, Dot $settings)
+    public function provide(ContainerInterface $container, Dot $settings): void
     {
         if ($settings->get('error.slashtrace')) {
             $slashtrace = new SlashTrace();

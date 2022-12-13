@@ -6,6 +6,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use stdClass;
 
+use function PHPUnit\Framework\isFinite;
+
 class ApiController extends Controller
 {
     /**
@@ -16,13 +18,16 @@ class ApiController extends Controller
      */
     public function responseJSON(
         ResponseInterface $response,
-        array             $data,
-        int               $status = 200
-    ): ResponseInterface
-    {
-        $json = json_encode($data, JSON_PRETTY_PRINT);
+        array $data,
+        int $status = 200
+    ): ResponseInterface {
+        $encodedJson = json_encode($data, JSON_PRETTY_PRINT);
 
-        $response->getBody()->write($json);
+        if (!is_string($encodedJson)) {
+            $encodedJson = '';
+        }
+
+        $response->getBody()->write($encodedJson);
 
         return $response
             ->withHeader('Content-Type', 'application/json')
@@ -35,6 +40,6 @@ class ApiController extends Controller
      */
     protected function getJsonBody(Request $request): stdClass
     {
-        return json_decode($request->getBody()->getContents());
+        return json_decode($request->getBody()->getContents()) ?? new stdClass();
     }
 }

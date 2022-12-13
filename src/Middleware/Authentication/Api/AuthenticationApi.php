@@ -3,6 +3,7 @@
 namespace App\Middleware\Authentication\Api;
 
 use App\App;
+use App\Entity\User\ClientEntity;
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
@@ -46,6 +47,7 @@ class AuthenticationApi implements MiddlewareInterface
      */
     public function authenticate(ServerRequestInterface $request): ServerRequestInterface
     {
+        /** @var string $oauth2PublicKey */
         $oauth2PublicKey = App::settings()->get('file.oauth_public');
 
         /** @var AccessTokenRepository $accessTokenRepository */
@@ -59,6 +61,7 @@ class AuthenticationApi implements MiddlewareInterface
         $request = $server->validateAuthenticatedRequest($request);
         $clientRepository = $this->repositoryManager->get(ClientRepository::class);
 
+        /** @var ClientEntity $client */
         $client = $clientRepository->findOneBy([
             'id' => $request->getAttribute('oauth_client_id'),
         ]);

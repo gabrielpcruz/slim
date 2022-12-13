@@ -6,6 +6,7 @@ use App\Entity\Entity;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Original source @see https://github.com/jerfeson/slim4-skeleton/blob/feature/3.0.0/app/Repository/Repository.php
@@ -61,16 +62,6 @@ abstract class Repository
     public function query(): Builder
     {
         return $this->entity->newQuery();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return null|Entity|mixed
-     */
-    public function findById($id): ?Entity
-    {
-        return $this->query()->find($id);
     }
 
     /**

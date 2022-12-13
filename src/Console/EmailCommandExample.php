@@ -37,10 +37,10 @@ class EmailCommandExample extends Console
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         /** @var Mailer $mailer */
-        $mailer = $this->container->get(Mailer::class);
+        $mailer = $this->getContainer()->get(Mailer::class);
 
         /** @var Twig $twig */
-        $twig = $this->container->get(Twig::class);
+        $twig = $this->getContainer()->get(Twig::class);
 
         $body = $twig->fetch(
             '@email/email_example.twig',

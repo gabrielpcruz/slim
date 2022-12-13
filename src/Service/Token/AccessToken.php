@@ -3,6 +3,8 @@
 namespace App\Service\Token;
 
 use App\App;
+use App\Entity\User\ClientEntity;
+use App\Entity\User\UserEntity;
 use App\Repository\RepositoryManager;
 use App\Repository\User\ClientRepository;
 use App\Repository\User\UserRepository;
@@ -15,56 +17,36 @@ use ReflectionException;
 class AccessToken
 {
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return ClientEntity|null
      * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
      */
-    public function getClientByGrant($data)
+    public function getClientByGrant(array $data): ?ClientEntity
     {
         $grant_type = $data['grant_type'];
 
         switch ($grant_type) {
-            case 'client_credentials':
-                return $this->getTokenByClientCredentials($data);
             case 'refresh_token':
-                return $this->getTokenByClientIdentifier($data);
+                return $this->getClientByIdentifier($data);
             default:
-                return $this->getTokenByUserPassword($data);
+                return $this->getClientByUserPassword($data);
         }
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
-     * @throws ReflectionException
-     *
-     */
-    private function getTokenByClientCredentials($data)
-    {
-        return $this->clientService->getRepository()->findBy(
-            [
-                'identifier' => $data['client_id'],
-                'secret' => $data['client_secret'],
-            ]
-        )->first();
-    }
-
-    /**
-     * @param $data
-     *
-     * @return mixed
+     * @return ClientEntity|null
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByUserPassword($data)
+    private function getClientByUserPassword(array $data): ?ClientEntity
     {
         $repositoryManager = App::container()->get(RepositoryManager::class);
 
@@ -76,19 +58,20 @@ class AccessToken
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return ClientEntity|null
+     * @throws ContainerExceptionInterface
      * @throws DependencyException
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    private function getTokenByClientIdentifier($data)
+    private function getClientByIdentifier(array $data): ?ClientEntity
     {
-        $repositoryManager = App::container()->get(RepositoryManager::class);
+        /** @var ClientRepository $clientRepository */
+        $clientRepository = App::container()->get(RepositoryManager::class)->get(ClientRepository::class);
 
-        return $repositoryManager->get(ClientRepository::class)->getClientEntityByCredentials(
+        return $clientRepository->getClientEntityByCredentials(
             $data
         );
     }

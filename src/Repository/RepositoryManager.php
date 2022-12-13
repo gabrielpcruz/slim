@@ -8,7 +8,8 @@ use ReflectionException;
 use RuntimeException;
 
 /**
- * Original source @see https://github.com/jerfeson/slim4-skeleton/blob/feature/3.0.0/app/Repository/RepositoryManager.php
+ * Original source
+ * @see https://github.com/jerfeson/slim4-skeleton/blob/feature/3.0.0/app/Repository/RepositoryManager.php
  *
  * @author Thiago Daher
  */
@@ -51,7 +52,7 @@ class RepositoryManager
     /**
      * @param string $repositoryClass
      *
-     * @return object|Repository
+     * @return Repository
      * @throws ReflectionException
      *
      */
@@ -71,6 +72,7 @@ class RepositoryManager
             throw new RuntimeException('The specified class is not an repository!');
         }
 
+        /** @var Repository $repository */
         $repository = new $repositoryClass();
 
         $entityClass = $repository->getEntityClass();

@@ -20,7 +20,7 @@ class RiceDatabase extends ConsoleMigration
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('slim:migration-create-demo');
         $this->setDescription('Create de demo database');
@@ -44,7 +44,7 @@ class RiceDatabase extends ConsoleMigration
         return Command::SUCCESS;
     }
 
-    private function createTables()
+    private function createTables(): void
     {
         if (!$this->schemaBuilder->hasTable('rice')) {
             $this->schemaBuilder->create('rice', function ($table) {
@@ -57,7 +57,7 @@ class RiceDatabase extends ConsoleMigration
         }
     }
 
-    private function insertData()
+    private function insertData(): void
     {
         $date = new DateTime();
 

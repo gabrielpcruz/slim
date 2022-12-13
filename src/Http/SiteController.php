@@ -28,7 +28,7 @@ class SiteController extends Controller
 
     /**
      * @param Response $response
-     * @param $template
+     * @param string $template
      * @param array $args
      * @return Response
      * @throws LoaderError
@@ -37,10 +37,9 @@ class SiteController extends Controller
      */
     public function view(
         Response $response,
-                 $template,
-        array    $args = []
-    ): Response
-    {
+        string $template,
+        array $args = []
+    ): Response {
         return $this->twig->render($response, $template . ".twig", $args);
     }
 }
