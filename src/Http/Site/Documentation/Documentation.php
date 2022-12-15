@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Site;
+namespace App\Http\Site\Documentation;
 
 use App\App;
-use App\Http\SiteController;
+use App\Http\Site\SiteController;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

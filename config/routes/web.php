@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Site\Documentation;
-use App\Http\Site\Home;
-use App\Http\Site\Login;
+
+use App\Http\Site\Auth\Login;
+use App\Http\Site\Documentation\Documentation;
+use App\Http\Site\Home\Home;
 use App\Middleware\Authentication\Site\AuthenticationSite;
 use Slim\App;
 

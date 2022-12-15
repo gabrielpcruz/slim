@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Api;
 
+use App\Http\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use stdClass;
-
-use function PHPUnit\Framework\isFinite;
 
 class ApiController extends Controller
 {

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Api\Auth\Token;
-use App\Http\Api\Home;
+use App\Http\Api\Home\Home;
 use App\Middleware\Authentication\Api\AuthenticationApi;
 use App\Middleware\ProfileAccess\Administrator;
 use Slim\App;
