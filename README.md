@@ -27,7 +27,7 @@ This project is based on best practices and industry standards:
 * Code styles (PSR-12)
 * Unit - and integration tests
 * Console Commands
-* Tested with [Github Actions](https://github.com/odan/slim4-skeleton/actions)
+* Tested with [Github Actions](https://github.com/gabrielpcruz/slim/actions)
 
 ## Support
 
