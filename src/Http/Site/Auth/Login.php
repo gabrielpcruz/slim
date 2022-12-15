@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Site;
+namespace App\Http\Site\Auth;
 
 use App\Entity\User\UserEntity;
 use App\Enum\FlashMessage;
-use App\Http\SiteController;
+use App\Http\Site\SiteController;
 use App\Message\Success\System\MessageSuccessSystem;
 use App\Repository\User\UserRepository;
 use App\Service\Session\Session;

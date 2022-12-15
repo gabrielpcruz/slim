@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Api;
+namespace App\Http\Api\Home;
 
 use App\Business\Rice\RiceBusiness;
-use App\Http\ApiController;
+use App\Http\Api\ApiController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 

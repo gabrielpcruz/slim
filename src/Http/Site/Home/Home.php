@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Site;
+namespace App\Http\Site\Home;
 
 use App\Business\Rice\RiceBusiness;
-use App\Http\SiteController;
+use App\Http\Site\SiteController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Twig\Error\LoaderError;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Site;
 
+use App\Http\Controller;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\Twig;
