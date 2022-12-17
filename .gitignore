@@ -1,3 +1,4 @@
 vendor/
 .idea/
 storage/cache/views/*
+storage/database/db.sqlite
