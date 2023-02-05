@@ -53,4 +53,20 @@ class Home extends SiteController
             compact('rices')
         );
     }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function maintenance(Request $request, Response $response): Response
+    {
+        return $this->view(
+            $response,
+            "@site/home/maintenance",
+        );
+    }
 }

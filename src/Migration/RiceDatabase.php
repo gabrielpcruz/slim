@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Migration;
+namespace App\Migration;
 
 use DateTime;
 use Symfony\Component\Console\Command\Command;
