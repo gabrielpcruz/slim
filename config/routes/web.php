@@ -10,6 +10,9 @@ use Slim\App;
 return function (App $app) {
     $app->redirect('/', '/login');
 
+    $app->get('/maintenance', [Home::class, 'maintenance']);
+
+
     $app->get('/home', [Home::class, 'index']);
 
     $app->get('/logged', [Home::class, 'logged'])->add(AuthenticationSite::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Migration;
+namespace App\Migration;
 
 use App\Console\Console;
 use Illuminate\Database\Capsule\Manager;

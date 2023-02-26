@@ -19,6 +19,16 @@ $settings['path'] = [
     'migration' => ROOT_PATH . '/src/Console/Migration',
     'slim' => ROOT_PATH . '/src/Console/Slim',
     'provider' => ROOT_PATH . '/src/Provider',
+    'repository' => ROOT_PATH . '/src/Repository',
+    'entity' => ROOT_PATH . '/src/Entity',
+    'business' => ROOT_PATH . '/src/Business',
+    'files' => [
+        'images' => ROOT_PATH . '/storage/images'
+    ],
+];
+
+$settings['system'] = [
+    'maintenance' => 0,
 ];
 
 $settings['file'] = [

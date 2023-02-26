@@ -2,8 +2,8 @@
 
 namespace App\Console\Slim;
 
-use App\Console\Migration\ConsoleMigration;
 use App\Enum\EnumProfile;
+use App\Migration\ConsoleMigration;
 use DateTime;
 use Exception;
 use Symfony\Component\Console\Command\Command;

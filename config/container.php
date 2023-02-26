@@ -11,6 +11,9 @@ use App\Twig\AssetsTwigExtension;
 use App\Twig\FlashMessageTwigExtension;
 use App\Twig\GuardTwigExtension;
 use App\Twig\GuestTwigExtension;
+use App\Twig\IsProductionTwigExtension;
+use App\Twig\PaginateTwigExtension;
+use App\Twig\StoragePathTwigExtension;
 use App\Twig\VersionTwigExtension;
 use Illuminate\Database\Capsule\Manager;
 use League\OAuth2\Server\AuthorizationServer;
@@ -82,6 +85,9 @@ return [
         $twig->addExtension(new GuardTwigExtension());
         $twig->addExtension(new VersionTwigExtension());
         $twig->addExtension(new FlashMessageTwigExtension());
+        $twig->addExtension(new PaginateTwigExtension());
+        $twig->addExtension(new IsProductionTwigExtension());
+        $twig->addExtension(new StoragePathTwigExtension());
 
         return $twig;
     },

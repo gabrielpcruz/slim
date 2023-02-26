@@ -18,7 +18,7 @@ try {
     ];
 
     // Migration
-    $migrationNamespace = "App\\Console\\Migration\\";
+    $migrationNamespace = "App\\Migration\\";
     $migrationPath = App::settings()->get('path.migration');
 
     $migrationCommands = turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);

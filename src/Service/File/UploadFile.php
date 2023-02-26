@@ -26,8 +26,6 @@ class UploadFile
 
             $fullFileName = "{$destinationPath}/{$filename}";
 
-            var_dump($fullFileName);
-
             $uploadedFile->moveTo($fullFileName);
         }
 

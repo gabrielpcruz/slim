@@ -3,6 +3,7 @@
 namespace App;
 
 use Adbar\Dot;
+use App\Middleware\MaintenanceMiddleware;
 use App\Provider\ProviderInterface;
 use App\Service\Handler\Error;
 use DI\Container;
@@ -186,6 +187,8 @@ class App
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
         $errorMiddleware->setDefaultErrorHandler(Error::class);
+
+        $app->add(MaintenanceMiddleware::class);
 
         return $app;
     }
