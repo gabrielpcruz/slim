@@ -33,7 +33,7 @@
     "scripts": {
         "codesniffer" : "./vendor/bin/phpcs --colors --standard=PSR12 src",
         "codesniffer-fix" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
-        "phpstan" : "./vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpstan" : "./vendor/bin/phpstan analyse -c phpstan.neon"
     },
     "autoload": {
         "psr-4": {
