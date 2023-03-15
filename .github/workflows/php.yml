@@ -35,11 +35,11 @@ jobs:
     - name: Codecov
       uses: codecov/codecov-action@v3.1.1
 
-    -   name: Checking PSR12
-        run: composer codesniffer
+    - name: Checking PSR12
+      run: composer codesniffer
 
-    -   name: Checking Code Error With PHPStan
-        run: composer phpstan
+    - name: Checking Code Error With PHPStan
+      run: composer phpstan
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
