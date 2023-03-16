@@ -15,6 +15,7 @@
         }
     ],
     "require": {
+        "php": ">=8.2",
         "slim/slim": "^4.10",
         "guzzlehttp/psr7": "^2.4",
         "php-di/php-di": "^6.4",
