@@ -2,6 +2,7 @@
 
 namespace App\Migration;
 
+use App\Migration\Slim\ConsoleMigration;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,12 +34,12 @@ class RiceDatabase extends ConsoleMigration
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln('<info>Starting migration</info>');
+        $this->info("Starting migration");
 
-        $output->writeln('<comment>Creating tables...</comment>');
+        $this->comment("Creating tables...");
         $this->createTables();
 
-        $output->writeln('<comment>Inserting data...</comment>');
+        $this->comment("Inserting data...");
         $this->insertData();
 
         return Command::SUCCESS;

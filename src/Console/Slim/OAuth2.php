@@ -3,7 +3,7 @@
 namespace App\Console\Slim;
 
 use App\Enum\EnumProfile;
-use App\Migration\ConsoleMigration;
+use App\Migration\Slim\ConsoleMigration;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,7 +23,7 @@ class OAuth2 extends ConsoleMigration
      */
     protected function configure()
     {
-        $this->setName('slim:oauth2-create-tables');
+        $this->setName('oauth2:create-tables');
         $this->setDescription('Create the tables from oauth');
     }
 

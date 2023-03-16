@@ -9,7 +9,9 @@ $commands = [];
 try {
     $excludeClasses = [
         "ConsoleMigration.php",
-        "Console.php"
+        "Console.php",
+        "MigrationTrait.php",
+        "Migration.php",
     ];
 
     $excludePaths = [
@@ -18,8 +20,8 @@ try {
     ];
 
     // Migration
-    $migrationNamespace = "App\\Migration\\";
-    $migrationPath = App::settings()->get('path.migration');
+    $migrationNamespace = "App\\Migration\\Slim\\";
+    $migrationPath = App::settings()->get('path.migration') . '/Slim';
 
     $migrationCommands = turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
 

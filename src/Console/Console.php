@@ -16,6 +16,16 @@ abstract class Console extends Command
     protected ContainerInterface $container;
 
     /**
+     * @var InputInterface
+     */
+    private InputInterface $input;
+
+    /**
+     * @var OutputInterface
+     */
+    private OutputInterface $output;
+
+    /**
      * @param ContainerInterface $container
      * @param string|null $name
      */
@@ -66,10 +76,76 @@ abstract class Console extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return void
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->input = $input;
+        $this->output = $output;
+    }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
      * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         throw new DomainException("Overide me " . __METHOD__);
+    }
+
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    protected function info(string $message): void
+    {
+        $this->output->writeln("<info>{$message}</info>");
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    protected function comment(string $message): void
+    {
+        $this->output->writeln("<comment>{$message}</comment>");
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    protected function question(string $message): void
+    {
+        $this->output->writeln("<question>{$message}</question>");
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    protected function error(string $message): void
+    {
+        $this->output->writeln("<error>{$message}</error>");
+    }
+
+    /**
+     * @param string $message
+     * @param string $url
+     * @return void
+     */
+    protected function link(string $message, string $url): void
+    {
+        $this->output->writeln("<href='{$url}'>{$message}</href>");
+    }
+
+    /**
+     * @return void
+     */
+    protected function breakLine(): void
+    {
+        $this->output->writeln("");
     }
 }

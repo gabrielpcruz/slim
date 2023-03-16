@@ -17,7 +17,7 @@ class NewBusiness extends Console
      */
     protected function configure()
     {
-        $this->setName('slim:new-business-complete');
+        $this->setName('slim:new-business');
         $this->setDescription('Create a full new Business');
     }
 
