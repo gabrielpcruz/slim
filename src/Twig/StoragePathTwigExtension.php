@@ -31,11 +31,10 @@ class StoragePathTwigExtension extends AbstractExtension
      */
     public function storage_path(): string
     {
-        $protocolo = $_SERVER['REQUEST_SCHEME'];
         $host = $_SERVER['HTTP_HOST'];
 
-        $ssl = App::isProduction() ? 's' : '';
+        $protocol = App::isProduction() ? 'https' : 'http';
 
-        return "{$protocolo}{$ssl}://{$host}/storage";
+        return "{$protocol}://{$host}/storage";
     }
 }

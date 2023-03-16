@@ -3,6 +3,7 @@
 use App\App;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Illuminate\Database\Query\Builder;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -136,5 +137,55 @@ if (!function_exists('str_rand')) {
         $length = ($length < 4) ? 4 : $length;
 
         return bin2hex(random_bytes(($length - ($length % 2)) / 2));
+    }
+}
+
+if (!function_exists('slugify')) {
+    function slugify($text, string $divider = '-'): string
+    {
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $divider);
+
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+}
+
+if (!function_exists('dd')) {
+    function dd($expression) {
+
+        var_dump($expression);
+        die;
+    }
+}
+
+if (!function_exists('dump_query')) {
+    function dump_query(Builder $query) {
+
+        $gramar = $query->getGrammar();
+
+        dd(
+            $gramar->compileSelect(
+                $query
+            )
+        );
     }
 }

@@ -28,12 +28,13 @@
         "league/oauth2-server": "^8.3",
         "slim/flash": "^0.4.0",
         "phpmailer/phpmailer": "^6.7",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-iconv": "*"
     },
     "scripts": {
-        "codesniffer" : "./vendor/bin/phpcs --colors --standard=PSR12 src",
-        "codesniffer-fix" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
-        "phpstan" : "./vendor/bin/phpstan analyse -c phpstan.neon",
+        "codesniffer": "./vendor/bin/phpcs --colors --standard=PSR12 src",
+        "codesniffer-fix": "./vendor/bin/phpcbf --colors --standard=PSR12 src",
+        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon",
         "post-install-cmd": [
             "php bin/console slim:create-database-file",
             "php bin/console slim:migration-create-demo",
