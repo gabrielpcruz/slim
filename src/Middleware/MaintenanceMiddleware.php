@@ -14,7 +14,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class MaintenanceMiddleware implements MiddlewareInterface
 {
-
     /**
      * @param ServerRequestInterface $request
      * @param RequestHandlerInterface $handler

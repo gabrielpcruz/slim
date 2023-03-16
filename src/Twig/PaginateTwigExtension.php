@@ -39,9 +39,9 @@ class PaginateTwigExtension extends AbstractExtension
         foreach ($params->toArray() as $page) {
             $page = (object) $page;
 
-            $url = $uri . '/' . str_replace(['/', '?'], '',  $page->url);
-            $url = str_replace(['='], '',  $url);
-            $url = str_replace(['page'], '',  $url);
+            $url = $uri . '/' . str_replace(['/', '?'], '', $page->url);
+            $url = str_replace(['='], '', $url);
+            $url = str_replace(['page'], '', $url);
 
 
             $url = $currentUrl . '/' . $url;

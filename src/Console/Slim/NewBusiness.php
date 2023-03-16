@@ -33,7 +33,7 @@ class NewBusiness extends Console
         $helper = $this->getHelper('question');
 
         $question = new Question(
-         "Digite o nome do Business: ",
+            "Digite o nome do Business: ",
         );
 
         $business = $helper->ask($input, $output, $question);
@@ -132,7 +132,6 @@ class {$entityName}Entity extends Entity
 STR;
 
         return str_replace("DOLAR_", "$", $entity);
-
     }
 
     private function templateRepository($repositoryName, $entityNameSpace, $entityName, $namespace)
@@ -158,7 +157,6 @@ class {$repositoryName}Repository extends Repository
 }
 
 STR;
-
     }
 
     private function templateBusiness($businessName, $repositoryNameSpace, $repositoryName, $namespace)
