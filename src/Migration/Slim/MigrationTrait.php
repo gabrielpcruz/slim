@@ -83,7 +83,7 @@ trait MigrationTrait
     /**
      * @return void
      */
-    protected function configureConnection() : void
+    protected function configureConnection(): void
     {
         $this->connection = Manager::connection($this->getConnectionName());
         $this->schemaBuilder = $this->connection->getSchemaBuilder();

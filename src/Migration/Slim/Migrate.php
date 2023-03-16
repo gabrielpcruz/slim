@@ -38,7 +38,6 @@ class Migrate extends ConsoleMigration
 
                 $migration->up();
             }
-
         } catch (Exception $exception) {
             $this->error($exception->getMessage());
 

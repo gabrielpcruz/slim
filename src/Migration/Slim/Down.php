@@ -38,7 +38,6 @@ class Down extends ConsoleMigration
 
                 $migration->down();
             }
-
         } catch (Exception $exception) {
             $this->error($exception->getMessage());
 

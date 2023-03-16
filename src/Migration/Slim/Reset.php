@@ -45,12 +45,10 @@ class Reset extends ConsoleMigration
 
             /** @var Migration $migration */
             foreach ($this->migrations() as $migration) {
-
                 $this->info("table {$this->getTableNome($migration)}...");
 
                 $migration->up();
             }
-
         } catch (Exception $exception) {
             $this->error($exception->getMessage());
 

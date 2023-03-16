@@ -16,22 +16,22 @@ abstract class Migration
     /**
      * @return void
      */
-    abstract public function up() : void;
+    abstract public function up(): void;
 
     /**
      * @return void
      */
-    abstract public function down() : void;
+    abstract public function down(): void;
 
     /**
      * @return int
      */
-    abstract public function sortIndex() : int;
+    abstract public function sortIndex(): int;
 
     /**
      * @return string
      */
-    private function getConnectionName() : string
+    private function getConnectionName(): string
     {
         return 'default';
     }
