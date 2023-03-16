@@ -83,7 +83,9 @@ class NewBusiness extends Console
 
         sleep(1);
 
-        $command = "echo '$newRepositoryClass' >> {$repositoryPath}/{$newRepositoryPath}/{$newRepositoryPath}Repository.php";
+        $class = "{$repositoryPath}/{$newRepositoryPath}/{$newRepositoryPath}Repository.php";
+
+        $command = "echo '$newRepositoryClass' >> {$class}";
         exec("$command");
 
         // Cria Business

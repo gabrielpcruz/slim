@@ -22,14 +22,14 @@ class IsProductionTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('is_production', [$this, 'is_production']),
+            new TwigFunction('is_production', [$this, 'isProduction']),
         ];
     }
 
     /**
      * @return bool
      */
-    public function is_production(): bool
+    public function isProduction(): bool
     {
         return App::isProduction();
     }

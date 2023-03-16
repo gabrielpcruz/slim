@@ -22,14 +22,14 @@ class StoragePathTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('storage_path', [$this, 'storage_path']),
+            new TwigFunction('storage_path', [$this, 'storagePath']),
         ];
     }
 
     /**
      * @return string
      */
-    public function storage_path(): string
+    public function storagePath(): string
     {
         $host = $_SERVER['HTTP_HOST'];
 
