@@ -13,13 +13,14 @@ to execute this aplication using docker.
 
 ## Composer creating project
 ```
-$ composer create-project --prefer-dist gabrielpcruz/slim myapp "1.3.*"
+$ composer create-project --prefer-dist gabrielpcruz/slim myapp "1.4.*"
 ```
 
 ## Features
 
 This project is based on best practices and industry standards:
 
+* \>= PHP 8.2
 * HTTP router (Slim)
 * HTTP Server Request Handlers, Middleware (PSR-15)
 * Dependency injection container (PSR-11)
