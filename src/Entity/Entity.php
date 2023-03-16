@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Entity extends Model
 {
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->getAttribute('id');
+    }
+
+    /**
      * Dynamically retrieve attributes on the model.
      *
      * @param string $key
