@@ -35,8 +35,9 @@ $settings['file'] = [
     'providers' => $settings['path']['config'] . '/provider/providers.php',
     'commands' => $settings['path']['config'] . '/command/commands.php',
     'database' => $settings['path']['config'] . '/database/database.php',
-    'oauth_private' => $settings['path']['data'] . '/keys/oauth/private.key',
-    'oauth_public' => $settings['path']['data'] . '/keys/oauth/public.key',
+
+    'oauth_private' => $settings['path']['data'] . '/oauth/keys/private.key',
+    'oauth_public' => $settings['path']['data'] . '/oauth/keys/public.key',
 ];
 
 $settings['mailer'] = [
