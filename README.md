@@ -13,7 +13,7 @@ to execute this aplication using docker.
 
 ## Composer creating project
 ```
-$ composer create-project --prefer-dist gabrielpcruz/slim myapp "1.4.*"
+$ composer create-project --prefer-dist gabrielpcruz/slim myapp "2.0.*"
 ```
 
 ## Features
