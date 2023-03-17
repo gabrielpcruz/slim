@@ -28,7 +28,20 @@ if (!function_exists('turnNameSpacePathIntoArray')) {
             $isExcludeFile = in_array($class, $excludeFiles);
 
             if (!$isExcludePath && !$isExcludeFile) {
-                $items[] = $namespace . str_replace('.php', '', $class);
+                $possibleDirectory = $nameSpacePath . "/{$class}";
+
+                if (!is_dir($possibleDirectory)) {
+                    $items[] = $namespace . str_replace('.php', '', $class);
+                } else {
+                    $newNameSpace = ($namespace . $class . "\\" );
+
+                    $items = array_merge($items, turnNameSpacePathIntoArray(
+                        $possibleDirectory,
+                        $newNameSpace,
+                        $excludeFiles,
+                        $excludePaths
+                    ));
+                }
             }
         }
 

@@ -68,7 +68,7 @@ abstract class Console extends Command
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure() : void
     {
         throw new DomainException("Overide me " . __METHOD__);
     }
@@ -78,7 +78,7 @@ abstract class Console extends Command
      * @param OutputInterface $output
      * @return void
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output) : void
     {
         $this->input = $input;
         $this->output = $output;

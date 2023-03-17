@@ -14,17 +14,9 @@ use Symfony\Component\Console\Question\Question;
 class NewUser extends ConsoleMigration
 {
     /**
-     * @return string
-     */
-    protected function getConnectionName(): string
-    {
-        return 'default';
-    }
-
-    /**
      * @return void
      */
-    protected function configure()
+    protected function configure() : void
     {
         $this->setName('slim:new-user');
         $this->setDescription('Create a new user');
@@ -38,7 +30,7 @@ class NewUser extends ConsoleMigration
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln('<info>Creating a new user...</info>');
+        $this->info("Creating a new user...");
 
         $helper = $this->getHelper('question');
 

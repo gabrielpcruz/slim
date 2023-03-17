@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use App\Entity\Entity;
 use App\Entity\Example\RiceEntity;
 use App\Repository\Example\RiceRespository;
 use App\Repository\Repository;
@@ -46,27 +45,18 @@ class ConsoleExample extends Console
      */
     private function examplesOutPut(OutputInterface $output): void
     {
-        $message = "<info>Hello, I'm console command Info.</info>";
+        $this->info("Hello, I'm console command Info.");
 
-        $output->writeln($message);
+        $this->comment("Hello, I'm console command Comment.");
 
-        $message = "<comment>Hello, I'm console command Comment.</comment>";
+        $this->question("Hello, I'm console Question.");
 
-        $output->writeln($message);
+        $this->error("Hello, I'm console command Error.");
 
-        $message = "<question>Hello, I'm console Question.</question>";
-
-        $output->writeln($message);
-
-        $message = "<error>Hello, I'm console command Error.</error>";
-
-        $output->writeln($message);
-
-        $link = 'https://github.com/gabrielpcruz/slim';
-
-        $message = "<href={$link}>I'm a example of link on console. Hold CTRL + Click-me</>";
-
-        $output->writeln($message);
+        $this->link(
+            "I'm a example of link on console. Hold CTRL + Click-me",
+            'https://github.com/gabrielpcruz/slim'
+        );
     }
 
     /**

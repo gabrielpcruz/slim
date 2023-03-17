@@ -2,7 +2,6 @@
 
 namespace App\Migration\Slim;
 
-use _PHPStan_e0e4f009c\Nette\Neon\Exception;
 use App\App;
 use DI\DependencyException;
 use DI\NotFoundException;

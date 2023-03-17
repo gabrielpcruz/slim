@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Slim;
+namespace App\Console\Slim\Oauth;
 
 use App\Enum\EnumProfile;
 use App\Migration\Slim\ConsoleMigration;
@@ -8,7 +8,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class OAuth2 extends ConsoleMigration
+
+class CreateTables extends ConsoleMigration
 {
     /**
      * @return string
@@ -21,7 +22,7 @@ class OAuth2 extends ConsoleMigration
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure() : void
     {
         $this->setName('oauth2:create-tables');
         $this->setDescription('Create the tables from oauth');
@@ -52,7 +53,7 @@ class OAuth2 extends ConsoleMigration
     /**
      *  Delete tables.
      */
-    private function dropTables()
+    private function dropTables() : void
     {
         $this->schemaBuilder->dropIfExists('oauth2_scope');
         $this->schemaBuilder->dropIfExists('oauth2_refresh_token');
@@ -68,7 +69,7 @@ class OAuth2 extends ConsoleMigration
     /**
      * Crate tables.
      */
-    private function createTables()
+    private function createTables() : void
     {
         if (!$this->schemaBuilder->hasTable('oauth2_scope')) {
             $this->schemaBuilder->create('oauth2_scope', function ($table) {
@@ -207,7 +208,7 @@ class OAuth2 extends ConsoleMigration
     /**
      * Enter standard data.
      */
-    private function insertData()
+    private function insertData() : void
     {
         $date = new \DateTime();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Slim;
+namespace App\Console\Slim\Database;
 
 use App\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
@@ -9,12 +9,12 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateDatabaseSqlite extends Console
+class CreateSqlite extends Console
 {
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure() : void
     {
         $this->setName('slim:create-database-file');
         $this->setDescription('Create the file demo to connect with sqlite.');
