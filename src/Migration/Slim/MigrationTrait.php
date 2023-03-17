@@ -52,7 +52,7 @@ trait MigrationTrait
             $ExcludePaths
         );
 
-        if (count($migrations)) {
+        if (!count($migrations)) {
             throw new InvalidArgumentException("None migrations classes found!");
         }
 
