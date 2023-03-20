@@ -4,6 +4,7 @@ use App\App;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Illuminate\Database\Query\Builder;
+use JetBrains\PhpStorm\NoReturn;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -11,43 +12,6 @@ use Slim\Flash\Messages;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
-
-if (!function_exists('turnNameSpacePathIntoArray')) {
-    function turnNameSpacePathIntoArray($nameSpacePath, $namespace, $excludeFiles = [], $excludePaths = []): array
-    {
-        $items = [];
-
-        $pathsToExclude = ['.', '..'];
-
-        foreach ($excludePaths as $path) {
-            $pathsToExclude[] = $path;
-        }
-
-        foreach (scandir($nameSpacePath) as $class) {
-            $isExcludePath = in_array($class, $pathsToExclude);
-            $isExcludeFile = in_array($class, $excludeFiles);
-
-            if (!$isExcludePath && !$isExcludeFile) {
-                $possibleDirectory = $nameSpacePath . "/{$class}";
-
-                if (!is_dir($possibleDirectory)) {
-                    $items[] = $namespace . str_replace('.php', '', $class);
-                } else {
-                    $newNameSpace = ($namespace . $class . "\\" );
-
-                    $items = array_merge($items, turnNameSpacePathIntoArray(
-                        $possibleDirectory,
-                        $newNameSpace,
-                        $excludeFiles,
-                        $excludePaths
-                    ));
-                }
-            }
-        }
-
-        return $items;
-    }
-}
 
 if (!function_exists('getConsole')) {
     function getConsole($container): Application
@@ -183,7 +147,8 @@ if (!function_exists('slugify')) {
 }
 
 if (!function_exists('dd')) {
-    function dd($expression) {
+    #[NoReturn] function dd($expression): void
+    {
 
         var_dump($expression);
         die;
@@ -191,7 +156,8 @@ if (!function_exists('dd')) {
 }
 
 if (!function_exists('dump_query')) {
-    function dump_query(Builder $query) {
+    #[NoReturn] function dump_query(Builder $query): void
+    {
 
         $gramar = $query->getGrammar();
 

@@ -33,27 +33,32 @@
         "ext-iconv": "*"
     },
     "scripts": {
+        "test" : "./vendor/bin/pest",
         "codesniffer" : "./vendor/bin/phpcs --colors --standard=PSR12 src",
         "codesniffer-fix" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
         "phpstan" : "./vendor/bin/phpstan analyse -c phpstan.neon"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Tests\\": "tests/"
         },
         "files": [
             "resources/helpers/slim.php"
         ]
     },
     "require-dev": {
-        "codeception/codeception": "^4.1",
-        "codeception/module-asserts": "^1.0.0",
+        "mockery/mockery": "^1.5",
+        "pestphp/pest": "^1.22",
         "phpstan/phpstan": "^1.9",
         "squizlabs/php_codesniffer": "3.*"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }

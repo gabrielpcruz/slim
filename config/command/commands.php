@@ -3,6 +3,7 @@
 use App\App;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use App\Service\Directory\Directory;
 
 $commands = [];
 
@@ -23,14 +24,14 @@ try {
     $migrationNamespace = "App\\Migration\\Slim\\";
     $migrationPath = App::settings()->get('path.migration') . '/Slim';
 
-    $migrationCommands = turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
+    $migrationCommands = Directory::turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
 
     // Console
     $consoleCommands = [];
     $consoleNamespace = "App\\Console\\";
     $consolePath = App::settings()->get('path.console');
 
-    $consoleCommands = turnNameSpacePathIntoArray($consolePath, $consoleNamespace, $excludeClasses, $excludePaths);
+    $consoleCommands = Directory::turnNameSpacePathIntoArray($consolePath, $consoleNamespace, $excludeClasses, $excludePaths);
 
 
     // Slim
@@ -38,7 +39,7 @@ try {
     $slimNamespace = "App\\Console\\Slim\\";
     $slimPath = App::settings()->get('path.slim');
 
-    $slimCommands = turnNameSpacePathIntoArray($slimPath, $slimNamespace, $excludeClasses, $excludePaths);
+    $slimCommands = Directory::turnNameSpacePathIntoArray($slimPath, $slimNamespace, $excludeClasses, $excludePaths);
 
     $commands = array_merge($commands, $migrationCommands);
     $commands = array_merge($commands, $consoleCommands);

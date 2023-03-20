@@ -3,6 +3,7 @@
 namespace App\Migration\Slim;
 
 use App\App;
+use App\Service\Directory\Directory;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Generator;
@@ -45,7 +46,7 @@ trait MigrationTrait
             'Slim'
         ];
 
-        $migrations = turnNameSpacePathIntoArray(
+        $migrations = Directory::turnNameSpacePathIntoArray(
             $pathMigration,
             "\\App\\Migration\\",
             $excludeFiles,

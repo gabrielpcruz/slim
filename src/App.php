@@ -5,6 +5,7 @@ namespace App;
 use Adbar\Dot;
 use App\Middleware\MaintenanceMiddleware;
 use App\Provider\ProviderInterface;
+use App\Service\Directory\Directory;
 use App\Service\Handler\Error;
 use DI\Container;
 use DI\DependencyException;
@@ -216,12 +217,12 @@ class App
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    private static function provide(Container $container, Dot $settings)
+    private static function provide(Container $container, Dot $settings): void
     {
         $providersPath = self::settings()->get('path.provider');
         $providersNameSpace = "App\\Provider\\";
 
-        $providers = turnNameSpacePathIntoArray(
+        $providers = Directory::turnNameSpacePathIntoArray(
             $providersPath,
             $providersNameSpace,
             ['ProviderInterface.php']
@@ -238,7 +239,7 @@ class App
      * @param Dot $settings
      * @return void
      */
-    private static function defineConstants(Dot $settings)
+    private static function defineConstants(Dot $settings): void
     {
         define('STORAGE_PATH', $settings->get('path.storage'));
         define('PUBLIC_PATH', $settings->get('path.public'));
