@@ -15,7 +15,7 @@ class NewBusiness extends Console
     /**
      * @return void
      */
-    protected function configure() : void
+    protected function configure(): void
     {
         $this->setName('slim:new-business');
         $this->setDescription('Create a full new Business');
@@ -136,7 +136,7 @@ STR;
         return str_replace("DOLAR_", "$", $entity);
     }
 
-    private function templateRepository($repositoryName, $entityNameSpace, $entityName, $namespace) : string
+    private function templateRepository($repositoryName, $entityNameSpace, $entityName, $namespace): string
     {
         $entityFull = '\\' . $entityName . "Entity";
         return <<<STR

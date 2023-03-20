@@ -14,7 +14,7 @@ class CreateSqlite extends Console
     /**
      * @return void
      */
-    protected function configure() : void
+    protected function configure(): void
     {
         $this->setName('slim:create-database-file');
         $this->setDescription('Create the file demo to connect with sqlite.');

@@ -24,7 +24,7 @@ class CreateServerKeys extends Console
     /**
      * @return void
      */
-    protected function configure() : void
+    protected function configure(): void
     {
         $this->setName('oauth2:create-server-keys');
         $this->setDescription('Create the keys of oauth2.');

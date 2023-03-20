@@ -16,7 +16,7 @@ class NewUser extends ConsoleMigration
     /**
      * @return void
      */
-    protected function configure() : void
+    protected function configure(): void
     {
         $this->setName('slim:new-user');
         $this->setDescription('Create a new user');
