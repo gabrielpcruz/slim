@@ -9,8 +9,7 @@ class Directory
         $namespace,
         $excludeFiles = [],
         $excludePaths = []
-    ): array
-    {
+    ): array {
         $items = [];
 
         $pathsToExclude = ['.', '..'];
