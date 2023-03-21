@@ -1,8 +1,15 @@
 <?php
 // Settings
+use App\App;
 use PHPMailer\PHPMailer\SMTP;
 
 $settings = [];
+
+$rootCli = str_replace('/config/enviroment/settings_default.php', '', __FILE__);
+
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', $rootCli);
+}
 
 // Path settings
 $settings['root'] = ROOT_PATH;

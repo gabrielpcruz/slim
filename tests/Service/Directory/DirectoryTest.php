@@ -1,10 +1,12 @@
 <?php
 
+use App\App;
 use App\Service\Directory\Directory;
 use function PHPUnit\Framework\assertEquals;
 
-test('must correctly turn an directory into array', function () {
-    $rootPath = '/var/www/html';
+$rootPath = App::settings()->get('root');
+
+test('must correctly turn an directory into array', function () use ($rootPath) {
 
     $tested = Directory::turnNameSpacePathIntoArray(
         "{$rootPath}/Tests/Service/Directory/DirectoryTest",
