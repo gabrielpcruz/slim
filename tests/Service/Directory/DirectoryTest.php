@@ -8,6 +8,8 @@ $rootPath = App::settings()->get('root');
 
 var_dump($rootPath);
 var_dump(__DIR__);
+var_dump(GITHUB_WORKSPACE);
+var_dump(getenv("GITHUB_WORKSPACE") !== false);
 
 test('must correctly turn an directory into array', function () use ($rootPath) {
 
