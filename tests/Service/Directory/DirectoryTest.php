@@ -5,6 +5,8 @@ use function PHPUnit\Framework\assertEquals;
 
 $rootPath = getenv("GITHUB_WORKSPACE") ? getenv("GITHUB_WORKSPACE") : ROOT_PATH;
 
+var_dump($rootPath);
+
 test('must correctly turn an directory into array', function () use ($rootPath) {
 
     $tested = Directory::turnNameSpacePathIntoArray(
