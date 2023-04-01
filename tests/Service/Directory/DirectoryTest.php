@@ -6,6 +6,9 @@ use function PHPUnit\Framework\assertEquals;
 
 $rootPath = App::settings()->get('root');
 
+var_dump($rootPath);
+var_dump(__DIR__);
+
 test('must correctly turn an directory into array', function () use ($rootPath) {
 
     $tested = Directory::turnNameSpacePathIntoArray(
