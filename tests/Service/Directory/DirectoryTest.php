@@ -1,14 +1,9 @@
 <?php
 
-use App\App;
 use App\Service\Directory\Directory;
 use function PHPUnit\Framework\assertEquals;
 
-$rootPath = App::settings()->get('root');
-
-var_dump($rootPath);
-var_dump(__DIR__);
-var_dump(getenv("GITHUB_WORKSPACE"));
+$rootPath = getenv("GITHUB_WORKSPACE") ? getenv("GITHUB_WORKSPACE") : ROOT_PATH;
 
 test('must correctly turn an directory into array', function () use ($rootPath) {
 

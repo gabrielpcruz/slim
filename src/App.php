@@ -220,7 +220,7 @@ class App
     private static function provide(Container $container, Dot $settings): void
     {
         $providersPath = self::settings()->get('path.provider');
-        $providersNameSpace = "App\\Provider\\";
+        $providersNameSpace = "\\App\\Provider\\";
 
         $providers = Directory::turnNameSpacePathIntoArray(
             $providersPath,
