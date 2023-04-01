@@ -8,7 +8,7 @@ $rootPath = getenv("GITHUB_WORKSPACE") ? getenv("GITHUB_WORKSPACE") : ROOT_PATH;
 test('must correctly turn an directory into array', function () use ($rootPath) {
 
     $tested = Directory::turnNameSpacePathIntoArray(
-        "{$rootPath}/Tests/Service/Directory/DirectoryTest",
+        "{$rootPath}/tests/Service/Directory/DirectoryTest",
         "\\Tests\\Service\\Directory\\DirectoryTest\\"
     );
 
