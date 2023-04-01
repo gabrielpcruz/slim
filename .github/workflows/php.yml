@@ -8,6 +8,9 @@ on:
 
 permissions:
   contents: read
+  
+env:
+  GITHUB_WORKSPACE: ${{ github.workspace }} 
 
 jobs:
   build:
