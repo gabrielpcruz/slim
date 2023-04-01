@@ -46,6 +46,8 @@ jobs:
     - name: Checking Code Error With PHPStan
       run: composer phpstan
 
+    - uses: actions/checkout@v2
+    
     - name: Run test suite
       run: composer test
 
