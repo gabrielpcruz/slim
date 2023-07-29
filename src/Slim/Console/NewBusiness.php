@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Console\Slim;
+namespace App\Slim\Console;
 
-use App\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;

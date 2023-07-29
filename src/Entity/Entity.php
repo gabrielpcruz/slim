@@ -9,7 +9,7 @@ class Entity extends Model
     /**
      * @return int
      */
-    public function getId(): int
+    public function id(): int
     {
         return $this->getAttribute('id');
     }
@@ -34,5 +34,14 @@ class Entity extends Model
     public function __set($key, $value)
     {
         return $this->setAttribute($key, $value);
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function attribute($key): mixed
+    {
+        return $this->getAttribute($key);
     }
 }

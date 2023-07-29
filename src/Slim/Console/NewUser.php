@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Slim;
+namespace App\Slim\Console;
 
 use App\Enum\EnumProfile;
-use App\Migration\Slim\ConsoleMigration;
+use App\Slim\Migration\ConsoleMigration;
 use DateTime;
 use Exception;
 use Symfony\Component\Console\Command\Command;

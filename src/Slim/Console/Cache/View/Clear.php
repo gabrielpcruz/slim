@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Migration\Slim;
+namespace App\Slim\Console\Cache\View;
 
-use Exception;
+use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Migrate extends ConsoleMigration
+class Clear extends Console
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('migration:migrate');
-        $this->setDescription('Run all migrations on database');
+        $this->setName('slim:view-clear');
+        $this->setDescription('Clear the view cache.');
     }
 
     /**
@@ -29,20 +29,9 @@ class Migrate extends ConsoleMigration
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        try {
-            $this->comment("Creating tables...");
+        $cacheView = $this->getContainer()->get('settings')->get('view.settings.cache');
 
-            /** @var Migration $migration */
-            foreach ($this->migrations() as $migration) {
-                $this->info("table {$this->getTableNome($migration)}...");
-
-                $migration->up();
-            }
-        } catch (Exception $exception) {
-            $this->error($exception->getMessage());
-
-            return Command::FAILURE;
-        }
+        exec("rm -rf $cacheView/*");
 
         return Command::SUCCESS;
     }

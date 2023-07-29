@@ -6,6 +6,7 @@ use App\Entity\Example\RiceEntity;
 use App\Repository\Example\RiceRespository;
 use App\Repository\Repository;
 use App\Repository\RepositoryManager;
+use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
@@ -80,7 +81,7 @@ class ConsoleExample extends Console
         foreach ($repository->all() as $item) {
             $layout = "<comment>id: <info>%s</info> - name: <info>%s</info></comment>";
 
-            $message = sprintf($layout, $item->id, $item->name);
+            $message = sprintf($layout, $item->id(), $item->attribute('name'));
 
             $output->writeln($message);
         }

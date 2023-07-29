@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Slim\Oauth;
+namespace App\Slim\Console\Oauth;
 
 use App\Enum\EnumProfile;
-use App\Migration\Slim\ConsoleMigration;
+use App\Slim\Migration\ConsoleMigration;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

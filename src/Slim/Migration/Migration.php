@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Migration\Slim;
+namespace App\Slim\Migration;
 
 use Illuminate\Database\Schema\Blueprint;
 

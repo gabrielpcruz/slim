@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Seeder\Slim;
+namespace App\Slim\Seeder;
 
 use App\App;
-use App\Console\Console;
 use App\Service\Directory\Directory;
+use App\Slim\Console\Console;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

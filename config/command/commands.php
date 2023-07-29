@@ -24,14 +24,15 @@ try {
     ];
 
     // Migration
-    $migrationNamespace = "App\\Migration\\Slim\\";
-    $migrationPath = App::settings()->get('path.migration') . '/Slim';
+    $migrationNamespace = "App\\Slim\\Migration\\";
+    $migrationPath = App::settings()->get('path.slim.migration');
 
+//    dd($migrationPath);
     $migrationCommands = Directory::turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
 
     // Seeder
-    $seederNamespace = "App\\Seeder\\Slim\\";
-    $seederPath = App::settings()->get('path.seeder') . '/Slim';
+    $seederNamespace = "App\\Slim\\Seeder\\";
+    $seederPath = App::settings()->get('path.slim.seeder');
 
     $seederCommands = Directory::turnNameSpacePathIntoArray($seederPath, $seederNamespace, $excludeClasses);
 
@@ -45,8 +46,8 @@ try {
 
     // Slim
     $slimCommands = [];
-    $slimNamespace = "App\\Console\\Slim\\";
-    $slimPath = App::settings()->get('path.slim');
+    $slimNamespace = "App\\Slim\\Console\\";
+    $slimPath = App::settings()->get('path.slim.console');
 
     $slimCommands = Directory::turnNameSpacePathIntoArray($slimPath, $slimNamespace, $excludeClasses, $excludePaths);
 

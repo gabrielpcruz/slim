@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Slim\Oauth;
+namespace App\Slim\Console\Oauth;
 
-use App\Console\Console;
+use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;

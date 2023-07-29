@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace App\Slim\Console;
 
 use DomainException;
 use Psr\Container\ContainerInterface;

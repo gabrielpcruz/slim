@@ -2,7 +2,7 @@
 
 namespace App\Migration;
 
-use App\Migration\Slim\Migration;
+use App\Slim\Migration\Migration;
 
 class RiceMigration extends Migration
 {

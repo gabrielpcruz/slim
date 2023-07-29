@@ -25,7 +25,11 @@ $settings['path'] = [
     'console' => ROOT_PATH . '/src/Console',
     'migration' => ROOT_PATH . '/src/Migration',
     'seeder' => ROOT_PATH . '/src/Seeder',
-    'slim' => ROOT_PATH . '/src/Console/Slim',
+    'slim' => [
+        'console' => ROOT_PATH . '/src/Slim/Console',
+        'migration' => ROOT_PATH . '/src/Slim/Migration',
+        'seeder' => ROOT_PATH . '/src/Slim/Seeder',
+    ],
     'provider' => ROOT_PATH . '/src/Provider',
     'repository' => ROOT_PATH . '/src/Repository',
     'entity' => ROOT_PATH . '/src/Entity',

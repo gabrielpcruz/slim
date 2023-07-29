@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Service\Mail\Mailer;
+use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\Views\Twig;

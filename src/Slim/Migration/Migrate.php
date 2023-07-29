@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Console\Slim\Database;
+namespace App\Slim\Migration;
 
-use App\Console\Console;
+use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateSqlite extends Console
+class Migrate extends ConsoleMigration
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('slim:create-database-file');
-        $this->setDescription('Create the file demo to connect with sqlite.');
-        $this->setHidden(true);
+        $this->setName('migration:migrate');
+        $this->setDescription('Run all migrations on database');
     }
 
     /**
@@ -30,12 +29,20 @@ class CreateSqlite extends Console
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $storagePath = $this->getContainer()->get('settings')->get('path.storage');
-        $databasePath = $storagePath . '/database';
+        try {
+            $this->comment("Creating tables...");
 
-        $sqlitePath = $databasePath . "/db.sqlite";
+            /** @var Migration $migration */
+            foreach ($this->migrations() as $migration) {
+                $this->info("table {$this->getTableNome($migration)}...");
 
-        file_put_contents($sqlitePath, '');
+                $migration->up();
+            }
+        } catch (Exception $exception) {
+            $this->error($exception->getMessage());
+
+            return Command::FAILURE;
+        }
 
         return Command::SUCCESS;
     }
