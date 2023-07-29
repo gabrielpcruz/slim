@@ -24,6 +24,7 @@ $settings['path'] = [
     'database' => ROOT_PATH . '/config/database',
     'console' => ROOT_PATH . '/src/Console',
     'migration' => ROOT_PATH . '/src/Migration',
+    'seeder' => ROOT_PATH . '/src/Seeder',
     'slim' => ROOT_PATH . '/src/Console/Slim',
     'provider' => ROOT_PATH . '/src/Provider',
     'repository' => ROOT_PATH . '/src/Repository',

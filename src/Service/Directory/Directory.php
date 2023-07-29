@@ -2,13 +2,22 @@
 
 namespace App\Service\Directory;
 
+use Generator;
+
 class Directory
 {
+    /**
+     * @param $nameSpacePath
+     * @param $namespace
+     * @param array $excludeFiles
+     * @param array $excludePaths
+     * @return array
+     */
     public static function turnNameSpacePathIntoArray(
         $nameSpacePath,
         $namespace,
-        $excludeFiles = [],
-        $excludePaths = []
+        array $excludeFiles = [],
+        array $excludePaths = []
     ): array {
         $items = [];
 
@@ -41,5 +50,16 @@ class Directory
         }
 
         return $items;
+    }
+
+    /**
+     * @param $files
+     * @return Generator
+     */
+    public static function getIterator($files): Generator
+    {
+        foreach ($files as $file) {
+            yield $file;
+        }
     }
 }

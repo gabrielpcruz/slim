@@ -4,7 +4,7 @@ namespace App\Migration;
 
 use App\Migration\Slim\Migration;
 
-class RiceDatabase extends Migration
+class RiceMigration extends Migration
 {
     public function up(): void
     {

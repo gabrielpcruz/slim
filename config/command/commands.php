@@ -13,10 +13,13 @@ try {
         "Console.php",
         "MigrationTrait.php",
         "Migration.php",
+        "SeederInterface.php",
+        "Seeder.php",
     ];
 
     $excludePaths = [
         'Migration',
+        'Seeder',
         'Slim'
     ];
 
@@ -25,6 +28,12 @@ try {
     $migrationPath = App::settings()->get('path.migration') . '/Slim';
 
     $migrationCommands = Directory::turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
+
+    // Seeder
+    $seederNamespace = "App\\Seeder\\Slim\\";
+    $seederPath = App::settings()->get('path.seeder') . '/Slim';
+
+    $seederCommands = Directory::turnNameSpacePathIntoArray($seederPath, $seederNamespace, $excludeClasses);
 
     // Console
     $consoleCommands = [];
@@ -42,6 +51,7 @@ try {
     $slimCommands = Directory::turnNameSpacePathIntoArray($slimPath, $slimNamespace, $excludeClasses, $excludePaths);
 
     $commands = array_merge($commands, $migrationCommands);
+    $commands = array_merge($commands, $seederCommands);
     $commands = array_merge($commands, $consoleCommands);
     $commands = array_merge($commands, $slimCommands);
 

@@ -18,9 +18,8 @@ class Home extends ApiController
     {
         $riceBusiness = new RiceBusiness();
 
-        return $this->responseJSON(
-            $response,
-            $riceBusiness->all($request)->toArray()
-        );
+        $this->payloadResponse()->rices = $riceBusiness->all($request)->toArray();
+
+        return $this->responseJSON($response);
     }
 }
