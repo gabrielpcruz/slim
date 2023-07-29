@@ -9,7 +9,6 @@ use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-
 class RiceSeeder extends Seeder
 {
     /**

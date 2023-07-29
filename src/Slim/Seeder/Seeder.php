@@ -19,7 +19,7 @@ abstract class Seeder extends IlluminateSeeder implements SeederInterface
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    protected function connection() : ConnectionInterface
+    protected function connection(): ConnectionInterface
     {
         return App::container()->get(ConnectionInterface::class);
     }

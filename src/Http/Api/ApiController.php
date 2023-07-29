@@ -29,7 +29,8 @@ class ApiController extends Controller
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function responseJSON(ResponseInterface $response): ResponseInterface {
+    public function responseJSON(ResponseInterface $response): ResponseInterface
+    {
         $dataOnlyAttributes = ['code'];
 
         if (empty($this->payloadResponse()->message)) {
