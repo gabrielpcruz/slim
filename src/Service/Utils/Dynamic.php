@@ -61,7 +61,11 @@ class Dynamic extends stdClass
         $dinamic = new Dynamic();
 
         foreach ($array as $property => $value) {
-            $dinamic->{$property} = $value;
+            if (is_array($value)) {
+                $dinamic->{$property} = Dynamic::fromArray($value);
+            } else {
+                $dinamic->{$property} = $value;
+            }
         }
 
         return $dinamic;
