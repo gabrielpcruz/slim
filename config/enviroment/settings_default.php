@@ -41,6 +41,13 @@ $settings['path'] = [
 
 $settings['system'] = [
     'maintenance' => 0,
+    'maintenance_return' => '2023-07-16 12:07',
+    'maintenance_route' => '/maintenance',
+    'guest_routes' => [
+        '/login',
+    ],
+    'routes_in_maintenance' => [
+    ],
 ];
 
 $settings['file'] = [

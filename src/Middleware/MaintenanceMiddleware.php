@@ -25,11 +25,16 @@ class MaintenanceMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (
-            App::settings()->get('system.maintenance') &&
-            $request->getUri()->getPath() != '/maintenance'
-        ) {
+        $isSystemInMaintenance = App::settings()->get('system.maintenance');
+        $isRouteMaintenance = App::isRouteEqualOf($request, '/maintenance');
+        $isRouteLogin = App::isRouteEqualOf($request, '/login');
+
+        if ($isSystemInMaintenance && (!$isRouteMaintenance || $isRouteLogin)) {
             return redirect('/maintenance');
+        }
+
+        if (!$isSystemInMaintenance && $isRouteMaintenance) {
+            return redirect('/login');
         }
 
         return $handler->handle($request);

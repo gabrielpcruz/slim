@@ -3,7 +3,9 @@
 namespace App;
 
 use Adbar\Dot;
+use App\Middleware\Authentication\Site\AuthenticationSite;
 use App\Middleware\MaintenanceMiddleware;
+use App\Middleware\RoutesInMaintenanceMiddleware;
 use App\Provider\ProviderInterface;
 use App\Service\Directory\Directory;
 use App\Service\Handler\Error;
@@ -14,6 +16,7 @@ use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\App as SlimApp;
 use Slim\Flash\Messages;
 
@@ -189,8 +192,9 @@ class App
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
         $errorMiddleware->setDefaultErrorHandler(Error::class);
 
-        $app->add(MaintenanceMiddleware::class);
-
+        if (!App::isConsole()) {
+            self::middlewares($app);
+        }
         return $app;
     }
 
@@ -243,5 +247,68 @@ class App
     {
         define('STORAGE_PATH', $settings->get('path.storage'));
         define('PUBLIC_PATH', $settings->get('path.public'));
+    }
+
+    /**
+     * @param SlimApp $app
+     * @return void
+     */
+    private static function middlewares(SlimApp $app): void
+    {
+        $app->add(MaintenanceMiddleware::class);
+        $app->add(RoutesInMaintenanceMiddleware::class);
+        $app->add(AuthenticationSite::class);
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return bool
+     * @throws ContainerExceptionInterface
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public static function isGuestRoute(ServerRequestInterface $request): bool
+    {
+        $guestRoutes = App::settings()->get('system.guest_routes');
+
+        if (in_array($request->getUri()->getPath(), $guestRoutes)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param $route
+     * @return bool
+     */
+    public static function isRouteEqualOf(ServerRequestInterface $request, $route): bool
+    {
+        if ($request->getUri()->getPath() === $route) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return bool
+     * @throws ContainerExceptionInterface
+     * @throws DependencyException
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public static function isRouteInMaintenance(ServerRequestInterface $request): bool
+    {
+        $routesInMaintenance = App::settings()->get('system.routes_in_maintenance');
+
+        if (in_array($request->getUri()->getPath(), $routesInMaintenance)) {
+            return true;
+        }
+
+        return false;
     }
 }

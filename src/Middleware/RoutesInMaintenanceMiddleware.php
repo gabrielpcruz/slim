@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Middleware\Authentication\Site;
+namespace App\Middleware;
 
 use App\App;
-use App\Enum\FlashMessage;
-use App\Message\Exception\System\MessageExceptionSystem;
-use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
@@ -15,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class AuthenticationSite implements MiddlewareInterface
+class RoutesInMaintenanceMiddleware implements MiddlewareInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -28,10 +25,8 @@ class AuthenticationSite implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!App::settings()->get('system.maintenance') && !Session::isLoggedIn() && !App::isGuestRoute($request)) {
-            flash()->addMessage(FlashMessage::ERROR, MessageExceptionSystem::MES0001);
-
-            return redirect('/login');
+        if (App::isRouteInMaintenance($request)) {
+            return redirect('/route_maintenance');
         }
 
         return $handler->handle($request);

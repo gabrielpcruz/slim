@@ -62,6 +62,7 @@ class ApiController extends Controller
 
         $this->payloadReponse->code = 200;
         $this->payloadReponse->message = "";
+        $this->payloadReponse->data = [];
     }
 
     /**

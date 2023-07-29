@@ -11,6 +11,7 @@ return function (App $app) {
     $app->redirect('/', '/login');
 
     $app->get('/maintenance', [Home::class, 'maintenance']);
+    $app->get('/route_maintenance', [Home::class, 'route_maintenance']);
 
 
     $app->get('/home', [Home::class, 'index']);

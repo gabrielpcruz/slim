@@ -16,9 +16,9 @@ class Home extends ApiController
      */
     public function index(Request $request, Response $response): Response
     {
-        $riceBusiness = new RiceBusiness();
+//        $riceBusiness = new RiceBusiness();
 
-        $this->payloadResponse()->rices = $riceBusiness->all($request)->toArray();
+        $this->payloadResponse()->data = [];
 
         return $this->responseJSON($response);
     }
