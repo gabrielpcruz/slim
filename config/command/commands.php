@@ -27,7 +27,6 @@ try {
     $migrationNamespace = "App\\Slim\\Migration\\";
     $migrationPath = App::settings()->get('path.slim.migration');
 
-//    dd($migrationPath);
     $migrationCommands = Directory::turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
 
     // Seeder
