@@ -56,8 +56,8 @@ return [
         $app = AppFactory::createFromContainer($container);
 
         // Adding routes of application
-        (require __DIR__ . '/routes/web.php')($app);
-        (require __DIR__ . '/routes/api.php')($app);
+        (require __DIR__ . '/../routes/web.php')($app);
+        (require __DIR__ . '/../routes/api.php')($app);
 
         $app->addRoutingMiddleware();
 
