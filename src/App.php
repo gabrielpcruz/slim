@@ -195,6 +195,7 @@ class App
         if (!App::isConsole()) {
             self::middlewares($app);
         }
+
         return $app;
     }
 
