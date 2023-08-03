@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Middleware\Authentication\Api;
+namespace App\Middleware\Api\Authentication;
 
 use App\App;
 use App\Entity\User\ClientEntity;
-use App\Middleware\MiddlewareApi;
+use App\Middleware\Api\MiddlewareApi;
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
@@ -16,7 +16,6 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
 use Slim\Exception\HttpUnauthorizedException;

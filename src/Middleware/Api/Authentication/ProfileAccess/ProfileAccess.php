@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Middleware\Authentication\Api\ProfileAccess;
+namespace App\Middleware\Api\Authentication\ProfileAccess;
 
 use App\App;
 use App\Entity\User\UserEntity;
 use App\Exception\UserNotAllowedException;
-use App\Middleware\MiddlewareApi;
+use App\Middleware\Api\MiddlewareApi;
 use App\Repository\RepositoryManager;
 use App\Repository\User\UserRepository;
 use DI\DependencyException;

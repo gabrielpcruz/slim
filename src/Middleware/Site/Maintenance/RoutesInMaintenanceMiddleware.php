@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Middleware;
+namespace App\Middleware\Site\Maintenance;
 
 use App\App;
+use App\Middleware\Middleware;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

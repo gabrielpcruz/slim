@@ -2,8 +2,8 @@
 
 use App\Http\Api\Auth\Token;
 use App\Http\Api\Home\Home;
-use App\Middleware\Authentication\Api\AuthenticationApi;
-use App\Middleware\Authentication\Api\ProfileAccess\Administrator;
+use App\Middleware\Api\Authentication\AuthenticationApi;
+use App\Middleware\Api\Authentication\ProfileAccess\Administrator;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 

@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Middleware;
+namespace App\Middleware\Site\Authentication;
 
 use App\App;
+use App\Enum\FlashMessage;
+use App\Message\Exception\System\MessageExceptionSystem;
+use App\Middleware\Site\MiddlewareSite;
+use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
@@ -11,7 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class MaintenanceMiddleware extends Middleware
+class AuthenticationSite extends MiddlewareSite
 {
     /**
      * @param ServerRequestInterface $request
@@ -24,15 +28,9 @@ class MaintenanceMiddleware extends Middleware
      */
     public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $isSystemInMaintenance = App::settings()->get('system.maintenance');
-        $isRouteMaintenance = App::isRouteEqualOf($request, '/maintenance');
-        $isRouteLogin = App::isRouteEqualOf($request, '/login');
+        if (!App::settings()->get('system.maintenance') && !Session::isLoggedIn() && !App::isGuestRoute($request)) {
+            flash()->addMessage(FlashMessage::ERROR, MessageExceptionSystem::MES0001);
 
-        if ($isSystemInMaintenance && (!$isRouteMaintenance || $isRouteLogin)) {
-            return redirect('/maintenance');
-        }
-
-        if (!$isSystemInMaintenance && $isRouteMaintenance) {
             return redirect('/login');
         }
 

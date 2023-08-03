@@ -4,7 +4,7 @@
 use App\Http\Site\Auth\Login;
 use App\Http\Site\Documentation\Documentation;
 use App\Http\Site\Home\Home;
-use App\Middleware\Authentication\Site\AuthenticationSite;
+use App\Middleware\Site\Authentication\AuthenticationSite;
 use Slim\App;
 
 return function (App $app) {

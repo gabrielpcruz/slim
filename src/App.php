@@ -3,9 +3,9 @@
 namespace App;
 
 use Adbar\Dot;
-use App\Middleware\Authentication\Site\AuthenticationSite;
-use App\Middleware\MaintenanceMiddleware;
-use App\Middleware\RoutesInMaintenanceMiddleware;
+use App\Middleware\Site\Authentication\AuthenticationSite;
+use App\Middleware\Site\Maintenance\MaintenanceMiddleware;
+use App\Middleware\Site\Maintenance\RoutesInMaintenanceMiddleware;
 use App\Provider\ProviderInterface;
 use App\Service\Directory\Directory;
 use App\Service\Handler\Error;

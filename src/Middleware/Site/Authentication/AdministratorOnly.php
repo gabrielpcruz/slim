@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Middleware\Authentication\Site;
+namespace App\Middleware\Site\Authentication;
 
 use App\Enum\EnumProfile;
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
-use App\Middleware\MiddlewareSite;
+use App\Middleware\Site\MiddlewareSite;
 use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -13,7 +13,6 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class AdministratorOnly extends MiddlewareSite
