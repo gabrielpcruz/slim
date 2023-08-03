@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Middleware\ProfileAccess;
+namespace App\Middleware\Authentication\Api\ProfileAccess;
 
 use App\App;
 use App\Entity\User\UserEntity;
 use App\Exception\UserNotAllowedException;
+use App\Middleware\MiddlewareApi;
 use App\Repository\RepositoryManager;
 use App\Repository\User\UserRepository;
 use DI\DependencyException;
@@ -15,11 +16,10 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
 
-abstract class ProfileAccess implements MiddlewareInterface, ProfileAccessInterface
+abstract class ProfileAccess extends MiddlewareApi implements ProfileAccessInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -57,7 +57,7 @@ abstract class ProfileAccess implements MiddlewareInterface, ProfileAccessInterf
      * @return ResponseInterface
      * @throws UserNotAllowedException
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if ($this->allowed($request)) {
             return $handler->handle($request);

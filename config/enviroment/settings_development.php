@@ -4,7 +4,7 @@
 $developmentSettings = [];
 
 $developmentSettings['error'] = [
-    'slashtrace' => 1,
+    'slashtrace' => 0,
     'error_reporting' => 0,
     'display_errors' => 0,
     'display_startup_errors' => 0,

@@ -7,7 +7,6 @@ use App\Service\Utils\Dynamic;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use stdClass;
 
 class ApiController extends Controller
 {
@@ -29,7 +28,7 @@ class ApiController extends Controller
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function responseJSON(ResponseInterface $response): ResponseInterface
+    public function toJson(ResponseInterface $response): ResponseInterface
     {
         $dataOnlyAttributes = ['code'];
 
@@ -69,7 +68,7 @@ class ApiController extends Controller
      * @param Request $request
      * @return Dynamic
      */
-    protected function jsonBody(Request $request): Dynamic
+    protected function fromJson(Request $request): Dynamic
     {
         return Dynamic::fromJson($request->getBody()->getContents()) ?? new Dynamic();
     }

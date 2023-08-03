@@ -4,6 +4,7 @@ namespace App\Middleware\Authentication\Api;
 
 use App\App;
 use App\Entity\User\ClientEntity;
+use App\Middleware\MiddlewareApi;
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
@@ -20,7 +21,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
 use Slim\Exception\HttpUnauthorizedException;
 
-class AuthenticationApi implements MiddlewareInterface
+class AuthenticationApi extends MiddlewareApi
 {
     /**
      * @var RepositoryManager
@@ -84,7 +85,7 @@ class AuthenticationApi implements MiddlewareInterface
      * @throws OAuthServerException
      * @throws ReflectionException
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $request = $this->authenticate($request);
 

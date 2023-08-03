@@ -168,3 +168,13 @@ if (!function_exists('dump_query')) {
         );
     }
 }
+
+if (!function_exists('is_json_accept')) {
+    function is_json_accept($request): bool
+    {
+        $isJsonAccept = reset($request->getHeader('Accept')) === 'application/json';
+        $isApiUri = str_contains($request->getUri()->getPath(), '/api/');
+
+        return $isApiUri || $isJsonAccept;
+    }
+}

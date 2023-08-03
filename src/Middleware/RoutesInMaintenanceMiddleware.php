@@ -9,10 +9,9 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class RoutesInMaintenanceMiddleware implements MiddlewareInterface
+class RoutesInMaintenanceMiddleware extends Middleware
 {
     /**
      * @param ServerRequestInterface $request
@@ -23,7 +22,7 @@ class RoutesInMaintenanceMiddleware implements MiddlewareInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (App::isRouteInMaintenance($request)) {
             return redirect('/route_maintenance');

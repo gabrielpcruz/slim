@@ -16,10 +16,10 @@ class Home extends ApiController
      */
     public function index(Request $request, Response $response): Response
     {
-//        $riceBusiness = new RiceBusiness();
+        $riceBusiness = new RiceBusiness();
 
-        $this->payloadResponse()->data = [];
+        $this->payloadResponse()->data = $riceBusiness->getRepository()->all()->toArray();
 
-        return $this->responseJSON($response);
+        return $this->toJson($response);
     }
 }

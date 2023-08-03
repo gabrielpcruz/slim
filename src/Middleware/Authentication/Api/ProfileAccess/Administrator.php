@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Middleware\ProfileAccess;
+namespace App\Middleware\Authentication\Api\ProfileAccess;
 
+use App\Enum\EnumProfile;
 use DI\DependencyException;
 use DI\NotFoundException;
-use App\Enum\EnumProfile;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;

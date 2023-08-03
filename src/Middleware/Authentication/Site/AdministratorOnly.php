@@ -5,6 +5,7 @@ namespace App\Middleware\Authentication\Site;
 use App\Enum\EnumProfile;
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
+use App\Middleware\MiddlewareSite;
 use App\Service\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -15,7 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class AdministratorOnly implements MiddlewareInterface
+class AdministratorOnly extends MiddlewareSite
 {
     /**
      * @param ServerRequestInterface $request

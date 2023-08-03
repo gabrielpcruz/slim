@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Middleware\ProfileAccess;
+namespace App\Middleware\Authentication\Api\ProfileAccess;
 
 use Psr\Http\Message\ServerRequestInterface;
 
