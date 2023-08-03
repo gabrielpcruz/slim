@@ -36,7 +36,14 @@
         "test" : "./vendor/bin/pest",
         "codesniffer" : "./vendor/bin/phpcs --colors --standard=PSR12 src",
         "codesniffer-fix" : "./vendor/bin/phpcbf --colors --standard=PSR12 src",
-        "phpstan" : "./vendor/bin/phpstan --xdebug analyse -c phpstan.neon"
+        "phpstan" : "./vendor/bin/phpstan --xdebug analyse -c phpstan.neon",
+        "check" : [
+            "@codesniffer",
+            "@phpstan"
+        ],
+        "fix" : [
+            "@codesniffer-fix"
+        ]
     },
     "autoload": {
         "psr-4": {

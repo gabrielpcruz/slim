@@ -26,7 +26,7 @@ class AdministratorOnly extends MiddlewareSite
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (!$this->isAdministrator()) {
             Session::logout();
