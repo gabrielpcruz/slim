@@ -55,7 +55,7 @@ class FlashMessageTwigExtension extends AbstractExtension
      *
      * @param string|null $key
      *
-     * @return array
+     * @return array|null
      */
     public function getMessages(string $key = null): ?array
     {
