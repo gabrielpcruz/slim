@@ -34,6 +34,7 @@ $settings['path'] = [
     'repository' => ROOT_PATH . '/src/Repository',
     'entity' => ROOT_PATH . '/src/Entity',
     'business' => ROOT_PATH . '/src/Business',
+    'twig' => ROOT_PATH . '/src/Twig',
     'files' => [
         'images' => ROOT_PATH . '/storage/images'
     ],

@@ -24,6 +24,7 @@ use Slim\App;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Twig\Extension\DebugExtension;
+use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 use function DI\autowire;
 use function DI\factory;
@@ -70,6 +71,7 @@ return [
         $rootPath = $settings->get('view.path');
         $templates = $settings->get('view.templates');
         $viewSettings = $settings->get('view.settings');
+        $twigExtensionsPath = $settings->get('path.twig');
 
         $loader = new FilesystemLoader([], $rootPath);
 
@@ -79,15 +81,17 @@ return [
 
         $twig = new Twig($loader, $viewSettings);
 
+        $extensions = \App\Service\Directory\Directory::turnNameSpacePathIntoArray(
+            $twigExtensionsPath,
+            "App\Twig\\"
+        );
+
         $twig->addExtension(new DebugExtension());
-        $twig->addExtension(new AssetsTwigExtension());
-        $twig->addExtension(new GuestTwigExtension());
-        $twig->addExtension(new GuardTwigExtension());
-        $twig->addExtension(new VersionTwigExtension());
-        $twig->addExtension(new FlashMessageTwigExtension());
-        $twig->addExtension(new PaginateTwigExtension());
-        $twig->addExtension(new IsProductionTwigExtension());
-        $twig->addExtension(new StoragePathTwigExtension());
+        $twig->addExtension(new IntlExtension());
+
+        foreach ($extensions as $extension) {
+            $twig->addExtension(new $extension());
+        }
 
         return $twig;
     },

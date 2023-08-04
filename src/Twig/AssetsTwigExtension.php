@@ -41,8 +41,13 @@ class AssetsTwigExtension extends AbstractExtension
     {
         $params = func_get_args();
 
+        $protocolo = $_SERVER['REQUEST_SCHEME'];
+        $host = $_SERVER['HTTP_HOST'];
+
         $asset = reset($params);
 
-        return App::settings()->get('path.assets') . $asset;
+        $ssl = App::isProduction() ? 's' : '';
+
+        return "{$protocolo}{$ssl}://{$host}/" . App::settings()->get('path.assets') . $asset;
     }
 }
