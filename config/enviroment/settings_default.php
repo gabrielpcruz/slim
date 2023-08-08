@@ -21,6 +21,7 @@ $settings['path'] = [
     'config' => ROOT_PATH . '/config',
     'data' => ROOT_PATH . '/data',
     'storage' => ROOT_PATH . '/storage',
+    'cache' => ROOT_PATH . '/storage/cache',
     'database' => ROOT_PATH . '/config/database',
     'console' => ROOT_PATH . '/src/Console',
     'migration' => ROOT_PATH . '/src/Migration',
