@@ -14,7 +14,7 @@ class Session
     /**
      * @return void
      */
-    public static function start()
+    public static function start(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -24,7 +24,7 @@ class Session
     /**
      * @return void
      */
-    private static function sessionTimeMonitor()
+    private static function sessionTimeMonitor(): void
     {
         if (
             isset($_SESSION['last_activity']) &&
