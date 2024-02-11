@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace App\Slim\Twig;
 
 use App\App;
 use Twig\Extension\AbstractExtension;

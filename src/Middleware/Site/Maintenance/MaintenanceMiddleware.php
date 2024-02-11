@@ -3,7 +3,6 @@
 namespace App\Middleware\Site\Maintenance;
 
 use App\App;
-use App\Middleware\Site\MiddlewareSite;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
@@ -11,6 +10,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use App\Slim\Middleware\Site\MiddlewareSite;
 
 class MaintenanceMiddleware extends MiddlewareSite
 {

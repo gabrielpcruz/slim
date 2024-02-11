@@ -3,7 +3,7 @@
 namespace App\Repository\Example;
 
 use App\Entity\Example\RiceEntity;
-use App\Repository\Repository;
+use App\Slim\Repository\Repository;
 
 class RiceRespository extends Repository
 {

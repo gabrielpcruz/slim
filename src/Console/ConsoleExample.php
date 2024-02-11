@@ -4,11 +4,11 @@ namespace App\Console;
 
 use App\Entity\Example\RiceEntity;
 use App\Repository\Example\RiceRespository;
-use App\Repository\Repository;
-use App\Repository\RepositoryManager;
 use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use App\Slim\Repository\Repository;
+use App\Slim\Repository\RepositoryManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

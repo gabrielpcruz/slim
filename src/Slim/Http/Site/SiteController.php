@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Site;
+namespace App\Slim\Http\Site;
 
-use App\Http\Controller;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\Twig;
+use App\Slim\Http\Controller;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;

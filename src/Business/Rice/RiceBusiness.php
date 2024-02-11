@@ -2,9 +2,9 @@
 
 namespace App\Business\Rice;
 
-use App\Business\Business;
 use App\Entity\Entity;
 use App\Repository\Example\RiceRespository;
+use App\Slim\Business\Business;
 use Illuminate\Database\Eloquent\Collection;
 use Psr\Http\Message\ServerRequestInterface as Request;
 

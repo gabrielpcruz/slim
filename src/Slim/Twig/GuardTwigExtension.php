@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Twig;
+namespace App\Slim\Twig;
 
-use App\App;
+use App\Slim\Session\Session;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class IsProductionTwigExtension extends AbstractExtension
+class GuardTwigExtension extends AbstractExtension
 {
     /**
      * @return string
      */
     public function getName(): string
     {
-        return 'is_production';
+        return 'guard';
     }
 
     /**
@@ -22,15 +22,15 @@ class IsProductionTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('is_production', [$this, 'isProduction']),
+            new TwigFunction('guard', [$this, 'guard']),
         ];
     }
 
     /**
      * @return bool
      */
-    public function isProduction(): bool
+    public function guard(): bool
     {
-        return App::isProduction();
+        return true === Session::isLoggedIn();
     }
 }

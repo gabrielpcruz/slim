@@ -5,7 +5,6 @@ namespace App\Middleware\Site\Authentication;
 use App\App;
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
-use App\Middleware\Site\MiddlewareSite;
 use App\Slim\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -14,6 +13,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use App\Slim\Middleware\Site\MiddlewareSite;
 
 class AuthenticationSite extends MiddlewareSite
 {

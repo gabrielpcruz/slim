@@ -12,10 +12,10 @@ namespace App\Repository\User;
 
 use App\Entity\User\ClientEntity;
 use App\Entity\User\UserEntity;
-use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
+use App\Slim\Repository\Repository;
 
 class UserRepository extends Repository implements UserRepositoryInterface
 {
@@ -39,7 +39,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
         $password,
         $grantType,
         ClientEntityInterface $clientEntity
-    ) {
+    ): mixed {
         $queryBuilder = $this->query();
 
         $queryBuilder->where('username', '=', $username);
@@ -62,7 +62,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
      *
      * @return false|UserEntityInterface
      */
-    public function getUserEntityByCredentials(array $data)
+    public function getUserEntityByCredentials(array $data): false|UserEntityInterface
     {
         $queryBuilder = $this->query();
 
@@ -81,7 +81,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
      *
      * @return null|false|mixed|UserEntityInterface
      */
-    public function getUserEntityByClientIdentifier(array $data)
+    public function getUserEntityByClientIdentifier(array $data): mixed
     {
         $queryBuilder = $this->query();
 
@@ -100,7 +100,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
      *
      * @return null|false|mixed|UserEntityInterface
      */
-    public function getUserByToken(array $data)
+    public function getUserByToken(array $data): mixed
     {
         $queryBuilder = $this->query();
 

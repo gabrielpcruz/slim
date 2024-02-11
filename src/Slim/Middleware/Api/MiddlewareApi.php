@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Middleware\Site;
+namespace App\Slim\Middleware\Api;
 
-use App\Middleware\Middleware;
+use DomainException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use App\Slim\Middleware\Middleware;
 
-abstract class MiddlewareSite extends Middleware
+abstract class MiddlewareApi extends Middleware
 {
     /**
      * @param ServerRequestInterface $request
@@ -16,10 +17,10 @@ abstract class MiddlewareSite extends Middleware
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!is_api($request)) {
+        if (is_api($request)) {
             return $this->handle($request, $handler);
         }
 
-        return $handler->handle($request);
+        throw new DomainException("Only api allowed!");
     }
 }

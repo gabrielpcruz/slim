@@ -2,7 +2,7 @@
 
 namespace App\Message\Exception\Business;
 
-use App\Message\Message;
+use App\Slim\Message\Message;
 
 class MessageExceptionBusiness extends Message
 {

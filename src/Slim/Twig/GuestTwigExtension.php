@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Twig;
+namespace App\Slim\Twig;
 
 use App\Slim\Session\Session;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class GuardTwigExtension extends AbstractExtension
+class GuestTwigExtension extends AbstractExtension
 {
     /**
      * @return string
      */
     public function getName(): string
     {
-        return 'guard';
+        return 'guest';
     }
 
     /**
@@ -22,15 +22,15 @@ class GuardTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('guard', [$this, 'guard']),
+            new TwigFunction('guest', [$this, 'guest']),
         ];
     }
 
     /**
      * @return bool
      */
-    public function guard(): bool
+    public function guest(): bool
     {
-        return true === Session::isLoggedIn();
+        return false == Session::isLoggedIn();
     }
 }

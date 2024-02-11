@@ -4,10 +4,9 @@ namespace App\Middleware\Api\Authentication;
 
 use App\App;
 use App\Entity\User\ClientEntity;
-use App\Middleware\Api\MiddlewareApi;
-use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
+use App\Slim\Middleware\Api\MiddlewareApi;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -19,6 +18,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
 use Slim\Exception\HttpUnauthorizedException;
+use App\Slim\Repository\RepositoryManager;
 
 class AuthenticationApi extends MiddlewareApi
 {

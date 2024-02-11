@@ -26,7 +26,6 @@ final class ContainerBuilder
                 }
             ])
             ->addDefinitions($this->getDefinitions())
-//            ->enableDefinitionCache()
             ->enableCompilation(__DIR__ . '/../storage/cache/container')
             ->writeProxiesToFile(true, __DIR__ . '/../storage/cache/proxy')
             ->build();
@@ -48,7 +47,6 @@ final class ContainerBuilder
         foreach ($controllers as $controller) {
             $definitions[$controller] = autowire();
         }
-
 
         return $definitions;
     }

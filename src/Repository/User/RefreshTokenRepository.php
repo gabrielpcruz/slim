@@ -12,12 +12,11 @@ namespace App\Repository\User;
 
 use App\Entity\User\AccessTokenEntity;
 use App\Entity\User\RefreshTokenEntity;
-use App\Repository\Repository;
-use DateInterval;
 use Exception;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use App\Slim\Repository\Repository;
 
 class RefreshTokenRepository extends Repository implements RefreshTokenRepositoryInterface
 {
@@ -36,7 +35,7 @@ class RefreshTokenRepository extends Repository implements RefreshTokenRepositor
      * @return void
      * @throws Exception
      */
-    public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
+    public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity): void
     {
         /** @var AccessTokenEntity $accessToken */
         $accessToken = $refreshTokenEntity->getAccessToken();

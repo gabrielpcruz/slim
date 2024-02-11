@@ -3,7 +3,6 @@
 namespace App\Service\Token;
 
 use App\App;
-use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
 use App\Repository\User\RefreshTokenRepository;
@@ -19,6 +18,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
+use App\Slim\Repository\RepositoryManager;
 
 class AuthorizationServer
 {

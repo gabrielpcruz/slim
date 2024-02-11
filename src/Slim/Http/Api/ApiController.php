@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Api;
+namespace App\Slim\Http\Api;
 
-use App\Http\Controller;
 use App\Slim\Utils\Dynamic;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Slim\Http\Controller;
 
 class ApiController extends Controller
 {

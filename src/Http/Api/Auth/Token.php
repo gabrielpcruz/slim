@@ -2,7 +2,6 @@
 
 namespace App\Http\Api\Auth;
 
-use App\Http\Api\ApiController;
 use App\Service\Token\AccessToken;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -13,6 +12,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Slim\Http\Api\ApiController;
 
 class Token extends ApiController
 {

@@ -11,11 +11,11 @@
 namespace App\Repository\User;
 
 use App\Entity\User\AccessTokenEntity;
-use App\Repository\Repository;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use ReflectionException;
+use App\Slim\Repository\Repository;
 
 class AccessTokenRepository extends Repository implements AccessTokenRepositoryInterface
 {

@@ -6,7 +6,6 @@ use Adbar\Dot;
 use App\Middleware\Site\Authentication\AuthenticationSite;
 use App\Middleware\Site\Maintenance\MaintenanceMiddleware;
 use App\Middleware\Site\Maintenance\RoutesInMaintenanceMiddleware;
-use App\Provider\ProviderInterface;
 use App\Slim\Directory\Directory;
 use App\Slim\Handler\Error;
 use DI\Container;
@@ -19,28 +18,29 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App as SlimApp;
 use Slim\Flash\Messages;
+use App\Slim\Provider\ProviderInterface;
 
 class App
 {
     /**
      * @var string
      */
-    public const VERSION = '1.3.1';
+    public const string VERSION = '1.3.1';
 
     /**
      * @var string
      */
-    public const DEVELOPMENT = 'DEVELOPMENT';
+    public const string DEVELOPMENT = 'DEVELOPMENT';
 
     /**
      * @var string
      */
-    public const PRODUCTION = 'PRODUCTION';
+    public const string PRODUCTION = 'PRODUCTION';
 
     /**
      * @var string
      */
-    public const HOMOLOGATION = 'HOMOLOGATION';
+    public const string HOMOLOGATION = 'HOMOLOGATION';
 
     /**
      * @var SlimApp

@@ -2,7 +2,6 @@
 
 use Adbar\Dot;
 use App\App as Application;
-use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
 use App\Service\Token\AuthorizationServer as SlimAuthorizationServer;
 use App\Slim\Mail\Mailer;
@@ -15,6 +14,7 @@ use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
+use App\Slim\Repository\RepositoryManager;
 use Twig\Extension\DebugExtension;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;

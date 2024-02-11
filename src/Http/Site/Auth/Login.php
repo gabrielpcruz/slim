@@ -4,7 +4,6 @@ namespace App\Http\Site\Auth;
 
 use App\Entity\User\UserEntity;
 use App\Enum\FlashMessage;
-use App\Http\Site\SiteController;
 use App\Message\Success\System\MessageSuccessSystem;
 use App\Repository\User\UserRepository;
 use App\Slim\Session\Session;
@@ -15,6 +14,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use ReflectionException;
+use App\Slim\Http\Site\SiteController;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;

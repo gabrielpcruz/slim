@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exception;
+namespace App\Slim\Exception;
 
 use App\Message\Exception\System\MessageExceptionSystem;
 use Throwable;

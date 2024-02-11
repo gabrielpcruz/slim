@@ -11,19 +11,20 @@
 namespace App\Repository\User;
 
 use App\Entity\User\ClientEntity;
-use App\Repository\Repository;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
+use App\Slim\Repository\Repository;
 
 class ClientRepository extends Repository implements ClientRepositoryInterface
 {
-    public const CLIENT_NAME = 'My Awesome App';
-    public const REDIRECT_URI = 'http://foo/bar';
+    public const string CLIENT_NAME = 'My Awesome App';
+    public const string REDIRECT_URI = 'http://foo/bar';
 
     /**
      * {@inheritdoc}
      */
-    public function getClientEntity($clientIdentifier)
+    public function getClientEntity($clientIdentifier): ClientEntityInterface|ClientEntity|null
     {
         $client = new ClientEntity();
 
@@ -55,7 +56,7 @@ class ClientRepository extends Repository implements ClientRepositoryInterface
      *
      * @return null|false|mixed|UserEntityInterface
      */
-    public function getClientEntityByCredentials(array $data)
+    public function getClientEntityByCredentials(array $data): mixed
     {
         $queryBuilder = $this->query();
 

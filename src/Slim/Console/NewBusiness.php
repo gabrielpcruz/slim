@@ -143,8 +143,7 @@ STR;
 
 namespace $namespace;
 
-use {$entityNameSpace}{$entityFull};
-use App\Repository\Repository;
+{$entityNameSpace}{$entityFull};
 
 class {$repositoryName}Repository extends Repository
 {
@@ -168,8 +167,7 @@ STR;
 
 namespace $namespace;
 
-use App\Business\Business;
-use {$repositoryNameSpace}{$repositoryFull};
+{$repositoryNameSpace}{$repositoryFull};
 
 class {$businessName}Business extends Business
 {

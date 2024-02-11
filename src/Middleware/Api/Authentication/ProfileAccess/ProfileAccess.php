@@ -4,10 +4,9 @@ namespace App\Middleware\Api\Authentication\ProfileAccess;
 
 use App\App;
 use App\Entity\User\UserEntity;
-use App\Exception\UserNotAllowedException;
-use App\Middleware\Api\MiddlewareApi;
-use App\Repository\RepositoryManager;
 use App\Repository\User\UserRepository;
+use App\Slim\Exception\UserNotAllowedException;
+use App\Slim\Middleware\Api\MiddlewareApi;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
@@ -18,6 +17,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionException;
+use App\Slim\Repository\RepositoryManager;
 
 abstract class ProfileAccess extends MiddlewareApi implements ProfileAccessInterface
 {

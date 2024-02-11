@@ -4,15 +4,13 @@ namespace App\Service\Token;
 
 use App\App;
 use App\Entity\User\ClientEntity;
-use App\Entity\User\UserEntity;
-use App\Repository\RepositoryManager;
 use App\Repository\User\ClientRepository;
 use App\Repository\User\UserRepository;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use ReflectionException;
+use App\Slim\Repository\RepositoryManager;
 
 class AccessToken
 {

@@ -2,7 +2,7 @@
 
 namespace App\Message\Success\Business;
 
-use App\Message\Message;
+use App\Slim\Message\Message;
 
 class MessageSuccessBusiness extends Message
 {

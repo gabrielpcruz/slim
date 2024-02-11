@@ -11,11 +11,10 @@
 namespace App\Repository\User;
 
 use App\Entity\User\ScopeEntity;
-use App\Repository\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-
+use App\Slim\Repository\Repository;
 use function array_key_exists;
 
 class ScopeRepository extends Repository implements ScopeRepositoryInterface

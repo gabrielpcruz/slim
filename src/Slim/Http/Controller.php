@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http;
+namespace App\Slim\Http;
 
 use App\App;
-use App\Repository\RepositoryManager;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Slim\Flash\Messages;
+use App\Slim\Repository\RepositoryManager;
 
 abstract class Controller
 {

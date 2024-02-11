@@ -3,9 +3,9 @@
 namespace App\Http\Site\Home;
 
 use App\Business\Rice\RiceBusiness;
-use App\Http\Site\SiteController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use App\Slim\Http\Site\SiteController;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;

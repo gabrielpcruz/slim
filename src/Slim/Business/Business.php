@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Business;
+namespace App\Slim\Business;
 
 use App\App;
 use App\Entity\Entity;
-use App\Repository\Repository;
-use App\Repository\RepositoryManager;
 use DI\DependencyException;
 use DI\NotFoundException;
 use DomainException;
+use Illuminate\Database\Eloquent\Collection;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use ReflectionException;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Illuminate\Database\Eloquent\Collection;
+use ReflectionException;
+use App\Slim\Repository\Repository;
+use App\Slim\Repository\RepositoryManager;
 
 /**
  *
