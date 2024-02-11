@@ -1,6 +1,5 @@
 <?php
 // Settings
-use App\App;
 use PHPMailer\PHPMailer\SMTP;
 
 $settings = [];

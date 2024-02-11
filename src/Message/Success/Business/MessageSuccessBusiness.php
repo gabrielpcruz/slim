@@ -6,5 +6,5 @@ use App\Message\Message;
 
 class MessageSuccessBusiness extends Message
 {
-    public const MSB0001 = '';
+    public const string MSB0001 = '';
 }

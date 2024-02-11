@@ -3,8 +3,8 @@
 namespace App\Slim\Seeder;
 
 use App\App;
-use App\Service\Directory\Directory;
 use App\Slim\Console\Console;
+use App\Slim\Directory\Directory;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

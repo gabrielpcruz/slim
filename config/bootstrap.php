@@ -1,7 +1,7 @@
 <?php
 
 use App\App;
-use App\Service\Session\Session;
+use App\Slim\Session\Session;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -24,6 +24,8 @@ try {
     date_default_timezone_set($settings->get('timezone'));
 
     return $app;
-} catch (Exception|NotFoundExceptionInterface|ContainerExceptionInterface $exception) {
+} catch (
+    Exception|NotFoundExceptionInterface|ContainerExceptionInterface $exception
+) {
     exit($exception);
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Service\Handler;
+namespace App\Slim\Handler;
 
 use App\App;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Slim\Views\Twig;
 use Throwable;
@@ -52,7 +52,6 @@ class Error implements ErrorHandlerInterface
 
         $message = $exception->getMessage();
         $code = ($exception->getCode() > 99 && $exception->getCode() < 600) ? intval($exception->getCode()) : 500;
-
 
         if ($this->isApi($request)) {
             return $this->respondeApi($message, $code, $response);
@@ -106,7 +105,7 @@ class Error implements ErrorHandlerInterface
         $response->getBody()->write($encodedJson);
 
         return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withStatus($responseCode);
+            ->withStatus($responseCode)
+            ->withHeader('Content-Type', 'application/json');
     }
 }

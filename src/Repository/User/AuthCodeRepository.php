@@ -17,17 +17,19 @@ use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @param AuthCodeEntityInterface $authCodeEntity
+     * @return void
      */
-    public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity)
+    public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity) : void
     {
         // Some logic to persist the auth code to a database
     }
 
     /**
-     * {@inheritdoc}
+     * @param $codeId
+     * @return void
      */
-    public function revokeAuthCode($codeId)
+    public function revokeAuthCode($codeId) : void
     {
         // Some logic to revoke the auth code in a database
     }
@@ -35,16 +37,16 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function isAuthCodeRevoked($codeId)
+    public function isAuthCodeRevoked($codeId): bool
     {
+        // The auth code has not been revoked
         return false;
-// The auth code has not been revoked
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getNewAuthCode()
+    public function getNewAuthCode(): AuthCodeEntityInterface|AuthCodeEntity
     {
         return new AuthCodeEntity();
     }

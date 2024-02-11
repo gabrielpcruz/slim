@@ -29,12 +29,10 @@ class AccessToken
     {
         $grant_type = $data['grant_type'];
 
-        switch ($grant_type) {
-            case 'refresh_token':
-                return $this->getClientByIdentifier($data);
-            default:
-                return $this->getClientByUserPassword($data);
-        }
+        return match ($grant_type) {
+            'refresh_token' => $this->getClientByIdentifier($data),
+            default => $this->getClientByUserPassword($data),
+        };
     }
 
     /**

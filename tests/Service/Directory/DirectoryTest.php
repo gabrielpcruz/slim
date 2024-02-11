@@ -1,6 +1,6 @@
 <?php
 
-use App\Service\Directory\Directory;
+use App\Slim\Directory\Directory;
 use function PHPUnit\Framework\assertEquals;
 
 $rootPath = getenv("GITHUB_WORKSPACE") ? getenv("GITHUB_WORKSPACE") : ROOT_PATH;

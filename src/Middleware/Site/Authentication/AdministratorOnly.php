@@ -6,7 +6,7 @@ use App\Enum\EnumProfile;
 use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
 use App\Middleware\Site\MiddlewareSite;
-use App\Service\Session\Session;
+use App\Slim\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;

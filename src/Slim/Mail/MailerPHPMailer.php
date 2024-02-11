@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Mail;
+namespace App\Slim\Mail;
 
 use App\App;
 use DI\DependencyException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Directory;
+namespace App\Slim\Directory;
 
 use Generator;
 

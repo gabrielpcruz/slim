@@ -1,9 +1,9 @@
 <?php
 
 use App\App;
+use App\Slim\Directory\Directory;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use App\Service\Directory\Directory;
 
 $commands = [];
 
@@ -27,20 +27,33 @@ try {
     $migrationNamespace = "App\\Slim\\Migration\\";
     $migrationPath = App::settings()->get('path.slim.migration');
 
-    $migrationCommands = Directory::turnNameSpacePathIntoArray($migrationPath, $migrationNamespace, $excludeClasses);
+    $migrationCommands = Directory::turnNameSpacePathIntoArray(
+        $migrationPath,
+        $migrationNamespace,
+        $excludeClasses
+    );
 
     // Seeder
     $seederNamespace = "App\\Slim\\Seeder\\";
     $seederPath = App::settings()->get('path.slim.seeder');
 
-    $seederCommands = Directory::turnNameSpacePathIntoArray($seederPath, $seederNamespace, $excludeClasses);
+    $seederCommands = Directory::turnNameSpacePathIntoArray(
+        $seederPath,
+        $seederNamespace,
+        $excludeClasses
+    );
 
     // Console
     $consoleCommands = [];
     $consoleNamespace = "App\\Console\\";
     $consolePath = App::settings()->get('path.console');
 
-    $consoleCommands = Directory::turnNameSpacePathIntoArray($consolePath, $consoleNamespace, $excludeClasses, $excludePaths);
+    $consoleCommands = Directory::turnNameSpacePathIntoArray(
+        $consolePath,
+        $consoleNamespace,
+        $excludeClasses,
+        $excludePaths
+    );
 
 
     // Slim
@@ -48,7 +61,12 @@ try {
     $slimNamespace = "App\\Slim\\Console\\";
     $slimPath = App::settings()->get('path.slim.console');
 
-    $slimCommands = Directory::turnNameSpacePathIntoArray($slimPath, $slimNamespace, $excludeClasses, $excludePaths);
+    $slimCommands = Directory::turnNameSpacePathIntoArray(
+        $slimPath,
+        $slimNamespace,
+        $excludeClasses,
+        $excludePaths
+    );
 
     $commands = array_merge($commands, $migrationCommands);
     $commands = array_merge($commands, $seederCommands);

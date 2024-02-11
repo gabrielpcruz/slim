@@ -11,9 +11,6 @@
 namespace App\Entity\User;
 
 use App\Entity\Entity;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Entities\Traits\ClientTrait;
-use League\OAuth2\Server\Entities\Traits\EntityTrait;
 
 class ProfileEntity extends Entity
 {

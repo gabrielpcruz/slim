@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Session;
+namespace App\Slim\Session;
 
 use App\Entity\User\UserEntity;
 

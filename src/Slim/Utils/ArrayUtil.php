@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Utils;
+namespace App\Slim\Utils;
 
 class ArrayUtil
 {

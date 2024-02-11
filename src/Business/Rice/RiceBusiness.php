@@ -5,7 +5,6 @@ namespace App\Business\Rice;
 use App\Business\Business;
 use App\Entity\Entity;
 use App\Repository\Example\RiceRespository;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -17,7 +16,8 @@ class RiceBusiness extends Business
     protected string $repositoryClass = RiceRespository::class;
 
     /**
-     * @return Builder[]|Collection
+     * @param Request $request
+     * @return Collection
      */
     public function all(Request $request): Collection
     {

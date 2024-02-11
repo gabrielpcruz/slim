@@ -6,5 +6,5 @@ use App\Message\Message;
 
 class MessageExceptionBusiness extends Message
 {
-    public const MEB0001 = '';
+    public const string MEB0001 = '';
 }

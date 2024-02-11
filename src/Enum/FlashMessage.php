@@ -7,20 +7,20 @@ class FlashMessage
     /**
      * @var string
      */
-    public const SUCCESS = 'success';
+    public const string SUCCESS = 'success';
 
     /**
      * @var string
      */
-    public const ERROR = 'error';
+    public const string ERROR = 'error';
 
     /**
      * @var string
      */
-    public const INFO = 'info';
+    public const string INFO = 'info';
 
     /**
      * @var string
      */
-    public const WARNING = 'warning';
+    public const string WARNING = 'warning';
 }

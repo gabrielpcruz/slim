@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Utils;
+namespace App\Slim\Utils;
 
 use DomainException;
 use stdClass;

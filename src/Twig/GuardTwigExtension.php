@@ -2,7 +2,7 @@
 
 namespace App\Twig;
 
-use App\Service\Session\Session;
+use App\Slim\Session\Session;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

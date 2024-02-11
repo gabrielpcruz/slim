@@ -32,7 +32,7 @@ class UserEntity extends Entity implements UserEntityInterface
     }
 
     /**
-     * @return BelongsTo
+     * @return BelongsTo|
      */
     public function profile(): BelongsTo
     {

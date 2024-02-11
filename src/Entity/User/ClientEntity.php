@@ -30,12 +30,12 @@ class ClientEntity extends Entity implements ClientEntityInterface
      */
     public int $id;
 
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
 
-    public function setRedirectUri($uri)
+    public function setRedirectUri($uri): void
     {
         $this->redirectUri = $uri;
     }

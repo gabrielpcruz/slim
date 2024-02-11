@@ -3,7 +3,7 @@
 namespace App\Http\Api;
 
 use App\Http\Controller;
-use App\Service\Utils\Dynamic;
+use App\Slim\Utils\Dynamic;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;

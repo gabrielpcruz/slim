@@ -6,5 +6,5 @@ use App\Message\Message;
 
 class MessageExceptionSystem extends Message
 {
-    public const MES0001 = 'User not allowed access.';
+    public const string MES0001 = 'User not allowed access.';
 }

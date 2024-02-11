@@ -2,12 +2,11 @@
 
 namespace App;
 
-use App\Service\Directory\Directory;
+use App\Slim\Directory\Directory;
 use DI\Container;
 use DI\ContainerBuilder as ContainerBuilderDI;
 use Exception;
 use Slim\Flash\Messages;
-
 use function DI\autowire;
 
 final class ContainerBuilder

@@ -7,22 +7,22 @@ class EnumProfile
     /**
      * @var string
      */
-    public const ADMINISTRATOR = 'ADMINISTRATOR';
+    public const string ADMINISTRATOR = 'ADMINISTRATOR';
 
     /**
      * @var string
      */
-    public const USER = 'USER';
+    public const string USER = 'USER';
 
     /**
      * @var int
      */
-    public const ADMINISTRATOR_ID = 1;
+    public const int ADMINISTRATOR_ID = 1;
 
     /**
      * @var int
      */
-    public const USER_ID = 2;
+    public const int USER_ID = 2;
 
     /**
      * @param string $profile

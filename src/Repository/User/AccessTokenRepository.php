@@ -31,7 +31,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      * @param AccessTokenEntityInterface $accessTokenEntity
      * @return void
      */
-    public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
+    public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity): void
     {
         /** @var AccessTokenEntity $accessTokenEntity */
         $accessTokenEntity->access_token = $accessTokenEntity->getIdentifier();
@@ -50,7 +50,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      * @return void
      * @throws ReflectionException
      */
-    public function revokeAccessToken($tokenId)
+    public function revokeAccessToken($tokenId): void
     {
         if ($this->isAccessTokenRevoked($tokenId)) {
             $token = $this->findOneBy([
@@ -88,8 +88,11 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
      * @param $userIdentifier
      * @return AccessTokenEntity
      */
-    public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null)
-    {
+    public function getNewToken(
+        ClientEntityInterface $clientEntity,
+        array $scopes,
+        $userIdentifier = null
+    ): AccessTokenEntity {
         $accessToken = new AccessTokenEntity();
         $accessToken->setClient($clientEntity);
 

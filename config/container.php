@@ -4,17 +4,9 @@ use Adbar\Dot;
 use App\App as Application;
 use App\Repository\RepositoryManager;
 use App\Repository\User\AccessTokenRepository;
-use App\Service\Mail\Mailer;
-use App\Service\Mail\MailerPHPMailer;
 use App\Service\Token\AuthorizationServer as SlimAuthorizationServer;
-use App\Twig\AssetsTwigExtension;
-use App\Twig\FlashMessageTwigExtension;
-use App\Twig\GuardTwigExtension;
-use App\Twig\GuestTwigExtension;
-use App\Twig\IsProductionTwigExtension;
-use App\Twig\PaginateTwigExtension;
-use App\Twig\StoragePathTwigExtension;
-use App\Twig\VersionTwigExtension;
+use App\Slim\Mail\Mailer;
+use App\Slim\Mail\MailerPHPMailer;
 use Illuminate\Database\Capsule\Manager;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
@@ -81,7 +73,7 @@ return [
 
         $twig = new Twig($loader, $viewSettings);
 
-        $extensions = \App\Service\Directory\Directory::turnNameSpacePathIntoArray(
+        $extensions = \App\Slim\Directory\Directory::turnNameSpacePathIntoArray(
             $twigExtensionsPath,
             "App\Twig\\"
         );

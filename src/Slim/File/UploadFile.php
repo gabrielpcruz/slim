@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\File;
+namespace App\Slim\File;
 
 use Psr\Http\Message\UploadedFileInterface;
 
