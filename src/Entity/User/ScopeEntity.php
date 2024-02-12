@@ -10,10 +10,10 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\ScopeTrait;
+use App\Slim\Entity\Entity;
 
 class ScopeEntity extends Entity implements ScopeEntityInterface
 {

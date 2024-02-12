@@ -2,7 +2,7 @@
 
 namespace App\Entity\Example;
 
-use App\Entity\Entity;
+use App\Slim\Entity\Entity;
 
 class RiceEntity extends Entity
 {

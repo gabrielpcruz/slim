@@ -10,7 +10,6 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use DateTime;
 use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,6 +17,7 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\AccessTokenTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
+use App\Slim\Entity\Entity;
 
 class AccessTokenEntity extends Entity implements AccessTokenEntityInterface
 {

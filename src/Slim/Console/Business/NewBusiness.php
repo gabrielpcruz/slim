@@ -125,8 +125,6 @@ class NewBusiness extends Console
 
 namespace $namespace;
 
-use App\Entity\Entity;
-
 class {$entityName}Entity extends Entity
 {
     protected DOLAR_table = "$tableEntity";

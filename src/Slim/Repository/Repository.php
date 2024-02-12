@@ -2,10 +2,10 @@
 
 namespace App\Slim\Repository;
 
-use App\Entity\Entity;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use src\Slim\Entity\Entity;
 
 /**
  * Original source @see https://github.com/jerfeson/slim4-skeleton/blob/feature/3.0.0/app/Repository/Repository.php

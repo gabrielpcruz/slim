@@ -10,11 +10,11 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\AuthCodeTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
+use App\Slim\Entity\Entity;
 
 class AuthCodeEntity extends Entity implements AuthCodeEntityInterface
 {

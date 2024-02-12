@@ -10,12 +10,12 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use DateTime;
 use DateTimeImmutable;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
+use App\Slim\Entity\Entity;
 
 class RefreshTokenEntity extends Entity implements RefreshTokenEntityInterface
 {

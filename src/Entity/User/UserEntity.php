@@ -2,9 +2,9 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use League\OAuth2\Server\Entities\UserEntityInterface;
+use App\Slim\Entity\Entity;
 
 class UserEntity extends Entity implements UserEntityInterface
 {

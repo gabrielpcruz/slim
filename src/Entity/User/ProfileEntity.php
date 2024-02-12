@@ -10,7 +10,7 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
+use App\Slim\Entity\Entity;
 
 class ProfileEntity extends Entity
 {

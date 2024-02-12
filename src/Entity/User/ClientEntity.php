@@ -10,10 +10,10 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Entity;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\Traits\ClientTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
+use App\Slim\Entity\Entity;
 
 class ClientEntity extends Entity implements ClientEntityInterface
 {

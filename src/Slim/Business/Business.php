@@ -3,7 +3,8 @@
 namespace App\Slim\Business;
 
 use App\App;
-use App\Entity\Entity;
+use App\Slim\Repository\Repository;
+use App\Slim\Repository\RepositoryManager;
 use DI\DependencyException;
 use DI\NotFoundException;
 use DomainException;
@@ -13,8 +14,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use ReflectionException;
-use App\Slim\Repository\Repository;
-use App\Slim\Repository\RepositoryManager;
+use src\Slim\Entity\Entity;
 
 /**
  *
