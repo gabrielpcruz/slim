@@ -31,7 +31,7 @@ abstract class ConsoleMigration extends Console
      * @param Migration $migration
      * @return string
      */
-    public function getTableNome(Migration $migration): string
+    public function getTableName(Migration $migration): string
     {
         return strtolower(get_class($migration));
     }

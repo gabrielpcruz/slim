@@ -21,8 +21,8 @@ class EmailCommandExample extends Console
      */
     protected function configure(): void
     {
-        $this->setName('console:email-example');
-        $this->setDescription('Sends an email example of command console.');
+        $this->setName('app:console:email-example');
+        $this->setDescription('Sends an email example from command console.');
     }
 
     /**

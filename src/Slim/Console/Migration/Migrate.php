@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Slim\Migration;
+namespace App\Slim\Console\Migration;
 
+use App\Slim\Migration\ConsoleMigration;
+use App\Slim\Migration\Migration;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -9,15 +11,15 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Down extends ConsoleMigration
+class Migrate extends ConsoleMigration
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('migration:down');
-        $this->setDescription('Drop all tables');
+        $this->setName('migration:slim:migrate');
+        $this->setDescription('Run all migrations on database presents on "App\\Migration" namespace.');
     }
 
     /**
@@ -30,13 +32,13 @@ class Down extends ConsoleMigration
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $this->comment("Droping tables...");
+            $this->comment("Creating tables...");
 
             /** @var Migration $migration */
-            foreach ($this->migrationsReverse() as $migration) {
-                $this->info("table {$this->getTableNome($migration)}...");
+            foreach ($this->migrations() as $migration) {
+                $this->info("table {$this->getTableName($migration)}...");
 
-                $migration->down();
+                $migration->up();
             }
         } catch (Exception $exception) {
             $this->error($exception->getMessage());

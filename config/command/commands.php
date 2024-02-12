@@ -19,19 +19,8 @@ try {
 
     $excludePaths = [
         'Migration',
-        'Seeder',
         'Slim'
     ];
-
-    // Migration
-    $migrationNamespace = "App\\Slim\\Migration\\";
-    $migrationPath = App::settings()->get('path.slim.migration');
-
-    $migrationCommands = Directory::turnNameSpacePathIntoArray(
-        $migrationPath,
-        $migrationNamespace,
-        $excludeClasses
-    );
 
     // Seeder
     $seederNamespace = "App\\Slim\\Seeder\\";
@@ -56,22 +45,25 @@ try {
     );
 
 
+    $commands = array_merge($commands, $seederCommands);
+    $commands = array_merge($commands, $consoleCommands);
+
     // Slim
     $slimCommands = [];
     $slimNamespace = "App\\Slim\\Console\\";
-    $slimPath = App::settings()->get('path.slim.console');
+    $slimPaths = App::settings()->get('path.slim.console');
 
-    $slimCommands = Directory::turnNameSpacePathIntoArray(
-        $slimPath,
-        $slimNamespace,
-        $excludeClasses,
-        $excludePaths
-    );
+    foreach ($slimPaths as $key => $slimPath) {
+        $namespace = Directory::turnPathIntoNameSpace($slimPath);
+        $arr = Directory::turnNameSpacePathIntoArray(
+            $slimPath,
+            $namespace,
+            $excludeClasses,
+            $excludePaths
+        );
 
-    $commands = array_merge($commands, $migrationCommands);
-    $commands = array_merge($commands, $seederCommands);
-    $commands = array_merge($commands, $consoleCommands);
-    $commands = array_merge($commands, $slimCommands);
+        $commands = array_merge($commands, $arr);
+    }
 
 } catch (
 Exception|

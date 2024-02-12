@@ -22,7 +22,11 @@ if (!function_exists('getConsole')) {
 
         if (!empty($commands)) {
             foreach ($commands as $commandClass) {
-                $console->add($container->get($commandClass));
+                try {
+                    $console->add($container->get($commandClass));
+                } catch (Throwable $throwable) {
+                    var_dump("(Console Output).: " . $throwable->getMessage());
+                }
             }
         }
 

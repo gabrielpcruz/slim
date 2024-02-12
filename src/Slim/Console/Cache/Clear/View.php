@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Slim\Console\Cache\Container;
+namespace App\Slim\Console\Cache\Clear;
 
 use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
@@ -9,15 +9,15 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Clear extends Console
+class View extends Console
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('slim:container-clear');
-        $this->setDescription('Clear the container cache.');
+        $this->setName('cache:slim:clear-view');
+        $this->setDescription('Clear the view cache.');
     }
 
     /**
@@ -29,9 +29,9 @@ class Clear extends Console
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $cache = $this->getContainer()->get('settings')->get('path.cache');
+        $cacheView = $this->getContainer()->get('settings')->get('view.settings.cache');
 
-        exec("rm -rf $cache/container/*");
+        exec("rm -rf $cacheView/*");
 
         return Command::SUCCESS;
     }

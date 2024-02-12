@@ -20,7 +20,7 @@ class ConsoleExample extends Console
      */
     protected function configure(): void
     {
-        $this->setName('console:show-example');
+        $this->setName('app:console:show-example');
         $this->setDescription('Shows example of command console output.');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Slim\Seeder;
+namespace App\Slim\Console\Seeder;
 
 use App\App;
 use App\Slim\Console\Console;
@@ -13,15 +13,15 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SeederConsole extends Console
+class Seed extends Console
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('seeder:seed');
-        $this->setDescription('Run the seeders commands');
+        $this->setName('slim:seeder:seed');
+        $this->setDescription('Run the seeders commands presents on "App\\Seeder" namespace.');
     }
 
     /**

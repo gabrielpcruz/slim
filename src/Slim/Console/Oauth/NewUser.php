@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Slim\Console;
+namespace App\Slim\Console\Oauth;
 
 use App\Enum\EnumProfile;
 use App\Slim\Migration\ConsoleMigration;
@@ -18,8 +18,8 @@ class NewUser extends ConsoleMigration
      */
     protected function configure(): void
     {
-        $this->setName('slim:new-user');
-        $this->setDescription('Create a new user');
+        $this->setName('oauth:slim:new-user');
+        $this->setDescription('Create a new user.');
     }
 
     /**
@@ -37,7 +37,7 @@ class NewUser extends ConsoleMigration
         $uuid = uniqid();
 
         $questionUserName = new Question(
-            "Please type the user name" . PHP_EOL,
+            "Please type the user name:" . PHP_EOL,
             "username{$uuid}"
         );
 
@@ -45,7 +45,7 @@ class NewUser extends ConsoleMigration
 
 
         $questionPassword = new Question(
-            "Please type the user password" . PHP_EOL,
+            "Please type the user password:" . PHP_EOL,
             '123456'
         );
 

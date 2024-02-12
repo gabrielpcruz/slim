@@ -62,4 +62,19 @@ class Directory
             yield $file;
         }
     }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    public static function turnPathIntoNameSpace(string $path): string
+    {
+        $nameSpaceSplit = explode('src', $path);
+
+        $nameSpaceSufix = $nameSpaceSplit[1];
+
+        $nameSpaceSufix = str_replace("/", "\\", $nameSpaceSufix);
+
+        return "App" . $nameSpaceSufix . '\\';
+    }
 }

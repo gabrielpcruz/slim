@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Slim\Console;
+namespace App\Slim\Console\Business;
 
+use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\Console\Command\Command;
@@ -16,8 +17,8 @@ class NewBusiness extends Console
      */
     protected function configure(): void
     {
-        $this->setName('slim:new-business');
-        $this->setDescription('Create a full new Business');
+        $this->setName('business:slim:new');
+        $this->setDescription('Create a full new Business.');
     }
 
     /**

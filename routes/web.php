@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Site\Auth\Login;
 use App\Http\Site\Documentation\Documentation;
 use App\Http\Site\Home\Home;
