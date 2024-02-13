@@ -8,8 +8,8 @@ class RiceMigration extends Migration
 {
     public function up(): void
     {
-        if (!$this->schemaBuilder->hasTable('rice')) {
-            $this->schemaBuilder->create('rice', function ($table) {
+        if (!$this->schemaBuilder()->hasTable('rice')) {
+            $this->schemaBuilder()->create('rice', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('name', 255)->unique();
                 $table->dateTime('created_at');
@@ -24,7 +24,7 @@ class RiceMigration extends Migration
      */
     public function down(): void
     {
-        $this->schemaBuilder->drop('rice');
+        $this->schemaBuilder()->drop('rice');
     }
 
     /**

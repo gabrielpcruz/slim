@@ -54,15 +54,15 @@ class CreateTables extends ConsoleMigration
      */
     private function dropTables(): void
     {
-        $this->schemaBuilder->dropIfExists('oauth2_scope');
-        $this->schemaBuilder->dropIfExists('oauth2_refresh_token');
-        $this->schemaBuilder->dropIfExists('oauth2_access_token');
-        $this->schemaBuilder->dropIfExists('user');
-        $this->schemaBuilder->dropIfExists('profile');
-        $this->schemaBuilder->dropIfExists('oauth2_auth_code');
-        $this->schemaBuilder->dropIfExists('oauth2_session');
-        $this->schemaBuilder->dropIfExists('client');
-        $this->schemaBuilder->dropIfExists('oauth2_client');
+        $this->schemaBuilder()->dropIfExists('oauth2_scope');
+        $this->schemaBuilder()->dropIfExists('oauth2_refresh_token');
+        $this->schemaBuilder()->dropIfExists('oauth2_access_token');
+        $this->schemaBuilder()->dropIfExists('user');
+        $this->schemaBuilder()->dropIfExists('profile');
+        $this->schemaBuilder()->dropIfExists('oauth2_auth_code');
+        $this->schemaBuilder()->dropIfExists('oauth2_session');
+        $this->schemaBuilder()->dropIfExists('client');
+        $this->schemaBuilder()->dropIfExists('oauth2_client');
     }
 
     /**
@@ -70,8 +70,8 @@ class CreateTables extends ConsoleMigration
      */
     private function createTables(): void
     {
-        if (!$this->schemaBuilder->hasTable('oauth2_scope')) {
-            $this->schemaBuilder->create('oauth2_scope', function ($table) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_scope')) {
+            $this->schemaBuilder()->create('oauth2_scope', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('description', 255);
                 $table->dateTime('created_at');
@@ -80,9 +80,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('oauth2_client')) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_client')) {
             //oauth2_client
-            $this->schemaBuilder->create('oauth2_client', function ($table) {
+            $this->schemaBuilder()->create('oauth2_client', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('identifier', 255);
                 $table->string('secret', 255);
@@ -92,9 +92,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('oauth2_session')) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_session')) {
             //oauth2_session
-            $this->schemaBuilder->create('oauth2_session', function ($table) {
+            $this->schemaBuilder()->create('oauth2_session', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->integer('oauth2_client_id')->unsigned();
                 $table->foreign('oauth2_client_id')->references('id')->on('oauth2_client');
@@ -106,9 +106,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('oauth2_auth_code')) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_auth_code')) {
             //oauth2_auth_code
-            $this->schemaBuilder->create('oauth2_auth_code', function ($table) {
+            $this->schemaBuilder()->create('oauth2_auth_code', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->integer('oauth2_session_id')->unsigned();
                 $table->foreign('oauth2_session_id')->references('id')->on('oauth2_session');
@@ -120,9 +120,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('profile')) {
+        if (!$this->schemaBuilder()->hasTable('profile')) {
             //user
-            $this->schemaBuilder->create('profile', function ($table) {
+            $this->schemaBuilder()->create('profile', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('name', 45);
                 $table->dateTime('created_at');
@@ -131,9 +131,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('client')) {
+        if (!$this->schemaBuilder()->hasTable('client')) {
             //client
-            $this->schemaBuilder->create('client', function ($table) {
+            $this->schemaBuilder()->create('client', function ($table) {
                 $table->increments('id')->unsigned();
 
                 //FK
@@ -147,9 +147,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('user')) {
+        if (!$this->schemaBuilder()->hasTable('user')) {
             //user
-            $this->schemaBuilder->create('user', function ($table) {
+            $this->schemaBuilder()->create('user', function ($table) {
                 $table->increments('id')->unsigned();
 
                 //FK
@@ -167,9 +167,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('oauth2_access_token')) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_access_token')) {
             //oauth2_access_token
-            $this->schemaBuilder->create('oauth2_access_token', function ($table) {
+            $this->schemaBuilder()->create('oauth2_access_token', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->integer('oauth2_client_id')->unsigned();
                 $table->foreign('oauth2_client_id')->references('id')->on('oauth2_client');
@@ -186,9 +186,9 @@ class CreateTables extends ConsoleMigration
             });
         }
 
-        if (!$this->schemaBuilder->hasTable('oauth2_refresh_token')) {
+        if (!$this->schemaBuilder()->hasTable('oauth2_refresh_token')) {
             //oauth2_access_token
-            $this->schemaBuilder->create('oauth2_refresh_token', function ($table) {
+            $this->schemaBuilder()->create('oauth2_refresh_token', function ($table) {
                 $table->increments('id')->unsigned();
 
                 //FK

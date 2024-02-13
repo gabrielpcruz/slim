@@ -16,7 +16,6 @@ abstract class ConsoleMigration extends Console
     public function __construct(ContainerInterface $container, string $name = null)
     {
         parent::__construct($container, $name);
-        $this->configureConnection();
     }
 
     /**

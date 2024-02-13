@@ -5,7 +5,7 @@ namespace App\Slim\Repository;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use src\Slim\Entity\Entity;
+use App\Slim\Entity\Entity;
 
 /**
  * Original source @see https://github.com/jerfeson/slim4-skeleton/blob/feature/3.0.0/app/Repository/Repository.php
@@ -40,7 +40,7 @@ abstract class Repository
     /**
      * @param Entity $entity
      */
-    public function save(Entity $entity)
+    public function save(Entity $entity): void
     {
         $entity->save();
     }
@@ -77,7 +77,7 @@ abstract class Repository
     /**
      * @return Collection|object[]
      */
-    public function all()
+    public function all(): Collection|array
     {
         return $this->entity::all();
     }

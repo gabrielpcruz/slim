@@ -19,9 +19,9 @@ use ReflectionException;
 trait MigrationTrait
 {
     /**
-     * @var Builder
+     * @var Builder|null
      */
-    protected Builder $schemaBuilder;
+    protected ?Builder $schemaBuilder;
 
     /**
      * @var Connection
@@ -121,5 +121,21 @@ trait MigrationTrait
         krsort($migrationsSorted);
 
         return $this->generator($migrationsSorted);
+    }
+
+    /**
+     * @return Builder
+     */
+    protected function schemaBuilder(): Builder
+    {
+        if ($this->schemaBuilder instanceof Builder) {
+            var_dump(1);
+            return $this->schemaBuilder;
+        }
+
+        $this->connection = Manager::connection($this->getConnectionName());
+        $this->schemaBuilder = $this->connection->getSchemaBuilder();
+
+        return $this->schemaBuilder;
     }
 }
