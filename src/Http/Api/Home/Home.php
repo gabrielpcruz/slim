@@ -2,7 +2,7 @@
 
 namespace App\Http\Api\Home;
 
-use App\Business\Rice\RiceBusiness;
+use App\Repository\Example\RiceRespository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Slim\Http\Api\ApiController;
@@ -16,9 +16,9 @@ class Home extends ApiController
      */
     public function index(Request $request, Response $response): Response
     {
-        $riceBusiness = new RiceBusiness();
+        $riceRepository = new RiceRespository();
 
-        $this->payloadResponse()->data = $riceBusiness->getRepository()->all()->toArray();
+        $this->payloadResponse()->data = $riceRepository->all()->toArray();
 
         return $this->toJson($response);
     }

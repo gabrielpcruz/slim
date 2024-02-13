@@ -44,7 +44,6 @@ try {
         $excludePaths
     );
 
-
     $commands = array_merge($commands, $seederCommands);
     $commands = array_merge($commands, $consoleCommands);
 
@@ -52,6 +51,7 @@ try {
     $slimCommands = [];
     $slimNamespace = "App\\Slim\\Console\\";
     $slimPaths = App::settings()->get('path.slim.console');
+
 
     foreach ($slimPaths as $key => $slimPath) {
         $namespace = Directory::turnPathIntoNameSpace($slimPath);
@@ -65,13 +65,14 @@ try {
         $commands = array_merge($commands, $arr);
     }
 
+
 } catch (
 Exception|
 NotFoundExceptionInterface|
 ContainerExceptionInterface $exception
 ) {
+
     $commands = [];
 }
-
 
 return $commands;

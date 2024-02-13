@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Slim\Console\Business;
+namespace App\Slim\Console\Entity;
 
 use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
@@ -10,15 +10,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class NewBusiness extends Console
+class NewEntity extends Console
 {
     /**
      * @return void
      */
     protected function configure(): void
     {
-        $this->setName('business:slim:new');
-        $this->setDescription('Create a full new Business.');
+        $this->setName('entity:slim:new');
+        $this->setDescription('Create a full new Entity (Entity/Repository).');
     }
 
     /**
@@ -33,26 +33,26 @@ class NewBusiness extends Console
         $helper = $this->getHelper('question');
 
         $question = new Question(
-            "Digite o nome do Business: ",
+            "Type the Entity name: ",
         );
 
-        $business = $helper->ask($input, $output, $question);
+        $entity = $helper->ask($input, $output, $question);
 
 
         $entityPath = $this->getContainer()->get('settings')->get('path.entity');
 
-        $businessName = ucfirst($business);
+        $EntityName = ucfirst($entity);
 
         // Cria entity
-        $newEntityPath = $businessName;
+        $newEntityPath = $EntityName;
         $command = "mkdir $entityPath/$newEntityPath";
 
         exec("$command");
 
-        $newEntityName = $businessName;
+        $newEntityName = $EntityName;
         $newEntity = "{$newEntityName}";
 
-        $nameSpaceEntity = "App\\Entity\\$businessName";
+        $nameSpaceEntity = "App\\Entity\\$EntityName";
         $newEntityClass = $this->templateEntity($newEntity, $nameSpaceEntity);
 
 
@@ -65,15 +65,15 @@ class NewBusiness extends Console
 
         $repositoryPath = $this->getContainer()->get('settings')->get('path.repository');
 
-        $newRepositoryPath = $businessName;
+        $newRepositoryPath = $EntityName;
         $command = "mkdir $repositoryPath/$newRepositoryPath";
 
         exec("$command");
 
-        $newRepositoryName = $businessName;
+        $newRepositoryName = $EntityName;
         $newRepository = "{$newRepositoryName}";
 
-        $nameSpaceRepository = "App\\Repository\\$businessName";
+        $nameSpaceRepository = "App\\Repository\\$EntityName";
         $newRepositoryClass = $this->templateRepository(
             $newRepository,
             "{$nameSpaceEntity}",
@@ -86,31 +86,6 @@ class NewBusiness extends Console
         $class = "{$repositoryPath}/{$newRepositoryPath}/{$newRepositoryPath}Repository.php";
 
         $command = "echo '$newRepositoryClass' >> {$class}";
-        exec("$command");
-
-        // Cria Business
-
-        $businessPath = $this->getContainer()->get('settings')->get('path.business');
-
-        $newBusinessPath = $businessName;
-        $command = "mkdir $businessPath/$newBusinessPath";
-
-        exec("$command");
-
-        $newBusinessName = $businessName;
-        $newBusiness = "{$newBusinessName}";
-
-        $nameSpaceBusiness = "App\\Business\\$businessName";
-        $newBusinessClass = $this->templateBusiness(
-            $newBusiness,
-            "{$nameSpaceRepository}",
-            $newRepository,
-            $nameSpaceBusiness
-        );
-
-        sleep(1);
-
-        $command = "echo '$newBusinessClass' >> {$businessPath}/{$newBusinessPath}/{$newBusinessPath}Business.php";
         exec("$command");
 
         return Command::SUCCESS;
@@ -156,29 +131,5 @@ class {$repositoryName}Repository extends Repository
 }
 
 STR;
-    }
-
-    private function templateBusiness($businessName, $repositoryNameSpace, $repositoryName, $namespace)
-    {
-        $repositoryFull = '\\' . $repositoryName . "Repository";
-        $business = <<<STR
-<?php
-
-namespace $namespace;
-
-{$repositoryNameSpace}{$repositoryFull};
-
-class {$businessName}Business extends Business
-{
-    /**
-     * @var string
-     */
-    protected string DOLAR_repositoryClass = {$repositoryName}Repository::class;
-}
-
-
-STR;
-
-        return str_replace("DOLAR_", "$", $business);
     }
 }
