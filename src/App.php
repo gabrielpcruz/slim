@@ -187,6 +187,8 @@ class App
         $settings = self::settings();
 
         self::defineConstants($settings);
+        self::cacheRoutes($app);
+
         self::provide($container, $settings);
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
@@ -211,6 +213,16 @@ class App
         }
 
         return self::$container;
+    }
+
+    /**
+     * @param mixed $app
+     * @return void
+     */
+    public static function cacheRoutes(mixed $app): void
+    {
+        $routeCollector = $app->getRouteCollector();
+        $routeCollector->setCacheFile(STORAGE_PATH . '/cache/slim/routes.slim');
     }
 
     /**

@@ -153,7 +153,6 @@ if (!function_exists('slugify')) {
 if (!function_exists('dd')) {
     #[NoReturn] function dd($expression): void
     {
-
         var_dump($expression);
         die;
     }

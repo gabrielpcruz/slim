@@ -8,6 +8,7 @@ use App\Repository\User\ClientRepository;
 use App\Repository\User\RefreshTokenRepository;
 use App\Repository\User\ScopeRepository;
 use App\Repository\User\UserRepository;
+use App\Service\Service;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Exception;
@@ -20,7 +21,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
 use App\Slim\Repository\RepositoryManager;
 
-class AuthorizationServer
+class AuthorizationServer extends Service
 {
     private string $encryption_key = '89v787Ui4pj5HnUGTV29yXfvNA12BmgUozhBVv1uFMs=';
 

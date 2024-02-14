@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'driver' => 'mysql',
-    'host' => '192.168.1.11:9905',
-    'database' => 'slim',
+    'driver' => 'sqlite',
+    'host' => 'localhost',
+    'database' => STORAGE_PATH . '/database/db.sqlite',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',

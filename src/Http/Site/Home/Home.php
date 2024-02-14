@@ -2,7 +2,7 @@
 
 namespace App\Http\Site\Home;
 
-use App\Repository\Example\RiceRespository;
+use App\Service\Rice\RiceService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Slim\Http\Site\SiteController;
@@ -22,9 +22,9 @@ class Home extends SiteController
      */
     public function index(Request $request, Response $response): Response
     {
-        $riceRepository = new RiceRespository();
+        $riceService = new RiceService();
 
-        $rices = $riceRepository->all($request)->toArray();
+        $rices = $riceService->all($request)->toArray();
 
         return $this->view(
             $response,
@@ -43,9 +43,9 @@ class Home extends SiteController
      */
     public function logged(Request $request, Response $response): Response
     {
-        $riceRepository = new RiceRespository();
+        $riceService = new RiceService();
 
-        $rices = $riceRepository->all($request)->toArray();
+        $rices = $riceService->all()->toArray();
 
         return $this->view(
             $response,

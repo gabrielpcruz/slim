@@ -42,8 +42,9 @@ class Login extends SiteController
      * @param Response $response
      * @return Response
      * @throws ContainerExceptionInterface
+     * @throws DependencyException
+     * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
      */
     public function login(Request $request, Response $response): Response
     {

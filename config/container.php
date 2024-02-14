@@ -63,7 +63,7 @@ return [
         $rootPath = $settings->get('view.path');
         $templates = $settings->get('view.templates');
         $viewSettings = $settings->get('view.settings');
-        $twigExtensionsPath = $settings->get('path.twig');
+        $twigExtensionsPath = $settings->get('path.slim.twig');
 
         $loader = new FilesystemLoader([], $rootPath);
 
@@ -75,7 +75,7 @@ return [
 
         $extensions = \App\Slim\Directory\Directory::turnNameSpacePathIntoArray(
             $twigExtensionsPath,
-            "App\Twig\\"
+            "\\App\\Slim\\Twig\\"
         );
 
         $twig->addExtension(new DebugExtension());

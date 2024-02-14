@@ -53,8 +53,7 @@ class ClientRepository extends Repository implements ClientRepositoryInterface
 
     /**
      * @param array $data
-     *
-     * @return null|false|mixed|UserEntityInterface
+     * @return mixed
      */
     public function getClientEntityByCredentials(array $data): mixed
     {

@@ -129,7 +129,6 @@ trait MigrationTrait
     protected function schemaBuilder(): Builder
     {
         if ($this->schemaBuilder instanceof Builder) {
-            var_dump(1);
             return $this->schemaBuilder;
         }
 

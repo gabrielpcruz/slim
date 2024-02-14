@@ -10,7 +10,7 @@ abstract class Migration
 
     public function __construct()
     {
-        $this->configureConnection();
+        $this->schemaBuilder = null;
     }
 
     /**

@@ -4,16 +4,29 @@ namespace App\Service\Token;
 
 use App\App;
 use App\Entity\User\ClientEntity;
+use App\Repository\User\AccessTokenRepository;
 use App\Repository\User\ClientRepository;
 use App\Repository\User\UserRepository;
+use App\Service\Service;
 use DI\DependencyException;
 use DI\NotFoundException;
+use Illuminate\Database\Eloquent\Model;
+use League\OAuth2\Server\Entities\UserEntityInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use App\Slim\Repository\RepositoryManager;
+use ReflectionException;
 
-class AccessToken
+class AccessToken extends Service
 {
+    /**
+     * @return string
+     */
+    protected function getRepositoryClass(): string
+    {
+        return AccessTokenRepository::class;
+    }
+
     /**
      * @param array $data
      *
@@ -36,19 +49,15 @@ class AccessToken
     /**
      * @param array $data
      *
-     * @return ClientEntity|null
-     * @throws ContainerExceptionInterface
-     * @throws DependencyException
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @return object
+     * @throws ReflectionException
      */
-    private function getClientByUserPassword(array $data): ?ClientEntity
+    private function getClientByUserPassword(array $data): object
     {
-        $repositoryManager = App::container()->get(RepositoryManager::class);
+        /** @var UserRepository $userRepository */
+        $userRepository = $this->getRepository(UserRepository::class);
 
-        $user = $repositoryManager->get(UserRepository::class)->getUserEntityByCredentials(
-            $data
-        );
+        $user = $userRepository->getUserEntityByCredentials($data);
 
         return $user->client()->first();
     }
@@ -57,15 +66,12 @@ class AccessToken
      * @param array $data
      *
      * @return ClientEntity|null
-     * @throws ContainerExceptionInterface
-     * @throws DependencyException
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     private function getClientByIdentifier(array $data): ?ClientEntity
     {
         /** @var ClientRepository $clientRepository */
-        $clientRepository = App::container()->get(RepositoryManager::class)->get(ClientRepository::class);
+        $clientRepository = $this->getRepository(ClientRepository::class);
 
         return $clientRepository->getClientEntityByCredentials(
             $data

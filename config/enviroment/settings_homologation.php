@@ -4,10 +4,10 @@
 $homologationSettings = [];
 
 $homologationSettings['error'] = [
-    'slashtrace' => 0,
-    'error_reporting' => 0,
-    'display_errors' => 0,
-    'display_startup_errors' => 0,
+    'slashtrace' => 1,
+    'error_reporting' => 1,
+    'display_errors' => 1,
+    'display_startup_errors' => 1,
 ];
 
 $homologationSettings['view'] = [

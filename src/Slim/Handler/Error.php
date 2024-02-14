@@ -65,6 +65,10 @@ class Error implements ErrorHandlerInterface
 
         $response = $response->withStatus($code);
 
+        if (App::isProduction()) {
+            $message = "";
+        }
+
         return $view->render(
             $response,
             $template,

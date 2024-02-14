@@ -36,11 +36,11 @@ $settings['path'] = [
         ],
         'migration' => ROOT_PATH . '/src/Slim/Migration',
         'seeder' => ROOT_PATH . '/src/Slim/Seeder',
+        'twig' => ROOT_PATH . '/src/Slim/Twig',
     ],
     'provider' => ROOT_PATH . '/src/Slim/Provider',
     'repository' => ROOT_PATH . '/src/Repository',
     'entity' => ROOT_PATH . '/src/Entity',
-    'twig' => ROOT_PATH . '/src/Twig',
     'files' => [
         'images' => ROOT_PATH . '/storage/images'
     ],
@@ -92,7 +92,7 @@ $settings['mailer'] = [
 ];
 
 $settings['error'] = [
-    'slashtrace' => 0, // Exibir erros na tela
+    'slashtrace' => 1, // Exibir erros na tela
     'error_reporting' => 1,
     'display_errors' => 1,
     'display_startup_errors' => 1,

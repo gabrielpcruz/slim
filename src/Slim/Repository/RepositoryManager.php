@@ -34,26 +34,9 @@ class RepositoryManager
     }
 
     /**
-     * @return ConnectionInterface
-     */
-    public function getConnection(): ConnectionInterface
-    {
-        return $this->connection;
-    }
-
-    /**
-     * @param ConnectionInterface $connection
-     */
-    public function setConnection(ConnectionInterface $connection): void
-    {
-        $this->connection = $connection;
-    }
-
-    /**
      * @param string $repositoryClass
      *
      * @return Repository
-     * @throws ReflectionException
      *
      */
     public function get(string $repositoryClass): Repository
