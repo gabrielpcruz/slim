@@ -2,6 +2,7 @@
 
 namespace App\Slim\Middleware\Site;
 
+use DomainException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -20,6 +21,6 @@ abstract class MiddlewareSite extends Middleware
             return $this->handle($request, $handler);
         }
 
-        return $handler->handle($request);
+        throw new DomainException("Only site allowed!");
     }
 }
