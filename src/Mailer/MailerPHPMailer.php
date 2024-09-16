@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Slim\Mail;
+namespace src\Mailer;
 
 use App\App;
+use App\Slim\Mail\Mailer;
 use DI\DependencyException;
 use DI\NotFoundException;
 use PHPMailer\PHPMailer\Exception;

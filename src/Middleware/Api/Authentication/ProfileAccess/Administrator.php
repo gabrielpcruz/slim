@@ -2,7 +2,6 @@
 
 namespace App\Middleware\Api\Authentication\ProfileAccess;
 
-use App\Enum\EnumProfile;
 use DI\DependencyException;
 use DI\NotFoundException;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -10,6 +9,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionException;
+use src\Slim\Enum\EnumProfile;
 
 class Administrator extends ProfileAccess
 {

@@ -51,10 +51,8 @@
         "psr-4": {
             "App\\": "src/",
             "Tests\\": "tests/"
-        },
-        "files": [
-            "resources/helpers/slim.php"
-        ]
+        }
+
     },
     "require-dev": {
         "mockery/mockery": "^1.5",

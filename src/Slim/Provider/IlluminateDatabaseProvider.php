@@ -3,6 +3,7 @@
 namespace App\Slim\Provider;
 
 use Adbar\Dot;
+use App\Slim\Database\Connections;
 use Illuminate\Database\Capsule\Manager;
 use Psr\Container\ContainerInterface;
 
@@ -17,7 +18,7 @@ class IlluminateDatabaseProvider implements ProviderInterface
     {
         $manager = new Manager();
 
-        $conections = (require_once $settings->get('file.database'));
+        $conections = (new Connections())->getConnections();
 
         foreach ($conections as $name => $conection) {
             $manager->addConnection($conection, $name);

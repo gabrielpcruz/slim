@@ -3,10 +3,10 @@
 namespace App\Service\Rice;
 
 use App\Repository\Example\RiceRespository;
-use App\Service\Service;
 use Illuminate\Database\Eloquent\Collection;
+use App\Slim\Service\AbstractService;
 
-class RiceService extends Service
+class RiceService extends AbstractService
 {
     /**
      * @return string

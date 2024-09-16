@@ -9,13 +9,13 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Slim\Http\Site\SiteController;
+use App\Slim\Http\Site\SiteAbstractController;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Documentation extends SiteController
+class Documentation extends SiteAbstractController
 {
     /**
      * @param Request $request

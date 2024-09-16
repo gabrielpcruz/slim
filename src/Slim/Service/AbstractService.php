@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Slim\Service;
 
 use App\App;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 use App\Slim\Repository\RepositoryManager;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -14,7 +14,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 
 
-abstract class Service
+abstract class AbstractService
 {
     /**
      * @var RepositoryManager
@@ -34,9 +34,9 @@ abstract class Service
 
     /**
      * @param string|null $repositoryClass
-     * @return Repository
+     * @return AbstractRepository
      */
-    final public function getRepository(string $repositoryClass = null): Repository
+    final public function getRepository(string $repositoryClass = null): AbstractRepository
     {
         if (!$repositoryClass) {
             $repositoryClass = $this->getRepositoryClass();

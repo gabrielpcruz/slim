@@ -2,14 +2,14 @@
 
 namespace App\Seeder;
 
-use App\Slim\Seeder\Seeder;
+use App\Slim\Seeder\AbstractSeeder;
 use DateTime;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class RiceSeeder extends Seeder
+class RiceSeeder extends AbstractSeeder
 {
     /**
      * @throws NotFoundExceptionInterface

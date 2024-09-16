@@ -2,9 +2,8 @@
 
 namespace App\Middleware\Site\Authentication;
 
-use App\Enum\EnumProfile;
-use App\Enum\FlashMessage;
 use App\Message\Exception\System\MessageExceptionSystem;
+use App\Slim\Middleware\Site\MiddlewareSite;
 use App\Slim\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -13,7 +12,8 @@ use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use App\Slim\Middleware\Site\MiddlewareSite;
+use src\Slim\Enum\EnumProfile;
+use src\Slim\Enum\FlashMessage;
 
 class AdministratorOnly extends MiddlewareSite
 {

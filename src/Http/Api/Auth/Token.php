@@ -12,9 +12,9 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Slim\Http\Api\ApiController;
+use App\Slim\Http\Api\ApiAbstractController;
 
-class Token extends ApiController
+class Token extends ApiAbstractController
 {
     /**
      * @param Request $request

@@ -14,9 +14,9 @@ use App\Entity\User\ClientEntity;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 
-class ClientRepository extends Repository implements ClientRepositoryInterface
+class ClientAbstractRepository extends AbstractRepository implements ClientRepositoryInterface
 {
     public const string CLIENT_NAME = 'My Awesome App';
     public const string REDIRECT_URI = 'http://foo/bar';

@@ -5,9 +5,9 @@ namespace App\Http\Api\Home;
 use App\Service\Rice\RiceService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Slim\Http\Api\ApiController;
+use App\Slim\Http\Api\ApiAbstractController;
 
-class Home extends ApiController
+class Home extends ApiAbstractController
 {
     /**
      * @param Request $request

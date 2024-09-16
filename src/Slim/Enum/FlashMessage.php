@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enum;
+namespace src\Slim\Enum;
 
 class FlashMessage
 {

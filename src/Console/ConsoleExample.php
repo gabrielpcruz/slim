@@ -7,7 +7,7 @@ use App\Repository\Example\RiceRespository;
 use App\Slim\Console\Console;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 use App\Slim\Repository\RepositoryManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -74,7 +74,7 @@ class ConsoleExample extends Console
 
         sleep(5);
 
-        /** @var Repository $repository */
+        /** @var AbstractRepository $repository */
         $repository = $this->getContainer()->get(RepositoryManager::class)->get(RiceRespository::class);
 
         /** @var RiceEntity $item */

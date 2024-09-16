@@ -3,12 +3,12 @@
 namespace App\Service\Token;
 
 use App\App;
-use App\Repository\User\AccessTokenRepository;
-use App\Repository\User\ClientRepository;
-use App\Repository\User\RefreshTokenRepository;
-use App\Repository\User\ScopeRepository;
-use App\Repository\User\UserRepository;
-use App\Service\Service;
+use App\Repository\User\AccessTokenAbstractRepository;
+use App\Repository\User\ClientAbstractRepository;
+use App\Repository\User\RefreshTokenAbstractRepository;
+use App\Repository\User\ScopeAbstractRepository;
+use App\Repository\User\UserAbstractRepository;
+use App\Slim\Repository\RepositoryManager;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Exception;
@@ -18,10 +18,9 @@ use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use ReflectionException;
-use App\Slim\Repository\RepositoryManager;
+use App\Slim\Service\AbstractService;
 
-class AuthorizationServer extends Service
+class AuthorizationServer extends AbstractService
 {
     private string $encryption_key = '89v787Ui4pj5HnUGTV29yXfvNA12BmgUozhBVv1uFMs=';
 
@@ -47,7 +46,6 @@ class AuthorizationServer extends Service
      * @throws DependencyException
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
-     * @throws ReflectionException
      * @throws Exception
      */
     public function create(ContainerInterface $container): LeagueAuthorizationServer
@@ -58,14 +56,14 @@ class AuthorizationServer extends Service
         /** @var RepositoryManager $repositoryManager */
         $repositoryManager = App::container()->get(RepositoryManager::class);
 
-        /** @var ClientRepository $clientRepository */
-        $clientRepository = $repositoryManager->get(ClientRepository::class);
+        /** @var ClientAbstractRepository $clientRepository */
+        $clientRepository = $repositoryManager->get(ClientAbstractRepository::class);
 
-        /** @var ScopeRepository $scopeRepository */
-        $scopeRepository = $repositoryManager->get(ScopeRepository::class);
+        /** @var ScopeAbstractRepository $scopeRepository */
+        $scopeRepository = $repositoryManager->get(ScopeAbstractRepository::class);
 
-        /** @var AccessTokenRepository $tokenRepository */
-        $tokenRepository = $repositoryManager->get(AccessTokenRepository::class);
+        /** @var AccessTokenAbstractRepository $tokenRepository */
+        $tokenRepository = $repositoryManager->get(AccessTokenAbstractRepository::class);
 
         $server = new LeagueAuthorizationServer(
             $clientRepository,
@@ -75,11 +73,11 @@ class AuthorizationServer extends Service
             $this->encryption_key
         );
 
-        /** @var UserRepository $userRepository */
-        $userRepository = $repositoryManager->get(UserRepository::class);
+        /** @var UserAbstractRepository $userRepository */
+        $userRepository = $repositoryManager->get(UserAbstractRepository::class);
 
-        /** @var RefreshTokenRepository $refreshTokenRepository */
-        $refreshTokenRepository = $repositoryManager->get(RefreshTokenRepository::class);
+        /** @var RefreshTokenAbstractRepository $refreshTokenRepository */
+        $refreshTokenRepository = $repositoryManager->get(RefreshTokenAbstractRepository::class);
 
         $refreshTokenExpiryTime = datePeriod(0, 1);
 

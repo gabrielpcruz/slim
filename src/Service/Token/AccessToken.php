@@ -2,39 +2,28 @@
 
 namespace App\Service\Token;
 
-use App\App;
 use App\Entity\User\ClientEntity;
-use App\Repository\User\AccessTokenRepository;
-use App\Repository\User\ClientRepository;
-use App\Repository\User\UserRepository;
-use App\Service\Service;
-use DI\DependencyException;
-use DI\NotFoundException;
-use Illuminate\Database\Eloquent\Model;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use App\Slim\Repository\RepositoryManager;
+use App\Repository\User\AccessTokenAbstractRepository;
+use App\Repository\User\ClientAbstractRepository;
+use App\Repository\User\UserAbstractRepository;
 use ReflectionException;
+use App\Slim\Service\AbstractService;
 
-class AccessToken extends Service
+class AccessToken extends AbstractService
 {
     /**
      * @return string
      */
     protected function getRepositoryClass(): string
     {
-        return AccessTokenRepository::class;
+        return AccessTokenAbstractRepository::class;
     }
 
     /**
      * @param array $data
      *
      * @return ClientEntity|null
-     * @throws ContainerExceptionInterface
-     * @throws DependencyException
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function getClientByGrant(array $data): ?ClientEntity
     {
@@ -50,12 +39,11 @@ class AccessToken extends Service
      * @param array $data
      *
      * @return object
-     * @throws ReflectionException
      */
     private function getClientByUserPassword(array $data): object
     {
-        /** @var UserRepository $userRepository */
-        $userRepository = $this->getRepository(UserRepository::class);
+        /** @var UserAbstractRepository $userRepository */
+        $userRepository = $this->getRepository(UserAbstractRepository::class);
 
         $user = $userRepository->getUserEntityByCredentials($data);
 
@@ -66,12 +54,11 @@ class AccessToken extends Service
      * @param array $data
      *
      * @return ClientEntity|null
-     * @throws ReflectionException
      */
     private function getClientByIdentifier(array $data): ?ClientEntity
     {
-        /** @var ClientRepository $clientRepository */
-        $clientRepository = $this->getRepository(ClientRepository::class);
+        /** @var ClientAbstractRepository $clientRepository */
+        $clientRepository = $this->getRepository(ClientAbstractRepository::class);
 
         return $clientRepository->getClientEntityByCredentials(
             $data

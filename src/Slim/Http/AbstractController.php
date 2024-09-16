@@ -9,7 +9,7 @@ use Psr\Container\NotFoundExceptionInterface;
 use Slim\Flash\Messages;
 use App\Slim\Repository\RepositoryManager;
 
-abstract class Controller
+abstract class AbstractController
 {
     /**
      * @var ContainerInterface

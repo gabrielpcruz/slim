@@ -15,9 +15,9 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use ReflectionException;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 
-class AccessTokenRepository extends Repository implements AccessTokenRepositoryInterface
+class AccessTokenAbstractRepository extends AbstractRepository implements AccessTokenRepositoryInterface
 {
     /**
      * @return string
@@ -57,7 +57,7 @@ class AccessTokenRepository extends Repository implements AccessTokenRepositoryI
                 'access_token' => $tokenId,
             ]);
 
-            $refreshTokenRepository = $this->getRepositoryManager()->get(RefreshTokenRepository::class);
+            $refreshTokenRepository = $this->getRepositoryManager()->get(RefreshTokenAbstractRepository::class);
 
             $refreshToken = $refreshTokenRepository->findOneBy([
                 'oauth2_access_token_id' => $token->getAttribute('id')

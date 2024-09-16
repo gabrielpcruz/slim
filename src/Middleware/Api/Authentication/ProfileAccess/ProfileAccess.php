@@ -4,7 +4,7 @@ namespace App\Middleware\Api\Authentication\ProfileAccess;
 
 use App\App;
 use App\Entity\User\UserEntity;
-use App\Repository\User\UserRepository;
+use App\Repository\User\UserAbstractRepository;
 use App\Slim\Exception\UserNotAllowedException;
 use App\Slim\Middleware\Api\MiddlewareApi;
 use DI\DependencyException;
@@ -38,8 +38,8 @@ abstract class ProfileAccess extends MiddlewareApi implements ProfileAccessInter
         /** @var BearerTokenValidator $bearerValidator */
         $bearerValidator = App::container()->get(BearerTokenValidator::class);
 
-        /** @var UserRepository $userRepository */
-        $userRepository = $repositoryManager->get(UserRepository::class);
+        /** @var UserAbstractRepository $userRepository */
+        $userRepository = $repositoryManager->get(UserAbstractRepository::class);
 
         $request = $bearerValidator->validateAuthorization($request);
 

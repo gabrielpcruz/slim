@@ -14,10 +14,10 @@ use App\Entity\User\ScopeEntity;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 use function array_key_exists;
 
-class ScopeRepository extends Repository implements ScopeRepositoryInterface
+class ScopeAbstractRepository extends AbstractRepository implements ScopeRepositoryInterface
 {
     /**
      * @return string

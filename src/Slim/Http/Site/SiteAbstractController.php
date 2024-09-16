@@ -5,12 +5,12 @@ namespace App\Slim\Http\Site;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\Twig;
-use App\Slim\Http\Controller;
+use App\Slim\Http\AbstractController;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class SiteController extends Controller
+class SiteAbstractController extends AbstractController
 {
     /**
      * @var Twig

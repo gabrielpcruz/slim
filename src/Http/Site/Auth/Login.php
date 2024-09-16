@@ -3,9 +3,9 @@
 namespace App\Http\Site\Auth;
 
 use App\Entity\User\UserEntity;
-use App\Enum\FlashMessage;
 use App\Message\Success\System\MessageSuccessSystem;
-use App\Repository\User\UserRepository;
+use App\Repository\User\UserAbstractRepository;
+use App\Slim\Http\Site\SiteAbstractController;
 use App\Slim\Session\Session;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -13,13 +13,12 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use ReflectionException;
-use App\Slim\Http\Site\SiteController;
+use src\Slim\Enum\FlashMessage;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Login extends SiteController
+class Login extends SiteAbstractController
 {
     /**
      * @param Request $request
@@ -50,8 +49,8 @@ class Login extends SiteController
     {
         $data = (array) $request->getParsedBody();
 
-        /** @var UserRepository $userRepository */
-        $userRepository = $this->getRepositoryManager()->get(UserRepository::class);
+        /** @var UserAbstractRepository $userRepository */
+        $userRepository = $this->getRepositoryManager()->get(UserAbstractRepository::class);
 
         /** @var UserEntity $user */
         $user = $userRepository->getUserEntityByCredentials($data);

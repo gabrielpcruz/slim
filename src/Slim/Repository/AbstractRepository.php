@@ -12,7 +12,7 @@ use App\Slim\Entity\Entity;
  *
  * @author Thiago Daher
  */
-abstract class Repository
+abstract class AbstractRepository
 {
     /**
      * @var Entity

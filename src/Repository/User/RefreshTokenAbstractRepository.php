@@ -16,9 +16,9 @@ use Exception;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 
-class RefreshTokenRepository extends Repository implements RefreshTokenRepositoryInterface
+class RefreshTokenAbstractRepository extends AbstractRepository implements RefreshTokenRepositoryInterface
 {
     use RefreshTokenTrait;
 

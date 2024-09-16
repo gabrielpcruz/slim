@@ -15,9 +15,9 @@ use App\Entity\User\UserEntity;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 
-class UserRepository extends Repository implements UserRepositoryInterface
+class UserAbstractRepository extends AbstractRepository implements UserRepositoryInterface
 {
     /**
      * @return string

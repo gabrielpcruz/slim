@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Slim\Container\DefaultContainer;
 use App\Slim\Directory\Directory;
 use DI\Container;
 use DI\ContainerBuilder as ContainerBuilderDI;
@@ -17,9 +18,8 @@ final class ContainerBuilder
      */
     public function build(): Container
     {
-        $this->getDefinitions();
         return (new ContainerBuilderDI())
-            ->addDefinitions(__DIR__ . '/../config/container.php')
+            ->addDefinitions((new DefaultContainer())->getDefinitions())
             ->addDefinitions([
                 'flash' => function () {
                     return new Messages($_SESSION);

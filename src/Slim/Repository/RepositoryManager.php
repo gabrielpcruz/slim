@@ -21,7 +21,7 @@ class RepositoryManager
     private ConnectionInterface $connection;
 
     /**
-     * @var Repository[]
+     * @var AbstractRepository[]
      */
     private array $cache;
 
@@ -36,10 +36,10 @@ class RepositoryManager
     /**
      * @param string $repositoryClass
      *
-     * @return Repository
+     * @return AbstractRepository
      *
      */
-    public function get(string $repositoryClass): Repository
+    public function get(string $repositoryClass): AbstractRepository
     {
         if (isset($this->cache[$repositoryClass])) {
             return $this->cache[$repositoryClass];
@@ -51,11 +51,11 @@ class RepositoryManager
 
         $reflection = new ReflectionClass($repositoryClass);
 
-        if (!$reflection->isSubclassOf(Repository::class)) {
+        if (!$reflection->isSubclassOf(AbstractRepository::class)) {
             throw new RuntimeException('The specified class is not an repository!');
         }
 
-        /** @var Repository $repository */
+        /** @var AbstractRepository $repository */
         $repository = new $repositoryClass();
 
         $entityClass = $repository->getEntityClass();

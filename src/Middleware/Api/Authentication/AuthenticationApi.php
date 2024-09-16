@@ -4,8 +4,8 @@ namespace App\Middleware\Api\Authentication;
 
 use App\App;
 use App\Entity\User\ClientEntity;
-use App\Repository\User\AccessTokenRepository;
-use App\Repository\User\ClientRepository;
+use App\Repository\User\AccessTokenAbstractRepository;
+use App\Repository\User\ClientAbstractRepository;
 use App\Slim\Middleware\Api\MiddlewareApi;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -50,8 +50,8 @@ class AuthenticationApi extends MiddlewareApi
         /** @var string $oauth2PublicKey */
         $oauth2PublicKey = App::settings()->get('file.oauth_public');
 
-        /** @var AccessTokenRepository $accessTokenRepository */
-        $accessTokenRepository = $this->repositoryManager->get(AccessTokenRepository::class);
+        /** @var AccessTokenAbstractRepository $accessTokenRepository */
+        $accessTokenRepository = $this->repositoryManager->get(AccessTokenAbstractRepository::class);
 
         $server = new ResourceServer(
             $accessTokenRepository,
@@ -59,7 +59,7 @@ class AuthenticationApi extends MiddlewareApi
         );
 
         $request = $server->validateAuthenticatedRequest($request);
-        $clientRepository = $this->repositoryManager->get(ClientRepository::class);
+        $clientRepository = $this->repositoryManager->get(ClientAbstractRepository::class);
 
         /** @var ClientEntity $client */
         $client = $clientRepository->findOneBy([

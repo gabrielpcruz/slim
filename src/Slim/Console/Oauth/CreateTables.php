@@ -2,8 +2,8 @@
 
 namespace App\Slim\Console\Oauth;
 
-use App\Enum\EnumProfile;
 use App\Slim\Migration\ConsoleMigration;
+use src\Slim\Enum\EnumProfile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

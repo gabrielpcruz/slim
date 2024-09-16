@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder as IlluminateSeeder;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-abstract class Seeder extends IlluminateSeeder implements SeederInterface
+abstract class AbstractSeeder extends IlluminateSeeder implements SeederInterface
 {
     /**
      * @return ConnectionInterface

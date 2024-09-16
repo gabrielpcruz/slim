@@ -3,9 +3,9 @@
 namespace App\Repository\Example;
 
 use App\Entity\Example\RiceEntity;
-use App\Slim\Repository\Repository;
+use App\Slim\Repository\AbstractRepository;
 
-class RiceRespository extends Repository
+class RiceRespository extends AbstractRepository
 {
     /**
      * @return string

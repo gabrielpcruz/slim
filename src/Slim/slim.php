@@ -1,6 +1,7 @@
 <?php
 
 use App\App;
+use App\Slim\Console\ConsoleMapper;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Illuminate\Database\Query\Builder;
@@ -18,7 +19,7 @@ if (!function_exists('getConsole')) {
     {
         $console = new Application();
 
-        $commands = (require_once $container->get('settings')->get('file.commands'));
+        $commands = (new ConsoleMapper())->getCommands();
 
         if (!empty($commands)) {
             foreach ($commands as $commandClass) {
