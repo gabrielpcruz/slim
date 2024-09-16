@@ -8,6 +8,8 @@ use App\Middleware\Site\Maintenance\MaintenanceMiddleware;
 use App\Middleware\Site\Maintenance\RoutesInMaintenanceMiddleware;
 use App\Slim\Directory\Directory;
 use App\Slim\Handler\Error;
+use App\Slim\Handler\ErrorHandler;
+use App\Slim\Handler\HttpErrorHandler;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -17,6 +19,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App as SlimApp;
+use Slim\Factory\ServerRequestCreatorFactory;
 use Slim\Flash\Messages;
 use App\Slim\Provider\ProviderInterface;
 
@@ -191,8 +194,7 @@ class App
 
         self::provide($container, $settings);
 
-        $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-        $errorMiddleware->setDefaultErrorHandler(Error::class);
+        self::addErrorHandler($app);
 
         if (!App::isConsole()) {
             self::middlewares($app);
@@ -270,7 +272,6 @@ class App
     {
         $app->add(MaintenanceMiddleware::class);
         $app->add(RoutesInMaintenanceMiddleware::class);
-        $app->add(AuthenticationSite::class);
     }
 
     /**
@@ -323,5 +324,43 @@ class App
         }
 
         return false;
+    }
+
+    /**
+     * @return ServerRequestInterface
+     */
+    public static function request(): ServerRequestInterface
+    {
+        $serverRequestCreator = ServerRequestCreatorFactory::create();
+        return $serverRequestCreator->createServerRequestFromGlobals();
+    }
+
+    /**
+     * @param SlimApp $app
+     * @return void
+     */
+    public static function addErrorHandler(SlimApp $app): void
+    {
+        $request = self::request();
+
+        $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+
+        $headerAccept = $request->getHeader('Accept');
+
+        $isJsonApplication = count($headerAccept) === 1 && $headerAccept[0] === 'application/json';
+        $isApiUri = str_contains($request->getUri()->getPath(), '/api');
+
+        if ($isJsonApplication || $isApiUri) {
+            $errorHandlerClass = new HttpErrorHandler(
+                $app->getCallableResolver(),
+                $app->getResponseFactory()
+            );
+
+            $errorMiddleware->setDefaultErrorHandler($errorHandlerClass);
+
+            return;
+        }
+
+        $errorMiddleware->setDefaultErrorHandler(ErrorHandler::class);
     }
 }

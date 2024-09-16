@@ -10,17 +10,5 @@ use App\Slim\Middleware\Middleware;
 
 abstract class MiddlewareSite extends Middleware
 {
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-     */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-    {
-        if (!is_api($request)) {
-            return $this->handle($request, $handler);
-        }
 
-        throw new DomainException("Only site allowed!");
-    }
 }

@@ -22,7 +22,7 @@ use Twig\Error\SyntaxError;
  * It outputs the error message and diagnostic information in one of the following formats:
  * JSON, XML, Plain Text or HTML based on the Accept header.
  */
-class Error implements ErrorHandlerInterface
+class ErrorHandler implements ErrorHandlerInterface
 {
     private ContainerInterface $container;
 
@@ -49,13 +49,32 @@ class Error implements ErrorHandlerInterface
         $view = $this->container->get(Twig::class);
 
         $response = new Response();
+        $message = "";
 
-        $message = $exception->getMessage();
-        $code = ($exception->getCode() > 99 && $exception->getCode() < 600) ? intval($exception->getCode()) : 500;
+        $messageTemplate = "
+            <strong>Message</strong>: %s <br/>
+            <strong>File</strong>: %s <br/>
+            <strong>Line</strong>: %s <br/>
+            <strong>Stacktrace</strong>: %s
+        ";
 
-        if ($this->isApi($request)) {
-            return $this->respondeApi($message, $code, $response);
+        if (!App::isProduction()) {
+            $message = $exception->getMessage();
+            $file = $exception->getFile();
+            $line = $exception->getLine();
+            $stacktrace = $exception->getTraceAsString();
+            $breakLine = PHP_EOL;
+
+            $message = sprintf(
+                $messageTemplate,
+                $message . str_repeat($breakLine, 1),
+                $file . str_repeat($breakLine, 1),
+                $line . str_repeat($breakLine, 1),
+                $stacktrace . str_repeat($breakLine, 1),
+            );
         }
+
+        $code = ($exception->getCode() > 99 && $exception->getCode() < 600) ? $exception->getCode() : 500;
 
         $pathTemplate = App::settings()->get('view.templates.error');
 
@@ -65,51 +84,10 @@ class Error implements ErrorHandlerInterface
 
         $response = $response->withStatus($code);
 
-        if (App::isProduction()) {
-            $message = "";
-        }
-
         return $view->render(
             $response,
             $template,
             compact('message', 'code')
         );
-    }
-
-    /**
-     * @param Request $request
-     * @return bool
-     */
-    private function isApi(Request $request): bool
-    {
-        $accept = explode(',', $request->getHeader('Accept')[0]);
-
-        return !in_array('text/html', $accept);
-    }
-
-    /**
-     * @param string $message
-     * @param int $code
-     * @param Response $response
-     * @return ResponseInterface
-     */
-    private function respondeApi(string $message, int $code, Response $response): ResponseInterface
-    {
-        $responseCode = $code < 300 ? 500 : $code;
-
-        $encodedJson = json_encode([
-            'message' => $message,
-            'code' => $responseCode
-        ], JSON_PRETTY_PRINT);
-
-        if (!is_string($encodedJson)) {
-            $encodedJson = '';
-        }
-
-        $response->getBody()->write($encodedJson);
-
-        return $response
-            ->withStatus($responseCode)
-            ->withHeader('Content-Type', 'application/json');
     }
 }

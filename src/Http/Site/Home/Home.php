@@ -45,6 +45,7 @@ class Home extends SiteController
     {
         $riceService = new RiceService();
 
+        throw new \Exception("sadasd");
         $rices = $riceService->all()->toArray();
 
         return $this->view(
